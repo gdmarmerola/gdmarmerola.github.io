@@ -14,4 +14,4 @@ I hold a special interest about some specific topics:
 
 3. **Management, and data science in a business context:** doing data science in industry is far from trivial as we need to balance time for experimentation with deadlines, data is oftentimes messy and stakeholders may not have a clear understanding of our work and challenges. How can you deliver real value from ML, while creating and maintaining some of the best people motivated?
 
-I hope I can bring useful insights about these topics and others. Feel free to [contact me](https://gdmarmerola.github.io/sleek/contact)! 
+I hope I can bring useful insights about these topics and others. Feel free to [contact me](https://gdmarmerola.github.io/contact)! 

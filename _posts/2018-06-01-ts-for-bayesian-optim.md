@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Introdution to Thompson Sampling, Part 3&#58; Bayesian Optimization
+title: Introduction to Thompson Sampling, Part 3&#58; Bayesian Optimization
 featured-img: ts_hyperparam_cover
 category: [bandits]
 mathjax: true
 ---
 
-# Introdution to Thompson Sampling, Part 3&#58; Bayesian Optimization
+# Introduction to Thompson Sampling, Part 3&#58; Bayesian Optimization
 
 Thompson Sampling is a very simple yet effective method to addressing the exploration-exploitation dilemma in reinforcement/online learning. In this series of posts, I'll introduce some applications of Thompson Sampling in simple examples, trying to show some cool visuals along the way. All the code can be found on my GitHub page [here](https://github.com/gdmarmerola/interactive-intro-rl).
 

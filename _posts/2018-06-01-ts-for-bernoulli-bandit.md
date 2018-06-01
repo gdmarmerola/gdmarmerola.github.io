@@ -42,6 +42,6 @@ We also can use **matplotlib** to generate a video of random draws from these ba
 
 <div class="myvideo">
    <video  style="display:block; width:100%; height:auto;" autoplay controls loop="loop">
-       <source src="{{ site.baseurl }}/assets/img/ts_for_mab/mab_1.mp4" type="video/mp4" />  />
+       <source src="{{ site.baseurl }}/assets/img/ts_for_mab/mab_1.mp4" type="video/mp4" />
    </video>
 </div>

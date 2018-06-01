@@ -1,6 +1,6 @@
 # SITE CONFIGURATION
-title: Guilherme Marmerola's Blog # your site title
-author: Guilherme Marmerola # You :P
+title: Guilherme's Blog # your site title
+author: Guilherme Duarte Marmerola # You :P
 description: > # Meta description of Homepage
   My thoughts and experiments on Machine Learning and related stuff
 baseurl: "/" # the subpath of your site, e.g. /blog

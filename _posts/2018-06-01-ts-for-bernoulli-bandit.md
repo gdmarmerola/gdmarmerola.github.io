@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Intro to Thompson Sampling Part 1
+title: Introdution to Thompson Sampling Part 1, the Bernoulli bandit
 featured-img: ts_for_mab_cover
 mathjax: true
 ---
 
-# Interactive intro to Thompson Sampling Part 1: the Bernoulli Bandit
+# Introdution to Thompson Sampling Part 1, the Bernoulli bandit
 
 Thompson Sampling is a very simple yet effective method to addressing the exploration-exploitation dilemma in reinforcement/online learning. In this series of posts, I'll introduce some applications of Thompson Sampling in simple examples, trying to show some cool visuals along the way. All the code can be found on my GitHub page [here](https://github.com/gdmarmerola/interactive-intro-rl).
 

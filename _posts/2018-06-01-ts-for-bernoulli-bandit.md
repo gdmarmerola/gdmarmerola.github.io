@@ -40,4 +40,8 @@ class MAB:
 
 We also can use **matplotlib** to generate a video of random draws from these bandits. Each row shows us the history of draws for the corresponding bandit, along with its true expected reward $\theta_k$. Hollow dots indicate that we pulled the arm but received no reward. Solid dots indicate that a reward was given by the bandit. 
 
-<video src="https://github.com/gdmarmerola/gdmarmerola.github.io/blob/master/assets/img/ts_for_mab/mab_1.mp4" height="320" controls preload></video>
+<div class="myvideo">
+   <video  style="display:block; width:100%; height:auto;" autoplay controls loop="loop">
+       <source src="{{ site.baseurl }}/assets/img/ts_for_mab/mab_1.mp4" type="video/mp4" />  />
+   </video>
+</div>

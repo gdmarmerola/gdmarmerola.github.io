@@ -2,6 +2,7 @@
 layout: post
 title: Introdution to Thompson Sampling, Part 1&#58; the Bernoulli bandit
 featured-img: ts_for_mab_cover
+category: [bandits]
 mathjax: true
 ---
 

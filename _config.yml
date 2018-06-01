@@ -3,7 +3,7 @@ title: Guilherme Marmerola's Blog # your site title
 author: Guilherme Marmerola # You :P
 description: > # Meta description of Homepage
   My thoughts and experiments on Machine Learning and related stuff
-baseurl: "/sleek" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://gdmarmerola.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
 # SEO PLUGIN

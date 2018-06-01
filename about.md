@@ -4,7 +4,7 @@ title: About me
 permalink: /about/
 ---
 
-<img align="left" src="https://github.com/gdmarmerola/gdmarmerola.github.io/blob/master/assets/img/gdmarmerola-profile.jpg" width="150">
+<img align="center" src="https://github.com/gdmarmerola/gdmarmerola.github.io/blob/master/assets/img/gdmarmerola-profile.jpg" width="150">
 
 Hi! My name is **Guilherme Duarte Marmerola**, and I'm a Data Scientist from Brazil. I graduated in Electrical Engineering from the [University of Campinas](http://www.unicamp.br/unicamp/english) and discovered the world of machine learning in an internship at [NICTA](https://www.data61.csiro.au/) (now called Data61) during an exchange program in Australia in my early undergraduate years. Since then, I've become increasingly passionate about ML and built many advanced analytics initiaves in the media, mining, insurance, retail, consumer goods and banking industries.
 

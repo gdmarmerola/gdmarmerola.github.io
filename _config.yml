@@ -28,6 +28,8 @@ hero_img: posts/sydney4.jpg # Main background image: use the path from /assets/i
 email: gdmarmerola@gmail.com # email for form submission
 
 github_username:  gdmarmerola # replace with your_github_username or comment to remove link from footer
+linkedin_username: gdmarmerola
+facebook_username: guimarmerola
 
 disqus:
   shortname: gdmarmerola # to enable comments replace with your_disqus_shortname

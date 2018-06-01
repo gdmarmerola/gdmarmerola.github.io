@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Intro to Thompson Sampling Part 1: the Bernoulli Bandit
+title: Intro to Thompson Sampling Part 1
 featured-img: ts_for_mab_cover
 mathjax: true
 ---

@@ -1,3 +1,10 @@
+---
+layout: post
+title: A Blog for sharing thoughts and experiments I do in my spare time
+featured-img: sydney4
+mathjax: true
+---
+
 # A Blog for sharing thoughts and experiments I do in my spare time
 
 Some may agree with me that one of the best ways to study and understand a concept is though practicing it. In preparation to going after my first internship in 2016, I started to participate in Kaggle competitions and doing some personal projects. I started posting this content to my GitHub page in order to build a portfolio for recruiters to inspect.

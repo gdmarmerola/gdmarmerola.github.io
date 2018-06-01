@@ -1,7 +1,6 @@
 ---
 layout: post
 title: A Blog for sharing thoughts and experiments I do in my spare time
-featured-img: sydney4
 mathjax: true
 ---
 

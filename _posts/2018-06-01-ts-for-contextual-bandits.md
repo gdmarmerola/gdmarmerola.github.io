@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Introdution to Thompson Sampling, Part 2&#58; Contexual bandits
+title: Introdution to Thompson Sampling, Part 2&#58; Contextual bandits
 featured-img: ts_contextual_cover
 category: [bandits]
 mathjax: true
 ---
 
-#  Introdution to Thompson Sampling, Part 2&#58; Contexual bandits
+#  Introdution to Thompson Sampling, Part 2&#58; Contextual bandits
 
 Thompson Sampling is a very simple yet effective method to addressing the exploration-exploitation dilemma in reinforcement/online learning. In this series of posts, I'll introduce some applications of Thompson Sampling in simple examples, trying to show some cool visuals along the way. All the code can be found on my GitHub page [here](https://github.com/gdmarmerola/interactive-intro-rl).
 

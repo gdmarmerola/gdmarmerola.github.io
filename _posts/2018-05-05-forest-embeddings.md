@@ -12,7 +12,7 @@ mathjax: true
 
 In this post, I'll try out a new way to represent data and perform clustering: forest embeddings. A forest embedding is a way to represent a feature space using a random forest. Each data point $x_i$ is encoded as a vector $x_i = [e_0, e_1, ..., e_k]$ where each element $e_i$ holds which leaf of tree $i$ in the forest $x_i$ ended up into. The encoding can be learned in a supervised or unsupervised manner:
 
-1. **Supervised:** we train a forest to solve a regression or classification problem. Then, we use its tree structure to extract the embedding. 
+1. **Supervised:** we train a forest to solve a regression or classification problem. Then, we use the trees structure to extract the embedding. 
 
 2. **Unsupervised:** each tree of the forest builds splits at random, without using a target variable.
 
@@ -28,14 +28,15 @@ In the next sections, we implement some simple models and test cases. You can fi
 
 ## Building the embeddings
 
-So how do we build a forest embedding? It's very simple. We start by choosing a model. In our case, we'll choose any from `RandomTreesEmbedding`, `RandomForestClassifier` and `ExtraTreesClassifier` from `sklearn`. Let's say we chose `ExtraTreesClassifier´. The first thing we do, is to fit the model to the data.
+So how do we build a forest embedding? It's very simple. We start by choosing a model. In our case, we'll choose any from `RandomTreesEmbedding`, `RandomForestClassifier` and `ExtraTreesClassifier` from `sklearn`. Let's say we choose `ExtraTreesClassifier`. The first thing we do, is to fit the model to the data.
 
 ```python
+# choosing and fitting a model
 model = ExtraTreesClassifier(n_estimators=100, min_samples_leaf=10)
 model.fit(X, y)
 ```
 
-As we're using a supervised model, we're going to learn a supervised embedding, that is, the embedding will weight the features according to the objetcive. Data points will be closer if they're similar in the most relevant features. After model adjustment, we apply it to each sample in the dataset to check which leaf it was assigned to.
+As we're using a supervised model, we're going to learn a supervised embedding, that is, the embedding will weight the features according to what is most relevant to the target variable. Data points will be closer if they're similar in the most relevant features. After model adjustment, we apply it to each sample in the dataset to check which leaf it was assigned to.
 
 ```python
 # let us apply to X
@@ -81,7 +82,7 @@ As the blobs are separated and there's no noisy variables, we can expect that un
 
 ![]({{ "assets/img/forest_embeddings/emdeddings-img-2.png" | absolute_url }})
 
-The red dot is our "pivot", such that we show the similarity of all the points in the plot to the pivot in shades of gray, black being to most similar. Each plot shows the similarities produced by one of the three methods we chose to explore. Similarities by the RF are pretty much binary: points in the same cluster have 100% similarity to one another as opposed to points in different clusters which have zero similarity. ET and RTE seem to produce "softer" similarities, such that the pivot has at least some similarity with points in the other cluster. 
+The red dot is our "pivot", such that we show the similarity of all the points in the plot to the pivot in shades of gray, black being the most similar. Each plot shows the similarities produced by one of the three methods we chose to explore. Similarities by the RF are pretty much binary: points in the same cluster have 100% similarity to one another as opposed to points in different clusters which have zero similarity. ET and RTE seem to produce "softer" similarities, such that the pivot has at least some similarity with points in the other cluster. 
 
 Finally, let us check the t-SNE plot for our methods. In the upper-left corner, we have the actual data distribution, our ground-truth. The other plots show t-SNE reconstructions from the dissimilarity matrices produced by methods under trial.
 
@@ -111,7 +112,7 @@ Now, let us concatenate two datasets of moons, but we will only use the target v
 
 ![]({{ "assets/img/forest_embeddings/emdeddings-img-7.png" | absolute_url }})
 
-The ideal embedding should throw away the irrelevant variables and reconstruct the true clusters formed by $x_1$ and $x_2$. Intuition tells us the only the supervised models can do this. As it's difficult to inspect similarities in a 4D space, we jump directly to the t-SNE plot:
+The ideal embedding should throw away the irrelevant variables and reconstruct the true clusters formed by $x_1$ and $x_2$. Intuition tells us the only the supervised models can do this. As it's difficult to inspect similarities in 4D space, we jump directly to the t-SNE plot:
 
 ![]({{ "assets/img/forest_embeddings/emdeddings-img-9.png" | absolute_url }})
 
@@ -123,11 +124,11 @@ Finally, let us now test our models out with a real dataset: the [Boston Housing
 
 CRIM|ZN|INDUS|CHAS|NOX|RM|AGE|DIS|RAD|TAX|PTRATIO|B|LSTAT|
 ----|--|-----|----|---|--|---|---|---|---|-------|-|-----|
-0|0.00632|18.0|2.31|0.0|0.538|6.575|65.2|4.0900|1.0|296.0|15.3|396.90|4.98|
-1|0.02731|0.0|7.07|0.0|0.469|6.421|78.9|4.9671|2.0|242.0|17.8|396.90|9.14|
-2|0.02729|0.0|7.07|0.0|0.469|7.185|61.1|4.9671|2.0|242.0|17.8|392.83|4.03|
-3|0.03237|0.0|2.18|0.0|0.458|6.998|45.8|6.0622|3.0|222.0|18.7|394.63|2.94|
-4|0.06905|0.0|2.18|0.0|0.458|7.147|54.2|6.0622|3.0|222.0|18.7|396.90|5.33|
+0.00632|18.0|2.31|0.0|0.538|6.575|65.2|4.0900|1.0|296.0|15.3|396.90|4.98|
+0.02731|0.0|7.07|0.0|0.469|6.421|78.9|4.9671|2.0|242.0|17.8|396.90|9.14|
+0.02729|0.0|7.07|0.0|0.469|7.185|61.1|4.9671|2.0|242.0|17.8|392.83|4.03|
+0.03237|0.0|2.18|0.0|0.458|6.998|45.8|6.0622|3.0|222.0|18.7|394.63|2.94|
+0.06905|0.0|2.18|0.0|0.458|7.147|54.2|6.0622|3.0|222.0|18.7|396.90|5.33|
 
 This is a regression problem where the two most relevant variables are `RM` and `LSTAT`, accounting together for over 90% of total importance. We plot the distribution of these two variables as our reference plot for our forest embeddings. The color of each point indicates the value of the target variable, where yellow is higher. Let us check the t-SNE plot for our reconstruction methodologies.
 
@@ -137,4 +138,4 @@ The first plot, showing the distribution of the most important variables, shows 
 
 ## Conclusion
 
-In this tutorial, we compared three different methods for creating forest-based embeddings of data. The unsupervised method Random Trees Embedding (RTE) showed nice reconstruction results in the first two cases, where no irrelevant variables were present. When we added noise to the problem, supervised methods could move it aside and reasonably reconstruct the real clusters that correlate with the target variable. Despite good CV performance, Random Forest embeddings showed instability, as similarities are a bit binary-like. However, Extremely Randomized Trees provided more stable simialrity measures, showing reconstructions closer to the reality. We conclude that ET is the way to go for reconstructing supervised forest-based embeddings in the future. 
+In this tutorial, we compared three different methods for creating forest-based embeddings of data. The unsupervised method Random Trees Embedding (RTE) showed nice reconstruction results in the first two cases, where no irrelevant variables were present. When we added noise to the problem, supervised methods could move it aside and reasonably reconstruct the real clusters that correlate with the target variable. Despite good CV performance, Random Forest embeddings showed instability, as similarities are a bit binary-like. However, Extremely Randomized Trees provided more stable similarity measures, showing reconstructions closer to the reality. We conclude that ET is the way to go for reconstructing supervised forest-based embeddings in the future. 

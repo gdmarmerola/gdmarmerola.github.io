@@ -32,13 +32,13 @@ We will use the formula given by the paper [*Weight Uncertainty in Neural Networ
 
 $$y = x + 0.3 \cdot{} sin(2π(x + \epsilon)) + 0.3 \cdot{} sin(4 \cdot{} \pi \cdot{}(x + \epsilon)) + \epsilon$$
 
-where $\epsilon \sim \mathcal{N}(0, 0.02)$. We take a hundred $x$ samples from an uniform distribution $\mathcal{U}(0, 0.5). This results in the following plot:
+where $\epsilon \sim \mathcal{N}(0, 0.02)$. We take a hundred $x$ samples from an uniform distribution $\mathcal{U}(0, 0.5)$. This results in the following plot:
 
 ![]({{ "assets/img/ts_for_mushroom_bandit/mushroom-img-1.png" | absolute_url }})
 
 ### Random Forest 
 
-Let us start with the simpler model, a Random Forest. What we will try to do is to randomize the forest's output, by sampling sets of decision trees and averaging their predictions. The following code accomplishes that, drawing 20 samples of our approximate posterior distribution.
+Let us start with the simpler model, a Random Forest. What we will try to do is randomize the forest's output, by sampling sets of decision trees and averaging their predictions. The following code accomplishes that, drawing 20 samples of our approximate posterior distribution.
 
 ````python
 # instance of RF
@@ -124,14 +124,14 @@ Even with my dirty code, the results are beautiful. We can see a reasonable unce
 
 ![]({{ "assets/img/ts_for_mushroom_bandit/mushroom-img-3.png" | absolute_url }})
 
-We are now ready to play the Mushroom bandit game.
+We are now ready to play the Mushroom bandit game!
 
 ### The Mushroom bandit
 
 The game is set up as follows:
 
 0. The agent is initialized with 50 random mushrooms and if they're edible or poisonous
-1. At each round, the agent is presented with all the mushrooms which were not alreaady eaten.
+1. At each round, the agent is presented with all the mushrooms which were not already eaten.
 2. The agent ranks the mushrooms, with the most edible mushroom at the top.
 3. The agent eats the top $k$ mushrooms and receives feedback. The agent reward is the actual observation.
 

@@ -26,6 +26,10 @@ There may be a number of benefits in using forest-based embeddings:
 
 In the next sections, we implement some simple models and test cases. You can find the complete code at my [GitHub page](https://github.com/gdmarmerola/forest-embeddings).
 
+## Why is this relevant?
+
+Many problems in industry can be tackled by finding comparable entities in the data. Oftentimes the nature of the problem sets the need to compare those entites given an objetive, such as, for instance, comparing sales reps in terms of the variables that impact their clients' performance. If my model tells me that some sales rep should be bringing more profit given his clients and these relevant variables, because another comparable rep **actually does it**, it calls for an investigation on why this dispersion exists, potentially bringing many actionable insights to the table. Forest embeddings provide a robust and efficient way to find these relevant variables and build these comparisons.
+
 ## Building the embeddings
 
 So how do we build a forest embedding? It's very simple. We start by choosing a model. In our case, we'll choose any from `RandomTreesEmbedding`, `RandomForestClassifier` and `ExtraTreesClassifier` from `sklearn`. Let's say we choose `ExtraTreesClassifier`. The first thing we do, is to fit the model to the data.

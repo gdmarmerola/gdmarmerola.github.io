@@ -12,6 +12,11 @@ Thompson Sampling is a very simple yet effective method to addressing the explor
 
 In this post, we frame the hyperparameter optimization problem (a theme that is much explored by to AutoML community) as a bandit problem, and use Gaussian Processes to solve it.
 
+
+## Why is this relevant?
+
+You can frame many industry problems as bandit problems. Any problem which involves experimentation and online data gathering (in the sense that you need to take some action and incur some cost in order to access it) calls for this type of treatment. Instantly, we can think of testing different layouts of a website, actively recommending new products to clients, or dynamically setting prices in an online marketplace as examples in which these techniques are useful. Imagine, for instance, you want to proactively find dissatisfied clients to send them a special offer through a call center. How do you balance the need of calling all kinds of clients and guarantee you're reasonably unbiased (exploration) with the need to find the most dissatisfied clients as possible given your call center budget (exploitation)? I hope to answer this question through the series.
+
 ## Optimization of non-differentiable and non-convex functions
 
 Before we dive into actual hyperparameter optimization, let us illustrate the problem with a simpler example, but rather challenging: a 1D cut of the Ackley function.

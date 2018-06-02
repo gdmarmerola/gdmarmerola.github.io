@@ -2,7 +2,7 @@
 layout: post
 title: Introduction to Thompson Sampling, Part 2&#58; Contextual bandits
 featured-img: ts_contextual_cover
-category: [bandits]
+category: [bandits, bayesian]
 mathjax: true
 ---
 

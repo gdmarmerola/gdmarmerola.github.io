@@ -2,7 +2,7 @@
 layout: post
 title: Introduction to Thompson Sampling, Part 1&#58; the Bernoulli bandit
 featured-img: ts_for_mab_cover
-category: [bandits]
+category: [bandits, bayesian]
 mathjax: true
 ---
 

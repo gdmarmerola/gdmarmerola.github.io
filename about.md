@@ -16,6 +16,6 @@ I hold a special interest about some specific topics:
 
 2. **Dimensionality reduction and clustering:** how can we visualize and interpret structure in our data, aiming to explain it to business stakeholders? Can we do better than simple K-Means clustering? What similarity measures, algorithms and representations would make this possible?
 
-3. **Management, and data science in a business context:** doing data science in industry is far from trivial as we need to balance time for experimentation with deadlines, data is oftentimes messy and stakeholders may not have a clear understanding of our work and challenges. How can you deliver real value from ML, while creating and maintaining some of the best people motivated?
+3. **Management, and data science in a business context:** doing data science in industry is far from trivial as we need to balance time for experimentation with deadlines, data is oftentimes messy and stakeholders may not have a clear understanding of our work and challenges. How can you navigate this and deliver real value from ML, while maintaining the best people motivated?
 
 I hope I can bring useful insights about these topics and others. Feel free to [contact me](https://gdmarmerola.github.io/contact), and also add me on [LinkedIn](https://www.linkedin.com/in/gdmarmerola/)! 

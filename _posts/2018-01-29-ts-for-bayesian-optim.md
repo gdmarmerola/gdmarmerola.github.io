@@ -2,7 +2,7 @@
 layout: post
 title: Introduction to Thompson Sampling, Part 3&#58; Bayesian Optimization
 featured-img: ts_hyperparam_cover
-category: [bandits]
+category: [bayesian]
 mathjax: true
 ---
 

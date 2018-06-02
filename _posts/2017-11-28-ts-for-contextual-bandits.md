@@ -10,12 +10,12 @@ mathjax: true
 
 Thompson Sampling is a very simple yet effective method to addressing the exploration-exploitation dilemma in reinforcement/online learning. In this series of posts, I'll introduce some applications of Thompson Sampling in simple examples, trying to show some cool visuals along the way. All the code can be found on my GitHub page [here](https://github.com/gdmarmerola/interactive-intro-rl).
 
-In this post, we expand our Multi-Armed Bandit setting such that the expected rewards parameters $\theta$ can depend on an external variable. This scenario is known as the **Contextual bandit**.
+In this post, we expand our Multi-Armed Bandit setting such that the expected rewards $\theta$ can depend on an external variable. This scenario is known as the **Contextual bandit**.
 
 
-## Problem: the Contextual Bandit
+## The Contextual Bandit
 
-The Contextual Bandit is just like the Multi-Armed bandit problem but now the true expect reward parameter $\theta_k$ depends on external variables. Therefore, we add the notion of **context** or **state** to support our decision.
+The Contextual Bandit is just like the Multi-Armed bandit problem but now the true expected reward parameter $\theta_k$ depends on external variables. Therefore, we add the notion of **context** or **state** to support our decision.
 
 Thus, we're going to suppose that the probabilty of reward now is of the form
 
@@ -65,7 +65,7 @@ Let us visualize how the contexual MAB setting will work. First, let us see how 
 
 ![]({{ "assets/img/ts_for_contextual_bandits/contextual-img-1.png" | absolute_url }})
 
-The plot shows us that an ideal strategy would select Bandit 0 if $x$ is greater than 0, and Bandit 1 if $x$ is less than 0. In the following plot, we show the bandits rewards over time depending on a sine wave varying $x$. The green and red shaded areas show the best action at each time.
+The plot shows us that an ideal strategy would select Bandit 0 if $x$ is greater than 0, and Bandit 1 if $x$ is less than 0. In the following plot, we show the bandits rewards over time depending on $x$ varying like a sine wave. The green and red shaded areas show the best action at each round.
 
 <div class="myvideo">
    <video  style="display:block; width:100%; height:auto;" autoplay controls loop="loop">
@@ -153,11 +153,11 @@ Thompson Sampling may offer more efficient exploration. But how can we use it?
 
 ## Algorithm 2: Online Logistic Regression by Chapelle et. al
 
-In 2011, Chapelle & Li published the paper "[An Empirical Evaluation of Thompson Sampling](https://papers.nips.cc/paper/4321-an-empirical-evaluation-of-thompson-sampling.pdf)" that helped revive the interest on Thompson Sampling, showing favorable empirical results in comparison to other heuristics. We're going to borrow the Online Logistic Regression algorithm (Algorithm 3) from the paper. Basically, it's a bayesian logistic regression where we define a prior distribution for our weights $\beta_0$ and $\beta_1$, instead of learning just a point estimate for them (the expectation of the distribution). 
+In 2011, Chapelle & Li published the paper "[An Empirical Evaluation of Thompson Sampling](https://papers.nips.cc/paper/4321-an-empirical-evaluation-of-thompson-sampling.pdf)" that helped revive the interest on Thompson Sampling, showing favorable empirical results in comparison to other heuristics. We're going to borrow the Online Logistic Regression algorithm (Algorithm 3) from the paper. Basically, it's a bayesian logistic regression where we define a prior distribution for our weights $\beta_0$ and $\beta_1$, instead of just learning a point estimate for them (the expectation of the distribution). 
 
 So, our model, just like the greedy algorithm, is:
 
-$$\theta_k = \frac{1}{1 + exp(-f(x))}$$
+$$\theta_k(x) = \frac{1}{1 + exp(-f(x))}$$
 
 where 
 
@@ -172,13 +172,13 @@ We initialize all $q_i$'s with a hyperparamenter $\lambda$, which is equivalent 
 1. Find $\textbf{w}$ as the minimizer of $\frac{1}{2}\sum_{n=1}^{d} q_i(w_i - m_i)^2 + \sum_{j=1}^{n} \textrm{log}(1 + \textrm{exp}(1 + -y_jw^Tx_j))$
 2. Update $m_i = w_i$ and perform $q_i = q_i + \sum_{j=1}^{n} x_{ij}p_j(1-p_j)$ where $p_j = 1 + \textrm{exp}(1 + -w^Tx_j)^{-1}$ (Laplace approximation)
 
-There are some heavy maths, but in essence, we basically altered the logistic regression fitting process to accomodate distributions for the weights. Our Normal priors on the weights are iteratively updated and as the number of observations grow, our uncertainty over their means is reduced. 
+There are some heavy maths, but in essence, we basically altered the logistic regression fitting process to accomodate distributions for the weights. Our Normal priors on the weights are iteratively updated and as the number of observations grow, our uncertainty over them is reduced. 
 
-We can also increase incentives for exploration or exploitation by defining a hyperparameter $\alpha$, which multiplies the variance of the Normal posteriors:
+We can also increase incentives for exploration or exploitation by defining a hyperparameter $\alpha$, which multiplies the variance of the Normal posteriors at prediction time:
 
 $$\beta_i = \mathcal{N}(m_i,\alpha \cdot{} q_i^{-1})$$
 
-With $0 < \alpha < 1$ we reduce the variance of the Normal priors, inducing the algorithm to be greedier, whereas with $\alpha > 1$ we prioritize exploration. Implementation of this algorithm by hand is a bit tricky. If you want to use a better code, with many possible improvements I would recommend [skbayes](https://github.com/AmazaspShumik/sklearn-bayes/tree/master/skbayes)
+With $0 < \alpha < 1$ we reduce the variance of the Normal priors, inducing the algorithm to be greedier, whereas with $\alpha > 1$ we prioritize exploration. Implementation of this algorithm by hand is a bit tricky. If you want to use a better code, with many possible improvements I would recommend [skbayes](https://github.com/AmazaspShumik/sklearn-bayes/tree/master/skbayes). For now, let us use my craft OLR:
 
 ```python
 # defining a class for our online bayesian logistic regression
@@ -271,7 +271,7 @@ Let us visualize how the learning progresses and the model represents uncertaint
    </video>
 </div>
 
-We see that in the first rounds our output probabilities have very large uncertainty and no clear direction. Also, our priors have large intersections, as the model is not very certain about its weights. As the rounds pass, we see that we effectively learn distributions for the weights and reduce our uncertainty around the output probabilities. When the model has low unceratinty, we start exploiting the bandits, choosing the best in each context.
+We see that in the first rounds our output probabilities have very large uncertainty and no clear direction. Also, our priors have large intersections, as the model is not very certain about its weights. As the rounds pass, we see that we effectively learn distributions for the weights and reduce our uncertainty around the output probabilities. When the model has low uncertainty, we start exploiting the bandits, choosing the best in each context.
 
 ## Regret analysis
 

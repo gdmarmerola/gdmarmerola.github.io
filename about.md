@@ -12,7 +12,7 @@ Hi! My name is **Guilherme Duarte Marmerola**, and I'm a Data Scientist from Bra
 
 I hold a special interest about some specific topics:
 
-1. **Reinforcement Learning:** particurlarly, I'm interested in the exporation-exploitation dilemma, and how to solve it with (bayesian) models that capture uncertainty. I'm devoting a lot of time to the study of bandit problems, and how to use them as frameworks to fundamental problems in industry (pricing, applying treatments, deciding which data to collect, etc.).
+1. **Reinforcement learning:** particurlarly, I'm interested in the exporation-exploitation dilemma, and how to solve it with (bayesian) models that capture uncertainty. I'm devoting a lot of time to the study of bandit problems, and how to use them as frameworks to fundamental problems in industry (pricing, applying treatments, deciding which data to collect, etc.).
 
 2. **Dimensionality reduction and clustering:** how can we visualize and interpret structure in our data, aiming to explain it to business stakeholders? Can we do better than simple K-Means clustering? What similarity measures, algorithms and representations would make this possible?
 

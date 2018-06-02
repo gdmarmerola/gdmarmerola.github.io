@@ -70,7 +70,7 @@ The last step we perform aims to make the embedding easy to visualize. We feed o
  embed = TSNE(metric='precomputed', perplexity=30).fit_transform(D)
 ```
 
-In the next sections, we'll run this pipeline for various toy problems, observing the differences between an unsupervised embedding (with `RandomTreesEmbedding`) and supervised embeddings (Ranfom Forests and Extremely Randomized Trees).
+In the next sections, we'll run this pipeline for various toy problems, observing the differences between an unsupervised embedding (with `RandomTreesEmbedding`) and supervised embeddings (Ranfom Forests and Extremely Randomized Trees). We favor supervised methods, as **we're aiming to recover only the structure that matters to the problem, with respect to its target variable.**
 
 ## Two blobs, two dimensions
 

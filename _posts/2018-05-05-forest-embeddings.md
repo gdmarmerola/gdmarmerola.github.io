@@ -2,7 +2,7 @@
 layout: post
 title: Supervised clustering and forest embeddings
 featured-img: forest_embeddings_cover
-category: [clustering]
+category: [clustering, dreduction]
 mathjax: true
 ---
 

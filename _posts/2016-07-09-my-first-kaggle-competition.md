@@ -2,7 +2,7 @@
 layout: post
 title: My first (and only) Kaggle Top 10%
 featured-img: first_kaggle_cover
-category: [kaggle, modeling]
+category: [kaggle]
 mathjax: true
 ---
 

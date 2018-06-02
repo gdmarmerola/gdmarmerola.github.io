@@ -2,7 +2,7 @@
 layout: post
 title: Non-stationary bandits
 featured-img: non_stat_cover
-category: [bandits]
+category: [bandits, bayesian]
 mathjax: true
 ---
 

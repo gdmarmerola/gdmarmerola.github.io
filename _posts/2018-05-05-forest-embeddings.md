@@ -78,7 +78,7 @@ Let us start with a dataset of two blobs in two dimensions.
 
 ![]({{ "assets/img/forest_embeddings/emdeddings-img-1.png" | absolute_url }})
 
-As the blobs are separated and there's no noisy variables, we can expect that unsupervised and supervised methods can easily reconstrut the data's structure thorugh our similarity pipeline. After we fit our three contestants (`RandomTreesEmbedding`, `RandomForestClassifier` and `ExtraTreesClassifier`) to the data, we can take a look at the similarities they learned and the plot below:
+As the blobs are separated and there's no noisy variables, we can expect that unsupervised and supervised methods can easily reconstruct the data's structure thorugh our similarity pipeline. After we fit our three contestants (`RandomTreesEmbedding`, `RandomForestClassifier` and `ExtraTreesClassifier`) to the data, we can take a look at the similarities they learned and the plot below:
 
 ![]({{ "assets/img/forest_embeddings/emdeddings-img-2.png" | absolute_url }})
 

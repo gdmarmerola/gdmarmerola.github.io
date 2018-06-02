@@ -14,7 +14,7 @@ In this post, we frame the hyperparameter optimization problem (a theme that is 
 
 ## Optimization of non-differentiable and non-convex functions
 
-Before we delve into actual hyperparameter optimization, let us illustrate with a simpler example, but rather challenging: a 1D cut of the Ackley function.
+Before we dive into actual hyperparameter optimization, let us illustrate the problem with a simpler example, but rather challenging: a 1D cut of the Ackley function.
 
 ```python
 # defining the function. At y=0 to get a 1D cut at the origin
@@ -37,13 +37,13 @@ The Ackley's function has a lot of local minima, therefore it's not convex. This
 
 First, we need a method that can approximate this function and also calculate the uncertainty over the approximation. Gaussian Processes are a elegant way to achieving these goals.
 
-## Gaussian Process
+## Gaussian Processes
 
 Gaussian Processes are supervised learning methods that are non-parametric, unlike the Bayesian Logistic Regression we've seen earlier. Instead of trying to learn a posterior distribution over the *parameters of a function* $f(x) = \theta_0 + \theta_1 \cdot x + \epsilon$ we learn a posterior distribution over *all the functions*.
 
-We specify how smooth the functions will be through covariance functions (kernels), which calculates the similarity between samples. If we enforce that similar points in input space produce similar outputs, we have a smooth function. I recommend [this](http://katbailey.github.io/post/gaussian-processes-for-dummies/) tutorial and [this](https://www.cs.toronto.edu/~hinton/csc2515/notes/gp_slides_fall08.pdf) for further reading. Also, these [classes](https://www.youtube.com/watch?v=4vGiHC35j9s) are very nice.
+We specify how smooth the functions will be through covariance functions (kernels), which calculate the similarity between samples. If we enforce that similar points in input space produce similar outputs, we have a smooth function. I recommend [this](http://katbailey.github.io/post/gaussian-processes-for-dummies/) tutorial and [this](https://www.cs.toronto.edu/~hinton/csc2515/notes/gp_slides_fall08.pdf) for further reading. Also, these [classes](https://www.youtube.com/watch?v=4vGiHC35j9s) are very nice.
 
-Using **sklearn** we can easily fit a GP to a few samples of our target function:
+Using `sklearn` we can easily fit a GP to a few samples of our target function:
 
 ```python
 # let us draw 20 random samples of the Ackley's function
@@ -60,7 +60,7 @@ gp = GaussianProcessRegressor(kernel=K)
 gp.fit(x_observed.reshape(-1,1), y_observed)
 ```
 
-When we call the `.fit()` method, the GP infers a posterior distribution over functions, given the smoothness constraints given by the kernel. The `gp` object can return the posterior mean an variance for grid in our search space:
+When we call the `.fit()` method, the GP infers a posterior distribution over functions, given the smoothness constraints given by the kernel. The `gp` object can return the posterior means and variances for a grid in our search space:
 
 ```python
 # let us check the learned model over all of the input space
@@ -84,7 +84,7 @@ Ok. So we learned how a GP works, and how we can draw *functions* from the poste
 
 1. Fit the GP to the observations we have
 2. Draw one sample (a function) from the posterior
-3. Greedily choose the next point with respect to the sample.
+3. Greedily choose the next point with respect to the sample
 
 The randomness of Thompson Sampling comes from the posterior sample. After we have it, we can just use its minimum as our next point. Let us implement this.
 

@@ -8,7 +8,7 @@ permalink: /about/
 
 ![profile]({{ "assets/img/gdmarmerola-profile-50p.jpg" | absolute_url }})
  
-Hi! My name is **Guilherme Duarte Marmerola**, and I'm a Data Scientist from Brazil. I graduated in Electrical Engineering from the [University of Campinas](http://www.unicamp.br/unicamp/english) and discovered the world of machine learning in an internship at [NICTA](https://www.data61.csiro.au/) (now called Data61) during an exchange program in Australia in my early undergraduate years. Since then, I've become increasingly passionate about ML and built many advanced analytics initiaves in the media, mining, insurance, retail, consumer goods and banking industries.
+Hi! My name is **Guilherme Duarte Marmerola**, and I'm a Data Scientist from Brazil. I'm passionate about machine learning, and the power it gives us to solve real problems in business and science. I graduated in Electrical Engineering from the University of Campinas and had the fortune of discovering ML in my early undergraduate years, totally by chance, during an internship. Since then, I’ve literally fallen in love with the discipline, and built many successful advanced analytics initiatives in the media, mining, insurance, retail, consumer goods and banking industries.
 
 I hold a special interest about some specific topics:
 

@@ -36,15 +36,15 @@ Kaggle has actually two leaderboards, Public and Private, where the Public leade
 
 On the other hand, some noted that these scripts could be **overfitting** the public leaderboard, and would greatly suffer when the private leaderboard was revealed, due to possible differences between the public and private LB, caused by the target variable imbalance.
 
-In the end of the competition, it beacme clear that this was true, and that a robust validation process was paramount. The shake-up (difference between public and private LB rankings) was very high due to the use of scripts, making some competitors fall over a thousand places in the LB. Fortunately, I trusted my CV and gained 470 positions, which put me in the Top 10%. 
+In the end of the competition, it became clear that this was true, and that a robust validation process was paramount. The shake-up (difference between public and private LB rankings) was very high due to the use of scripts, making some competitors fall over a thousand places in the LB. Fortunately, I trusted my CV and gained 470 positions, which put me in the Top 10%. 
 
 ![]({{ "assets/img/my_first_kaggle/kaggle-img-1.png" | absolute_url }})
 
-As people mentioned in the foruns, the biggest lesson to be taken from this competition is *trust your CV*.
+As people mentioned in the forums, the biggest lesson to be taken from this competition is *trust your CV*.
 
 ## Modeling
 
-As I wanted to use a very expressive model (`xgboost`) and tune the hell out of it (with the TPE algorithm from `hyperopt`), I needed to devise a robust validation process. One of Kaggle greatest competitors, [Lucas Eustaquio](https://www.kaggle.com/leustagos), mentioned at an interview that validation is one of the things that [he cares the most about](http://blog.kaggle.com/2016/02/22/profiling-top-kagglers-leustagos-current-7-highest-1/), being the first thing that the builds in a competition.
+As I wanted to use a very expressive model (`xgboost`) and tune the hell out of it (with the TPE algorithm from `hyperopt`), I needed to devise a robust validation process. One of Kaggle greatest competitors, [Lucas Eustaquio](https://www.kaggle.com/leustagos) (who, unfortunately, lost the battle against cancer during the competition), mentioned at an interview that validation is one of the things [he cared the most about](http://blog.kaggle.com/2016/02/22/profiling-top-kagglers-leustagos-current-7-highest-1/), being the first thing that he builds at the start of a competition.
 
 In order to get stable AUC measurements (0.003 of AUC would mean 1,350 positions in the LB) and achieve my goals, I used two CV strategies to evaluate my models:
 
@@ -63,16 +63,16 @@ This method is similar to the Ensemble Selection methodology from [Caruana et. a
 
 ![]({{ "assets/img/my_first_kaggle/kaggle-img-2.png" | absolute_url }})
 
-As expected by [previous research on hyperparameter tuning](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf), few hyperparameters matter. The TPE algorithm made good choices as most experiments yielded a good result.
+In agreement with [previous research on hyperparameter tuning](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf), few hyperparameters really mattered. The TPE algorithm made good choices as most experiments yielded a good result.
 
 ## What I could've done better
 
 From a business perspective, the difference between my model and the best model is irrelevant. In a business context, we would improve the model by collecting more variables or maybe help with devising good offers for the dissatisfied clients.
 
-From the competition perspective, I could've spent a little it more time in feature engineering, even if it was not super important for this competition. Also, and more importantly, other ensemble techniques such as Stacking, could've gone far as well. Using different algorithms in opposition as using one algorithm with slight hyperparameter variations could've contrbuted to adding beneficial variability to the ensemble.
+From the competition perspective, I could've spent a little bit more time in feature engineering, even if it was not super important for this competition. Also, and more importantly, other ensemble techniques such as Stacking, could've gone far as well. Using different algorithms in opposition as using one algorithm with slight hyperparameter variations could've contrbuted to adding beneficial variability to the ensemble.
 
 Nevertheless, I'm satisfied with the result and with the learning opportunity. I've heard that in Kaggle competitions you always win, because you always take knowledge and experience home. 
 
 ## Conclusions
 
-Kaggle is a great platform for learning cool stuff about machine learning and exercizing software engineering skills. I still haven't returned to the platform as a competitor, as I started to work in industry shortly after this competition. However, I'm always checking for new models and ideas in the community. I greatly recommend giving a shot, and I hope that this post may help you with some inspiration in the future.
+Kaggle is a great platform for learning cool stuff about machine learning and exercizing software engineering skills. I still haven't returned to the platform as a competitor, as I started to work in industry shortly after this competition. However, I'm always checking for new models and ideas in the community. I greatly recommend giving it a shot, and I hope that this post may help you with some inspiration in the future.

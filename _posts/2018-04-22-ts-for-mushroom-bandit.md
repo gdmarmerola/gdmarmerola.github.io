@@ -2,7 +2,7 @@
 layout: post
 title: Introduction to Thompson Sampling, Part 4&#58; Neural Networks, Random Forests and the "Mushroom" bandit
 featured-img: ts_mushroom_cover
-category: [bandits]
+category: [bandits, bayesian]
 mathjax: true
 ---
 

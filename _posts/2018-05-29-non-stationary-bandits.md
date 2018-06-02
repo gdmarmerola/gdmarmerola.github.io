@@ -10,6 +10,10 @@ mathjax: true
 
 In this post, we'll build on the Multi-Armed Bandit problem by relaxing the assumption that the reward distributions are stationary. Non-stationary reward distributions change over time, and thus our algorithms have to adapt to them. There's simple way to solve this: adding buffers. Let us try to do it to an $\epsilon$-greedy policy and Thompson Sampling. Please, feel free to get the full code in my [GitHub page](https://github.com/gdmarmerola/advanced-bandit-problems).
 
+## Why is this relevant?
+
+You can frame many industry problems as bandit problems. Any problem which involves experimentation and online data gathering (in the sense that you need to take some action and incur some cost in order to access it) calls for this type of treatment. Instantly, we can think of testing different layouts of a website, actively recommending new products to clients, or dynamically setting prices in an online marketplace as examples in which these techniques are useful. Pricing problems, for instance, are sensitive to market conditions and competitor agressiveness, which may change over time. How do we design algorithms that can quickly adapt to these changing conditions? That's what the post aims to respond with a simple example and algorithm.
+
 ## Problem statement
 
 Let us define some test cases where the reward distributions can change over time  and implement them. In this Notebook, we assume that the rewards $r_k$ are binary, and distributed according to a Bernoulli random variable $r_k \sim Bernoulli(\theta_k)$, where $\theta_k$ is our reward parameter, the expected reward at each round.

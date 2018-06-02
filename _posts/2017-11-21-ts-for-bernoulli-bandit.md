@@ -20,7 +20,7 @@ The  Multi-Armed Bandit problem is the simplest setting of reinforcement learnin
 
 At each round, we receive a binary reward, taken from an Bernoulli experiment with parameter $\theta_k$. Thus, at each round, each bandit behaves like a random variable $Y_k \sim \textrm{Binomial}(\theta_k)$. This version of the Multi-Armed Bandit is also called the Binomial bandit.
 
-We can easily define in Python a set of bandits with known reward probabilities and implement methods for drawing rewards for them. We also compute the **regret**, which is the difference $\theta_{best} - \theta_i$ of the expected reward $\theta_i$ of our chosen bandit $i$ and the largest expected reward $\theta_{best}$.
+We can easily define in Python a set of bandits with known reward probabilities and implement methods for drawing rewards from them. We also compute the **regret**, which is the difference $\theta_{best} - \theta_i$ of the expected reward $\theta_i$ of our chosen bandit $i$ and the largest expected reward $\theta_{best}$.
 
 ```python
 # class for our row of bandits
@@ -39,7 +39,7 @@ class MAB:
         return np.random.binomial(1, self.bandit_probs[k]), np.max(self.bandit_probs) - self.bandit_probs[k]
 ```
 
-We also can use **matplotlib** to generate a video of random draws from these bandits. Each row shows us the history of draws for the corresponding bandit, along with its true expected reward $\theta_k$. Hollow dots indicate that we pulled the arm but received no reward. Solid dots indicate that a reward was given by the bandit. 
+We can use `matplotlib` to generate a video of random draws from these bandits. Each row shows us the history of draws for the corresponding bandit, along with its true expected reward $\theta_k$. Hollow dots indicate that we pulled the arm but received no reward. Solid dots indicate that a reward was given by the bandit. 
 
 <div class="myvideo">
    <video  style="display:block; width:100%; height:auto;" autoplay controls loop="loop">
@@ -47,17 +47,17 @@ We also can use **matplotlib** to generate a video of random draws from these ba
    </video>
 </div>
 
-Cool! So how can we use this data in order to gather information efficiently and minimize our regret? Let us use tools from bayesian inference to help us with that.
+Cool! So how can we use this data in order to gather information efficiently and minimize our regret? Let us use tools from bayesian inference to help us with that!
 
-## Estimating Reward Probabilities
+## Distributions over Expected Rewards
 
-Now we start using bayesian inference to get a measure of expected reward and uncertainty for each of our bandits. First, we need a **prior** distribution, i.e., a distribution for our expected rewards (the $\theta_k$'s of the bandits). As each of our $K$ bandits is a bernoulli random variable with sucess probability $\theta_k$, our prior distribution over $\theta_k$ comes naturally (through conjungavy properties): the **Beta distribution**!
+Now we start using bayesian inference to get a measure of expected reward and uncertainty for each of our bandits. First, we need a **prior** distribution, i.e., a distribution for our expected rewards (the $\theta_k$'s of the bandits). As each of our $K$ bandits is a bernoulli random variable with sucess probability $\theta_k$, our prior distribution over $\theta_k$ comes naturally (through conjungacy properties): the **Beta distribution**!
 
-The Beta distribution, $\textrm{Beta}(1+\alpha, 1+\beta)$, models the parameter of a bernoulli random variable after we've obserbed $\alpha$ sucesses and $\beta$ failures. Let's view some examples!
+The Beta distribution, $\textrm{Beta}(1+\alpha, 1+\beta)$, models the parameter of a bernoulli random variable after we've observed $\alpha$ sucesses and $\beta$ failures. Let's view some examples!
 
-![beta_examples]({{ "assets/img/posts/ts_for_mab_cover.png" | absolute_url }})
+![beta_examples]({{ "assets/img/posts/ts_for_mab_cover.jpg" | absolute_url }})
 
-The interpretation is simple. In the blue plot, we haven't started playing, so the only thing we can say about the probability of a reward from the bandit is that it is uniform between 0 or 1. This is our initial guess for $\theta_k$, our **prior** distribution. In the orange plot, we played two times and received two rewards, so we start moving probability mass to the right side of the plot, as we have evidence that the probability of getting a reward may be high. The distribution we get after updating our **prior** is the **posterior** distribution. In the green plot, we've played seven times and got two rewards, so our guess for $\theta_k$ is more biased towards the left-hand side.
+The interpretation is simple. In the blue plot, we haven't started playing, so the only thing we can say about the probability of a reward from the bandit is that it is uniform between 0 or 1. This is our initial guess for $\theta_k$, our **prior distribution**. In the orange plot, we played two times and received two rewards, so we start moving probability mass to the right side of the plot, as we have evidence that the probability of getting a reward may be high. The distribution we get after updating our **prior** is the **posterior** distribution. In the green plot, we've played seven times and got two rewards, so our guess for $\theta_k$ is more biased towards the left-hand side.
 
 As we play and gather evidence, our posterior distribution becomes more concentrated, as shown in the red, purple and brown plots. In the MAB setting, we calculate a posterior distribution for each bandit, at each round. The following video illustrates these updates.
 
@@ -71,9 +71,9 @@ The animation shows how the estimated probabilitites change as we play. Now, we 
 
 ## The Exploitation/Exploration Tradeoff
 
-Now that we know how to estimate the posterior distribution of expected rewards for our bandits, we need to devise a method that can learn which machine to exploit as fast as possible. Thus, we need to balance how many potentially sub-optimal plays we use to gain information about the system (explorarion) with how many plays we use to profit from the bandit we think is best (exploitation).
+Now that we know how to estimate the posterior distribution of expected rewards for our bandits, we need to devise a method that can learn which machine to exploit as fast as possible. Thus, we need to balance how many potentially sub-optimal plays we use to gain information about the system (exploration) with how many plays we use to profit from the bandit we think is best (exploitation).
 
-If we "waste" too many plays in random bandits just to gain knowledge, we lose cumulative reward. If we bet every play in a bandit that looked promising too soon, we can be stuck in a suboptimal strategy. 
+If we "waste" too many plays in random bandits just to gain knowledge, we lose cumulative reward. If we bet every play in a bandit that looked promising too soon, we can be stuck in a sub-optimal strategy. 
 
 This is what **Thompson Sampling** and other policies are all about. Let us first study other two popular policies, so we can compare them with TS: **$\epsilon$-greedy** and **Upper Confidence Bound**.
 
@@ -127,17 +127,17 @@ Let us observe how the policy fares in our game:
 The $\epsilon$-greedy policy is our first step in trying to solve the bandit problem. It comes with a few caveats:
 
 * **Addition of a hyperaparameter:** we have to tune $\epsilon$ to make it work. In most cases this is not trivial.
-* **Exploration is constant and inefficient:** intuition tells us that we shold explore more in the beginning and exploit more as time passes. The $\epsilon$-greedy policy always explores at the same rate. In the long term, if $\epsilon$ is not reduced, we'll keep losing a great deal of rewards. Also, we allocate exploration effort equally, even if empirical expected rewards are very different across bandits.
-* **High risk of suboptimal decision:** if $\epsilon$ is low, we do not explore much, being under a high risk of being stuck in a suboptimal bandit for a long time.
+* **Exploration is constant and inefficient:** intuition tells us that we should explore more in the beginning and exploit more as time passes. The $\epsilon$-greedy policy always explores at the same rate. In the long term, if $\epsilon$ is not reduced, we'll keep losing a great deal of rewards, even if we get little benefit from exploration. Also, we allocate exploration effort equally, even if empirical expected rewards are very different across bandits.
+* **High risk of suboptimal decision:** if $\epsilon$ is low, we do not explore much, being under a high risk of being stuck in a sub-optimal bandit for a long time.
 
 Let us now try a solution which uses the uncertainty over our reward estimates: the Upper Confidence Bound policy.
 
 ### Optimism in the Face of Uncertainty: UCB
 
-With the Upper Confidence Bound (UCB) policy we start using the uncertainty in our $\theta_k$ estimates to our benefit. The algorithm is as follows (UCB1 algorithm as stated [here](https://webdocs.cs.ualberta.ca/~games/go/seminar/notes/2007/slides_ucb.pdf)):
+With the Upper Confidence Bound (UCB) policy we start using the uncertainty in our $\theta_k$ estimates to our benefit. The algorithm is as follows (UCB1 algorithm as defined [here](https://webdocs.cs.ualberta.ca/~games/go/seminar/notes/2007/slides_ucb.pdf)):
 
-* For each action $j$ record the average reward $\overline{x_j}$ and number of times we have tried it $n_j$. We write $n$ for total number of actions we have tried.
-* Try the action that maximises $\overline{x_j} + \sqrt{\frac{2\textrm{ln} n}{n_j}}$
+* For each action $j$ record the average reward $\overline{x_j}$ and number of times we have tried it $n_j$. We write $n$ for the total number of rounds.
+* Perform the action that maximises $\overline{x_j} + \sqrt{\frac{2\textrm{ln} n}{n_j}}$
 
 The algorithm will pick the arm that has the maximum value at the upper confidence bound. It will balance exploration and exploitation since it will prefer less played arms which are promising. The implementation follows:
 
@@ -168,9 +168,7 @@ class UCBPolicy:
         return np.argmax(success_ratio + sqrt_term)    
 ```
 
-Let us check results for one simulation:
-
-Let us observe how the policy fares in our game:
+Let us observe how this policy fares in our game:
 
 <div class="myvideo">
    <video  style="display:block; width:100%; height:auto;" autoplay controls loop="loop">
@@ -178,7 +176,7 @@ Let us observe how the policy fares in our game:
    </video>
 </div>
 
-We can note that exploration is fairly heavy in the beginning, with exploitation taking place further on the rounds. The algorithm quickly adapts whan a bandit becomes less promising, switching to another bandit with high optimistic estimate. Eventually, it will solve the bandit problem, as [it's regret is bounded](http://banditalgs.com/2016/09/18/the-upper-confidence-bound-algorithm/).
+We can note that exploration is fairly heavy in the beginning, with exploitation taking place further on. The algorithm quickly adapts when a bandit becomes less promising, switching to another bandit with higher optimistic estimate. Eventually, it will solve the bandit problem, as [it's regret is bounded](http://banditalgs.com/2016/09/18/the-upper-confidence-bound-algorithm/).
 
 Now, for the last contender: Thompson Sampling!
 
@@ -244,7 +242,7 @@ Let us inspect average regret on a game with 10k rounds for each policy. The plo
 
 ### Arm selection over time
 
-Let us take a look at the rates of arm selection over time. The plot below shows arm selection selection for each round across 1000 simulations. Thompson Sampling shows quick convergence to the optimal bandit, and also more stability across simulations. 
+Let us take a look at the rates of arm selection over time. The plot below shows arm selection rates for each round averaged across 1000 simulations. Thompson Sampling shows quick convergence to the optimal bandit, and also more stability across simulations. 
 
 ![arm selection_over_time]({{ "assets/img/ts_for_mab/arm-selection.png" | absolute_url }})
 
@@ -252,7 +250,7 @@ Let us take a look at the rates of arm selection over time. The plot below shows
 
 In this post, we showcased the Multi-Armed Bandit problem and tested three policies to address the exploration/exploitation problem: (a) $\epsilon$-greedy, (b) UCB and (c) Thompson Sampling.
 
-The $\epsilon$-greedy strategy uses a constant to balance exploration and exploitation. This is not ideal, as the hyperparameter may be hard to tune. Also, the exploration is not efficient, as we explore bandits equally (in average), not considering how promising they may be.
+The $\epsilon$-greedy strategy makes use of a hyperparameter to balance exploration and exploitation. This is not ideal, as it may be hard to tune. Also, the exploration is not efficient, as we explore bandits equally (in average), not considering how promising they may be.
 
 The UCB strategy, unlike the $\epsilon$-greedy, uses the uncertainty of the posterior distribution to select the appropriate bandit at each round. It supposes that a bandit can be as good as it's posterior distribution upper confidence bound. So we favor exploration by sampling from the distributions with high uncertainty and high tails, and exploit by sampling from the distribution with highest mean after we ruled out all the other upper confidence bounds.
 

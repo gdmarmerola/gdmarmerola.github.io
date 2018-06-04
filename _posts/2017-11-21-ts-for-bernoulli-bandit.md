@@ -22,7 +22,7 @@ The  Multi-Armed Bandit problem is the simplest setting of reinforcement learnin
 
 ![multiarmedbandit]({{ "assets/img/ts_for_mab/multiarmedbandit.jpg" | absolute_url }})
 
-At each round, we receive a binary reward, taken from an Bernoulli experiment with parameter $\theta_k$. Thus, at each round, each bandit behaves like a random variable $Y_k \sim \textrm{Binomial}(\theta_k)$. This version of the Multi-Armed Bandit is also called the Binomial bandit.
+At each round, we receive a binary reward, taken from an Bernoulli experiment with parameter $\theta_k$. Thus, at each round, each bandit behaves like a random variable $Y_k \sim \textrm{Bernoulli}(\theta_k)$. This version of the Multi-Armed Bandit is also called the Binomial bandit.
 
 We can easily define in Python a set of bandits with known reward probabilities and implement methods for drawing rewards from them. We also compute the **regret**, which is the difference $\theta_{best} - \theta_i$ of the expected reward $\theta_i$ of our chosen bandit $i$ and the largest expected reward $\theta_{best}$.
 

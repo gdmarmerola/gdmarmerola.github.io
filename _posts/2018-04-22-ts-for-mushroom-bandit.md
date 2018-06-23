@@ -232,6 +232,6 @@ Finally, we run a regular (greedy) RF against our sampled RF. Interestingly, bot
  
 ## Conclusion
 
-Even that the mushroom bandit was easily solved the models, we can check that randomizing decisions offer improvements over greedy decisions. On the final plot the randomized models outperformed the greedy models, especially on the hardest mushrooms (the last ones to be eaten). On this particular case, Random Forest compared favourably against neural networks, and are trained and sampled in a fraction of the time.
+Even that the mushroom bandit was easily solved by the models, we can check that randomizing decisions offer improvements over greedy decisions. On the final plot the randomized models outperformed the greedy models, especially on the hardest mushrooms (the last ones to be eaten). In this particular case, Random Forest compared favourably against neural networks, and are trained and sampled in a fraction of the time.
 
-In the future, we should try out other methods like UCB and $\epsilon$-greedy, expecting that they will be outperformed by Thompson Sampling, as recent research suggests.
+In the future, we should try out other methods like UCB and $\epsilon$-greedy, and check if they will be outperformed by Thompson Sampling, as recent research suggests.

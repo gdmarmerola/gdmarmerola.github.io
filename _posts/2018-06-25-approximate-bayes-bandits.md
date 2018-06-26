@@ -68,11 +68,11 @@ If you need a refresher, $P(\mu_k\ \vert\ x_k)$ is the posterior distribution an
 
 $$\large P(x_k) = \int_{\mu_k} P(x_k\ \vert\ \mu_k) \, \mathrm{d}\mu_k$$
 
-In other settings we won't solve Bayes formula because calculating this integral is intractable, especially when we have more parameters. However, in our simple case, we can get the posterior analytically through a property called conjugacy. When the prior and posterior distributions are of the same family for a given likelihood, they're called conjugate distributions, and the prior is called a [conjugate prior](https://en.wikipedia.org/wiki/Conjugate_prior) for the likelihood function. When the data is Gaussian distributed, the prior and posterior for the mean of the data generating process are also Gaussian. To make things easier, we assume we know the standard deviation of the likelihood beforehand. We can perform this same inference with an unknown $\sigma$, but I'll leave it to the future. We just need to calculate, for each bandit $k$, and given prior paramaters $\mu_{0_k}$ and $\sigma_{0_k}$, the posterior after seeing $n$ observations $\mu^n_k$:
+In other settings we won't solve Bayes formula because calculating this integral is intractable, especially when we have more parameters. However, in our simple case, we can get the posterior analytically through a property called conjugacy. When the prior and posterior distributions are of the same family for a given likelihood, they're called conjugate distributions, and the prior is called a [conjugate prior](https://en.wikipedia.org/wiki/Conjugate_prior) for the likelihood function. When the data is Gaussian distributed, the prior and posterior for the mean of the data generating process are also Gaussian. To make things easier, we assume we know the standard deviation of the likelihood beforehand. We can perform this same inference with an unknown $\sigma$, but I'll leave it to the future. We just need to calculate, for each bandit $k$, and given prior paramaters $\mu^0_k$ and $\sigma^0_k$, the posterior after seeing $n$ observations $\mu^n_k$:
 
 $$\large \mu^n_k \sim \mathcal{N}\Bigg(\frac{1}{\frac{1}{(\sigma_{0_k})^2} + \frac{n}{({\sigma_{true_k}})^2}}\Bigg(\frac{\mu_{0_k}}{(\sigma_{0_k})^2} + \frac{\sum_{i=1}^n x_i}{({\sigma_{true_k}})^2}\Bigg),\Bigg(\frac{1}{(\sigma_{0_k})^2} + \frac{n}{({\sigma_{true_k}})^2}\Bigg)^{-1}\Bigg)$$
  
-Where $\large \sigma_{true_k}$ is the known standard deviation of our Gaussian likelihood, for each bandit bandit $k$. We can easily implement this with a class in Python:
+Where $\large \sigma_{true_k}$ is the known standard deviation of our Gaussian likelihood, for each bandit $k$. We can easily implement this with a class in Python:
 
 ```python
 # class for exact gaussian inference

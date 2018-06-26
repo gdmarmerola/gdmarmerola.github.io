@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Approximate bayesian inference for bandits
-featured-img: approx_bayes_bandits
+featured-img: approx_bayes_bandits_cover
 category: [bandits, bayesian]
 mathjax: true
 ---

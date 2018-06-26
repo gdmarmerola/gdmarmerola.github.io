@@ -382,7 +382,7 @@ def black_box_variational_inference(unnormalized_posterior, num_samples):
     return elbo_target, gradient, unpack_params
 ```
 
-Cool. Please note the line `lower_bound = agnp.mean(gaussian_entropy(sigma) + unnormalized_posterior(samples, t))` which implements the ELBO as an exact entropy plus a Monte Carlo estimate of the unnormalized posterior density. We define a function that implements the unnormalized posterior next:
+Cool. Please note the line `lower_bound = agnp.mean(gaussian_entropy(sigma) + unnormalized_posterior(samples, t))`, which implements the ELBO as an exact entropy plus a Monte Carlo estimate of the unnormalized posterior expectation. We define a function that implements the unnormalized posterior next:
 
 ```python
 # function to implement unnormalized posterior

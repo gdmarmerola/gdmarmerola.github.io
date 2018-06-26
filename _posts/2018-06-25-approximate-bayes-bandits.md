@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Approximate bayesian inference for gaussian bandits
+title: Approximate bayesian inference for bandits
 featured-img: approx_bayes_bandits
 category: [bandits, bayesian]
 mathjax: true
 ---
 
-## Approximate bayesian inference for gaussian bandits
+## Approximate bayesian inference for bandits
 
 Let us experiment with different techniques for approximate bayesian inference aiming at using Thomspon Sampling to solve bandit problems, drawing inspiration from the paper ["A Tutorial on Thompson Sampling"](https://web.stanford.edu/~bvr/pubs/TS_Tutorial.pdf), mainly from the ideas on section 5. Let us test the algorithms on a simple bandit with gaussian rewards, such that we can compare our approximate inference techniques with the exact solution, obatined through a conjugate prior. I'll implement and compare the following approximation techniques:
 
@@ -68,7 +68,7 @@ If you need a refresher, $P(\mu_k\ \|\ x_k)$ is the posterior distribution and o
 
 $$\large P(x_k) = \int_{\mu_k} P(x_k\ \|\ \mu_k) \, \mathrm{d}\mu_k$$
 
-In other settings we won't solve Bayes formula because calculating this integral is intractable, especially when we have more parameters. However, in our simple case, we can get the posterior analytically through a property called conjugacy. When the prior and posterior distributions are of the same family for a given likelihood, they're called conjugate distributions, and the prior is called a [conjugate prior](https://en.wikipedia.org/wiki/Conjugate_prior) for the likelihood function. When the data is Gaussian distributed, the prior and posterior for the mean of the data generating process are also Gaussian. To make things easier, we assume we know the standard deviation of the likelihood beforehand. We can perform this same inference with an unknown $\sigma$, but I'll leave it to the future. We just need to calculate, for each bandit $k$, and given a prior $\mu^0_k \sim \mathcal{N}(\mu_{0_k}, \sigma_{0_k})$, the posterior after seeing $n$ observations $\mu^n_k$:
+In other settings we won't solve Bayes formula because calculating this integral is intractable, especially when we have more parameters. However, in our simple case, we can get the posterior analytically through a property called conjugacy. When the prior and posterior distributions are of the same family for a given likelihood, they're called conjugate distributions, and the prior is called a [conjugate prior](https://en.wikipedia.org/wiki/Conjugate_prior) for the likelihood function. When the data is Gaussian distributed, the prior and posterior for the mean of the data generating process are also Gaussian. To make things easier, we assume we know the standard deviation of the likelihood beforehand. We can perform this same inference with an unknown $\sigma$, but I'll leave it to the future. We just need to calculate, for each bandit $k$, and given a prior $\mu^{0}_{k} \sim \mathcal{N}(\mu_{0_k}, \sigma_{0_k})$, the posterior after seeing $n$ observations $\mu^n_k$:
 
 $$\large \mu^n_k \sim \mathcal{N}\Bigg(\frac{1}{\frac{1}{(\sigma_{0_k})^2} + \frac{n}{({\sigma_{true_k}})^2}}\Bigg(\frac{\mu_{0_k}}{(\sigma_{0_k})^2} + \frac{\sum_{i=1}^n x_i}{({\sigma_{true_k}})^2}\Bigg),\Bigg(\frac{1}{(\sigma_{0_k})^2} + \frac{n}{({\sigma_{true_k}})^2}\Bigg)^{-1}\Bigg)$$
  
@@ -117,6 +117,7 @@ The following animation illustrates how our exact posterior inference algorithm 
        <source src="{{ site.baseurl }}/assets/img/approx_inference_bandits/aproxinf-vid-2.mp4" type="video/mp4" />
    </video>
 </div>
+<br>
 
 The animation shows the exact posterior distribution (blue) given incremental data (red). We can see that exact inference is working as we would expect: the posterior distribution concentrates with more data, also getting closer to the true mean. The prior can act as a form of regularization here: if the prior is more concentrated, it is harder to move away from it. I invite you to try the code out to check that. The algorithm is very efficient: 100 calculations took 0.10 seconds in this experiment.
 
@@ -148,6 +149,7 @@ The Metropolis-Hastings algorithm bypasses this problem by only needing the prio
 8. Go back to (2) until a satisfactory number of samples is collected
 
 It was proved that by accepting samples according to the acceptance ratio $\alpha$ our `mu_list` will contain samples that approximate the true posterior distribution. Thus, if we sample for long enough, we will have a reasonable approximation. The magic is that 
+
 $$\large \alpha = \frac{P(x_k \| \mu^{t+1}) \cdot{} P(\mu_k)}{P(x_k \| \mu^t) \cdot{} P(\mu_k)} = \frac{\frac{P(x_k \| \mu^{t+1}) \cdot{} P(\mu_k)}{P(x_k)}}{\frac{P(x_k \| \mu^t) \cdot{} P(\mu_k)}{P(x_k)}}$$
 
 such that the likelihood and prior product is sufficient to be proportional to the true posterior for us to get samples from it. We can easily implement this algorithm in Python:
@@ -235,6 +237,7 @@ The `burnin` argument sets how many of the initial samples will be discarded so 
        <source src="{{ site.baseurl }}/assets/img/approx_inference_bandits/aproxinf-vid-3.mp4" type="video/mp4" />
    </video>
 </div>
+<br>
 
 In the plot, we compare the exact posterior (blue), to the Metropolis-Hastings empirical approximation (purple). It works well, being very close to the exact posterior. But it is very slow, taking 185 seconds to calculate the posteriors to all of the 100 draws in my experiment. In order to improve that, let us try a better implementation.
 
@@ -306,6 +309,7 @@ Now to the video, so we can compare this program to the implementation I built f
        <source src="{{ site.baseurl }}/assets/img/approx_inference_bandits/aproxinf-vid-4.mp4" type="video/mp4" />
    </video>
 </div>
+<br>
 
 Actually, `edward` was slower than my implementation. Maybe I made a mistake in the code or building the computational graph in `tensorflow` takes a long time compared to actually sampling. Nevertheless, the posterior looks good as well.
 
@@ -447,6 +451,7 @@ Great! After much work, let us see how our approximation fares against exact inf
        <source src="{{ site.baseurl }}/assets/img/approx_inference_bandits/aproxinf-vid-5.mp4" type="video/mp4" />
    </video>
 </div>
+<br>
 
 Very nice. The variational posterior found is very close to the exact posterior. This result shows us that we can nicely estimate the ELBO with just a few samples from $q(z\ ;\ \lambda)$ (16 in this case). The `autograd` package helped a lot in automatically finding the gradient of the ELBO, making it very simple to optimize it. This code is an order of magnitude faster than the code that implements Metropolis-Hastings as well ($\tilde\ 19$ seconds in my run). The main downside is that the implementation is more complicated than before. Nevertheless, the result is awesome. Let us try to implement this with `edward` now.
 
@@ -525,6 +530,7 @@ Edward takes the implementation to a higher level of abstraction, so we need to 
        <source src="{{ site.baseurl }}/assets/img/approx_inference_bandits/aproxinf-vid-6.mp4" type="video/mp4" />
    </video>
 </div>
+<br>
 
 Cool. The results are good, however the code took much longer to run. This may be due to some tensorflow particularity (my money's on building the computational graph). I'll have a look in the future. Now, to our last contender: **Bootstrapping**.
 
@@ -578,6 +584,7 @@ Let us see how this algorithm handles our inference case.
        <source src="{{ site.baseurl }}/assets/img/approx_inference_bandits/aproxinf-vid-7.mp4" type="video/mp4" />
    </video>
 </div>
+<br>
 
 I set `min_obs` $= 0$ to observe the error in the uncertainty estimate in early periods. In the video, the approximation gets much better after the fifth observation, when it starts closely matching the exact posterior. The whole simulation took approximately 2 seconds, which puts this method as a very strong contender when we prioritize efficiency. Another argument in favor of Bootstrapping is that it can approximate very complex distributions without any model specification. 
 

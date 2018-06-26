@@ -2,13 +2,17 @@
 layout: post
 title: My first (and only) Kaggle Top 10%
 featured-img: first_kaggle_cover
-category: [kaggle, modeling]
+category: [kaggle]
 mathjax: true
 ---
 
 # My first (and only) Kaggle Top 10%
 
 In this short post, I'll revisit my Top 10% solution to the [Santander Customer Satisfaction](https://www.kaggle.com/c/santander-customer-satisfaction) competition on Kaggle. I'll use the benefit of hindsight to analyze the competition and my performance. You can check the code at my [GitHub](https://github.com/gdmarmerola/santander-satisfaction) (README is written in Portuguese but the code is commented in english).
+
+## Why is this relevant?
+
+Kaggle is a great platform to learn about data science and practice real-world machine learning skills. Although doing ML in industry is not the same thing, Kaggle provides you with a solid base to do ML on your own and with inspiration to solve problems differently later on. I hope to give you a feel of what a Kaggle competition is a some modeling tips if you want to participate in the future.
 
 ## Introduction
 

@@ -2,7 +2,7 @@
 layout: post
 title: Supervised clustering and forest embeddings
 featured-img: forest_embeddings_cover
-category: [clustering]
+category: [clustering, dreduction]
 mathjax: true
 ---
 
@@ -25,6 +25,10 @@ There may be a number of benefits in using forest-based embeddings:
 3. **We do not need to worry about scaling features:** we do not need to worry about the scaling of the features, as we're using decision trees. 
 
 In the next sections, we implement some simple models and test cases. You can find the complete code at my [GitHub page](https://github.com/gdmarmerola/forest-embeddings).
+
+## Why is this relevant?
+
+Many problems in industry can be tackled by finding comparable entities in the data. Oftentimes the nature of the problem sets the need to compare those entites given an objetive, such as, for instance, comparing sales reps in terms of the variables that impact their clients' performance. If my model tells me that some sales rep should be bringing more profit given his clients and these relevant variables, because another comparable rep **actually does it**, it calls for an investigation on why this dispersion exists, potentially bringing many actionable insights to the table. Forest embeddings provide a robust and efficient way to find these relevant variables and build these comparisons.
 
 ## Building the embeddings
 
@@ -70,7 +74,7 @@ The last step we perform aims to make the embedding easy to visualize. We feed o
  embed = TSNE(metric='precomputed', perplexity=30).fit_transform(D)
 ```
 
-In the next sections, we'll run this pipeline for various toy problems, observing the differences between an unsupervised embedding (with `RandomTreesEmbedding`) and supervised embeddings (Ranfom Forests and Extremely Randomized Trees).
+In the next sections, we'll run this pipeline for various toy problems, observing the differences between an unsupervised embedding (with `RandomTreesEmbedding`) and supervised embeddings (Ranfom Forests and Extremely Randomized Trees). We favor supervised methods, as **we're aiming to recover only the structure that matters to the problem, with respect to its target variable.**
 
 ## Two blobs, two dimensions
 
@@ -78,7 +82,7 @@ Let us start with a dataset of two blobs in two dimensions.
 
 ![]({{ "assets/img/forest_embeddings/emdeddings-img-1.png" | absolute_url }})
 
-As the blobs are separated and there's no noisy variables, we can expect that unsupervised and supervised methods can easily reconstrut the data's structure thorugh our similarity pipeline. After we fit our three contestants (`RandomTreesEmbedding`, `RandomForestClassifier` and `ExtraTreesClassifier`) to the data, we can take a look at the similarities they learned and the plot below:
+As the blobs are separated and there's no noisy variables, we can expect that unsupervised and supervised methods can easily reconstruct the data's structure thorugh our similarity pipeline. After we fit our three contestants (`RandomTreesEmbedding`, `RandomForestClassifier` and `ExtraTreesClassifier`) to the data, we can take a look at the similarities they learned and the plot below:
 
 ![]({{ "assets/img/forest_embeddings/emdeddings-img-2.png" | absolute_url }})
 

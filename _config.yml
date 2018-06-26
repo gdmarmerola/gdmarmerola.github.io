@@ -2,7 +2,7 @@
 title: Guilherme's Blog # your site title
 author: Guilherme Duarte Marmerola # You :P
 description: > # Meta description of Homepage
-  My thoughts and experiments on Machine Learning and related stuff
+  My thoughts and experiments on machine learning and related stuff
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://gdmarmerola.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -21,7 +21,7 @@ navigation: # Navigation links
   - {name: 'Contact', link: '/contact'}
 
 tagline: >
-  My thoughts and experiments on Machine Learning and related stuff
+  My thoughts and experiments on machine learning and related stuff
 
 hero_img: posts/sydney4.jpg # Main background image: use the path from /assets/img/ => This will output /assets/img/posts/sleek_lg.jpg
 

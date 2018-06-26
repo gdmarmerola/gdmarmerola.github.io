@@ -2,7 +2,7 @@
 layout: post
 title: Introduction to Thompson Sampling, Part 2&#58; Contextual bandits
 featured-img: ts_contextual_cover
-category: [bandits]
+category: [bandits, bayesian]
 mathjax: true
 ---
 
@@ -12,6 +12,9 @@ Thompson Sampling is a very simple yet effective method to addressing the explor
 
 In this post, we expand our Multi-Armed Bandit setting such that the expected rewards $\theta$ can depend on an external variable. This scenario is known as the **Contextual bandit**.
 
+## Why is this relevant?
+
+You can frame many industry problems as bandit problems. Any problem which involves experimentation and online data gathering (in the sense that you need to take some action and incur some cost in order to access it) calls for this type of treatment. Instantly, we can think of testing different layouts of a website, actively recommending new products to clients, or dynamically setting prices in an online marketplace as examples in which these techniques are useful. Imagine, for instance, you want to proactively find dissatisfied clients to send them a special offer through a call center. How do you balance the need of calling all kinds of clients and guarantee you're reasonably unbiased (exploration) with the need to find the most dissatisfied clients as possible given your call center budget (exploitation)? I hope to answer this question through the series.
 
 ## The Contextual Bandit
 

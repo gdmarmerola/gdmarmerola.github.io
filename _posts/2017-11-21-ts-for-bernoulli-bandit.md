@@ -2,7 +2,7 @@
 layout: post
 title: Introduction to Thompson Sampling, Part 1&#58; the Bernoulli bandit
 featured-img: ts_for_mab_cover
-category: [bandits]
+category: [bandits, bayesian]
 mathjax: true
 ---
 
@@ -12,13 +12,17 @@ Thompson Sampling is a very simple yet effective method to addressing the explor
 
 In this post, we explore the simplest setting of online learning: the Bernoulli bandit.
 
+## Why is this relevant?
+
+You can frame many industry problems as bandit problems. Any problem which involves experimentation and online data gathering (in the sense that you need to take some action and incur some cost in order to access it) calls for this type of treatment. Instantly, we can think of testing different layouts of a website, actively recommending new products to clients, or dynamically setting prices in an online marketplace as examples in which these techniques are useful. Imagine, for instance, you want to proactively find dissatisfied clients to send them a special offer through a call center. How do you balance the need of calling all kinds of clients and guarantee you're reasonably unbiased (exploration) with the need to find the most dissatisfied clients as possible given your call center budget (exploitation)? I hope to answer this question through the series.
+
 ## Problem: The Bernoulli Bandit
 
 The  Multi-Armed Bandit problem is the simplest setting of reinforcement learning. Suppose that a gambler faces a row of slot machines (bandits) on a casino. Each one of the $K$ machines has a probability $\theta_k$ of providing a reward to the player. Thus, the player has to decide which machines to play, how many times to play each machine and in which order to play them, in order to maximize his long-term cumulative reward. 
 
 ![multiarmedbandit]({{ "assets/img/ts_for_mab/multiarmedbandit.jpg" | absolute_url }})
 
-At each round, we receive a binary reward, taken from an Bernoulli experiment with parameter $\theta_k$. Thus, at each round, each bandit behaves like a random variable $Y_k \sim \textrm{Binomial}(\theta_k)$. This version of the Multi-Armed Bandit is also called the Binomial bandit.
+At each round, we receive a binary reward, taken from an Bernoulli experiment with parameter $\theta_k$. Thus, at each round, each bandit behaves like a random variable $Y_k \sim \textrm{Bernoulli}(\theta_k)$. This version of the Multi-Armed Bandit is also called the Binomial bandit.
 
 We can easily define in Python a set of bandits with known reward probabilities and implement methods for drawing rewards from them. We also compute the **regret**, which is the difference $\theta_{best} - \theta_i$ of the expected reward $\theta_i$ of our chosen bandit $i$ and the largest expected reward $\theta_{best}$.
 

@@ -628,7 +628,7 @@ def run_gaussian_bandit(n_rounds, policy):
     return k_list, reward_list, regret_list
 ```
 
-The `policy` chooses the next 10 moves at once and observes rewards at the next round, when it updates the posteriors with the results. The function returns lists containing arms chosen, rewards and regret at each draw.
+The `policy` chooses the next 10 moves at once and observes rewards at the next round, when it updates the posteriors with the results. The function returns lists containing arm chose, reward and regret at each draw.
 
 Now, let us implement the policies. All policies will use Thompson Sampling to make decisions, while the inference algorithms to estimate the posterior of expected rewards will be different.
 

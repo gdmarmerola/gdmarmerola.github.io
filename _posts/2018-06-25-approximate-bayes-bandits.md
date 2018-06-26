@@ -62,11 +62,11 @@ Cool. By visual inspection, it becomes clear that Bandits 1 and 2 are not very p
 
 Our goal in this tutorial is to estimate the probability distribution of the mean (or expected) rewards $\mu_k$ for each bandit $k$ given some observations $x_k$. We can use Bayes formula to do that:
 
-$$\large P(\mu_k\ \given\ x_k) = \frac{P(x_k\ \given\ \mu_k) \cdot{} P(\mu_k)}{P(x_k)}$$
+$$\large P(\mu_k\ \|\ x_k) = \frac{P(x_k\ \|\ \mu_k) \cdot{} P(\mu_k)}{P(x_k)}$$
 
-If you need a refresher, $P(\mu_k\ \given\ x_k)$ is the posterior distribution and our quantity of interest, $P(x_k\ \given\ \mu_k)$ is the likelihood, $P(\mu_k)$ is the prior and $P(x_k)$ is the model evidence. The first two quantities are easy to compute, as they depend on the parameters we want to estimate. The last quantity, the evidence $P(x_k)$ is harder, as it measures the probability of data given the model, that is, the likelihood of the data over all possible parameter choices:
+If you need a refresher, $P(\mu_k\ \|\ x_k)$ is the posterior distribution and our quantity of interest, $P(x_k\ \|\ \mu_k)$ is the likelihood, $P(\mu_k)$ is the prior and $P(x_k)$ is the model evidence. The first two quantities are easy to compute, as they depend on the parameters we want to estimate. The last quantity, the evidence $P(x_k)$ is harder, as it measures the probability of data given the model, that is, the likelihood of the data over all possible parameter choices:
 
-$$\large P(x_k) = \int_{\mu_k} P(x_k\ \given\ \mu_k) \, \mathrm{d}\mu_k$$
+$$\large P(x_k) = \int_{\mu_k} P(x_k\ \|\ \mu_k) \, \mathrm{d}\mu_k$$
 
 In other settings we won't solve Bayes formula because calculating this integral is intractable, especially when we have more parameters. However, in our simple case, we can get the posterior analytically through a property called conjugacy. When the prior and posterior distributions are of the same family for a given likelihood, they're called conjugate distributions, and the prior is called a [conjugate prior](https://en.wikipedia.org/wiki/Conjugate_prior) for the likelihood function. When the data is Gaussian distributed, the prior and posterior for the mean of the data generating process are also Gaussian. To make things easier, we assume we know the standard deviation of the likelihood beforehand. We can perform this same inference with an unknown $\sigma$, but I'll leave it to the future. We just need to calculate, for each bandit $k$, and given a prior $\mu^0_k \sim \mathcal{N}(\mu_{0_k}, \sigma_{0_k})$, the posterior after seeing $n$ observations $\mu^n_k$:
 
@@ -132,23 +132,23 @@ It's not very hard to implement the algorithm from scratch. For a more detailed 
 
 Remember that we want to estimate the probability distribution of the mean $\mu_k$ for each bandit $k$ given some observations $x_k$. We can use Bayes formula do estimate that:
 
-$$\large P(\mu_k\ \given\ x_k) = \frac{P(x_k\ \given\ \mu_k) \cdot{} P(\mu_k)}{P(x_k)}$$
+$$\large P(\mu_k\ \|\ x_k) = \frac{P(x_k\ \|\ \mu_k) \cdot{} P(\mu_k)}{P(x_k)}$$
 
-Calculating the product between the likelihood and prior $P(x_k\ \given\ \mu_k) \cdot{} P(\mu_k)$ is easy. The problem lies in calculating the evidence $P(x_k)$, as it may become a very difficult integral (even if in our case is still tractable):
+Calculating the product between the likelihood and prior $P(x_k\ \|\ \mu_k) \cdot{} P(\mu_k)$ is easy. The problem lies in calculating the evidence $P(x_k)$, as it may become a very difficult integral (even if in our case is still tractable):
 
-$$\large P(x_k) = \int_\mu P(x_k\ \given\ \mu_k) \, \mathrm{d}\mu_k$$
+$$\large P(x_k) = \int_\mu P(x_k\ \|\ \mu_k) \, \mathrm{d}\mu_k$$
 
 The Metropolis-Hastings algorithm bypasses this problem by only needing the prior and likelihood product. It starts by choosing a initial sampling point $\mu^t$ and defining a proposal distribution, which is generally a normal centered at zero $\mathcal{N}(0, \sigma_p^2)$. Then, it progresses as following:
 
 1. Initialize a list of samples `mu_list` with a single point $\mu^t$ and proposal distribution $\mathcal{N}(0, \sigma_p^2)$
 2. Propose a new sample $\mu^{t+1}$ using the proposal distribution $\mu^{t+1} = \mu^t + \mathcal{N}(0, \sigma_p^2)$
-3. Calculate the prior and likelihood product for the current sample $f(\mu^t) = P(x_k\ \given\ \mu^t) \cdot{} P(\mu^t)$ and proposed sample $f(\mu^{t+1}) = P(x_k\ \given\ \mu^{t+1}) \cdot{} P(\mu^{t+1})$
+3. Calculate the prior and likelihood product for the current sample $f(\mu^t) = P(x_k\ \|\ \mu^t) \cdot{} P(\mu^t)$ and proposed sample $f(\mu^{t+1}) = P(x_k\ \|\ \mu^{t+1}) \cdot{} P(\mu^{t+1})$
 4. Calculate the acceptance ratio $\alpha = f(\mu^{t+1})/f(\mu^t)$
 5. With probability $\alpha$, accept the proposed sample and add it to the list of samples `mu_list`. If not accepted, add the current sample to `mu_list`, as we will propose a new sample from it again
 8. Go back to (2) until a satisfactory number of samples is collected
 
 It was proved that by accepting samples according to the acceptance ratio $\alpha$ our `mu_list` will contain samples that approximate the true posterior distribution. Thus, if we sample for long enough, we will have a reasonable approximation. The magic is that 
-$$\large \alpha = \frac{P(x_k \given \mu^{t+1}) \cdot{} P(\mu_k)}{P(x_k \given \mu^t) \cdot{} P(\mu_k)} = \frac{\frac{P(x_k \given \mu^{t+1}) \cdot{} P(\mu_k)}{P(x_k)}}{\frac{P(x_k \given \mu^t) \cdot{} P(\mu_k)}{P(x_k)}}$$
+$$\large \alpha = \frac{P(x_k \| \mu^{t+1}) \cdot{} P(\mu_k)}{P(x_k \| \mu^t) \cdot{} P(\mu_k)} = \frac{\frac{P(x_k \| \mu^{t+1}) \cdot{} P(\mu_k)}{P(x_k)}}{\frac{P(x_k \| \mu^t) \cdot{} P(\mu_k)}{P(x_k)}}$$
 
 such that the likelihood and prior product is sufficient to be proportional to the true posterior for us to get samples from it. We can easily implement this algorithm in Python:
 
@@ -313,31 +313,31 @@ Despite good results, MCMC Sampling is still very slow for our application. Ther
 
 ## Variational Inference
 
-**Variational Inference** is the name given to the class of algorithms that avoid sampling and cast posterior inference as an optimization problem. The main idea is to use a distribution from a known family $q(z\ ;\ \lambda)$ to approximate the true posterior $p(z\ \given\ x)$ by optimizing $\lambda$ to match it. The distribution $q(z\ ;\ \lambda)$ is called the **variational posterior**.
+**Variational Inference** is the name given to the class of algorithms that avoid sampling and cast posterior inference as an optimization problem. The main idea is to use a distribution from a known family $q(z\ ;\ \lambda)$ to approximate the true posterior $p(z\ \|\ x)$ by optimizing $\lambda$ to match it. The distribution $q(z\ ;\ \lambda)$ is called the **variational posterior**.
 
 One way to measure how closely $q$ matches $p$ is the Kullback-Leibler divergence:
 
-$$\large KL(q\ \given\given\ p) = \sum_x q(z\ ;\ \lambda)\ \textrm{log}\ \frac{q(z\ ;\ \lambda)}{p(z\ \given\ x)}$$
+$$\large KL(q\ \|\|\ p) = \sum_x q(z\ ;\ \lambda)\ \textrm{log}\ \frac{q(z\ ;\ \lambda)}{p(z\ \|\ x)}$$
 
-But $p(z\ \given\ x)$ is still intractable, as it includes the normalization constant $p(x)$:
+But $p(z\ \|\ x)$ is still intractable, as it includes the normalization constant $p(x)$:
 
-$$\large p(z\ \given\ x) = \frac{p(x\ \given\ z)\ p(z)}{p(x)}$$
+$$\large p(z\ \|\ x) = \frac{p(x\ \|\ z)\ p(z)}{p(x)}$$
 
-However, we can replace $p(z\ \given\ x)$ by its tractable unnormalized counterpart $\tilde{p}(z\ \given\ x) = p(z\ \given\ x)\ p(x)$ (as in [(Murphy, 2012)](https://amstat.tandfonline.com/doi/abs/10.1080/09332480.2014.914768?journalCode=ucha20#.WyyqpadKiUk)):
+However, we can replace $p(z\ \|\ x)$ by its tractable unnormalized counterpart $\tilde{p}(z\ \|\ x) = p(z\ \|\ x)\ p(x)$ (as in [(Murphy, 2012)](https://amstat.tandfonline.com/doi/abs/10.1080/09332480.2014.914768?journalCode=ucha20#.WyyqpadKiUk)):
 
-$$\large KL(q\ \given\given\ \tilde{p}) = \sum_x q(z\ ;\ \lambda)\ \textrm{log}\ \frac{q(z\ ;\ \lambda)}{\tilde{p}(z\ \given\ x)} = \sum_x q(z\ ;\ \lambda)\ \textrm{log}\ \frac{q(z\ ;\ \lambda)}{p(z\ \given\ x)} -\ \textrm{log}\ p(x) = KL(q\ \given\given\ p) -\ \textrm{log}\ p(x)$$
+$$\large KL(q\ \|\|\ \tilde{p}) = \sum_x q(z\ ;\ \lambda)\ \textrm{log}\ \frac{q(z\ ;\ \lambda)}{\tilde{p}(z\ \|\ x)} = \sum_x q(z\ ;\ \lambda)\ \textrm{log}\ \frac{q(z\ ;\ \lambda)}{p(z\ \|\ x)} -\ \textrm{log}\ p(x) = KL(q\ \|\|\ p) -\ \textrm{log}\ p(x)$$
 
-Thus, minimizing $KL(q \given\given \tilde{p})$ is the same as minimizing $KL(q\ \given\given\ p)$ with respect to the variational parameters $\lambda$, as they have no effect on the normalization constant $\textrm{log}\ p(x)$. Then, our cost function becomes
+Thus, minimizing $KL(q \|\| \tilde{p})$ is the same as minimizing $KL(q\ \|\|\ p)$ with respect to the variational parameters $\lambda$, as they have no effect on the normalization constant $\textrm{log}\ p(x)$. Then, our cost function becomes
 
-$$\large J(\lambda) = KL(q\ \given\given\ \tilde{p}) = KL(q\ \given\given\ p) -\ \textrm{log}\ p(x)$$
+$$\large J(\lambda) = KL(q\ \|\|\ \tilde{p}) = KL(q\ \|\|\ p) -\ \textrm{log}\ p(x)$$
 
-which can be minimized to find optimal variational parameters $\lambda$. In general, we actually maximize $L(\lambda) = - J(\lambda) = - KL(q\ \given\given\ p) +\ \textrm{log}\ p(x)$, the so-called **evidence lower bound (ELBO)**, as $- KL(q\ \given\given\ p) +\ \textrm{log}\ p(x) \leq\ \textrm{log}\ p(x)$. There is a simpler way to write the ELBO:
+which can be minimized to find optimal variational parameters $\lambda$. In general, we actually maximize $L(\lambda) = - J(\lambda) = - KL(q\ \|\|\ p) +\ \textrm{log}\ p(x)$, the so-called **evidence lower bound (ELBO)**, as $- KL(q\ \|\|\ p) +\ \textrm{log}\ p(x) \leq\ \textrm{log}\ p(x)$. There is a simpler way to write the ELBO:
 
-$$\large \textrm{ELBO}(\lambda) =  \mathbb{E}_q[\tilde{p}(z\ \given\ x)] - \mathbb{E}_q[log\ q(\lambda)]$$
+$$\large \textrm{ELBO}(\lambda) =  \mathbb{E}_q[\tilde{p}(z\ \|\ x)] - \mathbb{E}_q[log\ q(\lambda)]$$
 
-$\mathbb{E}_q[\tilde{p}(z\ \given\ x)]$ measures goodness-of-fit of the model and encourages $q(\lambda)$ to focus probability mass where the model puts high probability. On the other hand, the entropy of $q(\lambda)$, $- \mathbb{E}_q[log\ q(\lambda)]$ encourages $q(\lambda)$ to spread probability mass, avoiding the concentration incentivized by the first term.
+$\mathbb{E}_q[\tilde{p}(z\ \|\ x)]$ measures goodness-of-fit of the model and encourages $q(\lambda)$ to focus probability mass where the model puts high probability. On the other hand, the entropy of $q(\lambda)$, $- \mathbb{E}_q[log\ q(\lambda)]$ encourages $q(\lambda)$ to spread probability mass, avoiding the concentration incentivized by the first term.
 
-In our case of modeling expected rewards, we can replace $q(\lambda) = \mathcal{N}(\mu_{var}, \sigma_{var})$ where $\mu_{var}$ and $\sigma_{var}$ are the variational parameters to be optimized and $\tilde{p}(z\ \given\ x) = P(x_k\ \given\ \mu_k) \cdot{} P(\mu_k)$, the likelihood and prior product we used to implement the Metropolis-Hastings algorithm. To get the expectations we take some samples of the variational posterior at each iteration in the optimization. I'll show next how to implement this from scratch and also using `edward`.
+In our case of modeling expected rewards, we can replace $q(\lambda) = \mathcal{N}(\mu_{var}, \sigma_{var})$ where $\mu_{var}$ and $\sigma_{var}$ are the variational parameters to be optimized and $\tilde{p}(z\ \|\ x) = P(x_k\ \|\ \mu_k) \cdot{} P(\mu_k)$, the likelihood and prior product we used to implement the Metropolis-Hastings algorithm. To get the expectations we take some samples of the variational posterior at each iteration in the optimization. I'll show next how to implement this from scratch and also using `edward`.
 
 ### From scratch
 
@@ -400,7 +400,7 @@ def get_unnormalized_posterior(obs, prior_mu, prior_std, likelihood_std):
     return unnorm_posterior
 ```
 
-The function implements the numerator of the bayes formula $p(x\ \given\ z)\ p(z)$ needed to compute the ELBO. Finally, we implement an inference class so we can run variational inference for a set of observations and get the distribution for our parameter.
+The function implements the numerator of the bayes formula $p(x\ \|\ z)\ p(z)$ needed to compute the ELBO. Finally, we implement an inference class so we can run variational inference for a set of observations and get the distribution for our parameter.
 
 ```python
 # class for exact gaussian inference
@@ -839,7 +839,7 @@ The plot below compares the cumulative regret for all of our inference algorithm
 
 ## Conclusion
 
-In this tutorial, we explored and compared approximate inference techniques to solve a gaussian bandit problem with Thompson Sampling. The central issue in approximate bayesian inference is to compute the posterior distribution $p(z\ \given\ x) = \frac{p(x\ \given\ z)\cdot{}p(z)}{p(x)}$. In general, in order to do that, we need to avoid computing the model evidence $p(x)$, which is most of the times intractable. MCMC Sampling techniques try to approximate the posterior with an empirical distribution built thorugh monte carlo samples taken according to the unnormalized posterior $p(x\ \given\ z)\cdot{}p(z)$. Variational Inference, on the other hand, casts posterior inference as optimization, trying to find the variational distribution $q(z\ ;\ \lambda)$ that better approximates the posterior. It does that by minimizing the divergence between $q(z\ ;\ \lambda)$ and the unnormalized posterior $p(x\ \given\ z)\cdot{}p(z)$, which works the same as minimizing divergence with respect to the true posterior. Bootstrapping approximates the posterior with an empirical distribution calculated by taking many bootstrap samples of the data. In our case, specifically, it was also possible to calculate the exact posterior to serve as a baseline for comparison.
+In this tutorial, we explored and compared approximate inference techniques to solve a gaussian bandit problem with Thompson Sampling. The central issue in approximate bayesian inference is to compute the posterior distribution $p(z\ \|\ x) = \frac{p(x\ \|\ z)\cdot{}p(z)}{p(x)}$. In general, in order to do that, we need to avoid computing the model evidence $p(x)$, which is most of the times intractable. MCMC Sampling techniques try to approximate the posterior with an empirical distribution built thorugh monte carlo samples taken according to the unnormalized posterior $p(x\ \|\ z)\cdot{}p(z)$. Variational Inference, on the other hand, casts posterior inference as optimization, trying to find the variational distribution $q(z\ ;\ \lambda)$ that better approximates the posterior. It does that by minimizing the divergence between $q(z\ ;\ \lambda)$ and the unnormalized posterior $p(x\ \|\ z)\cdot{}p(z)$, which works the same as minimizing divergence with respect to the true posterior. Bootstrapping approximates the posterior with an empirical distribution calculated by taking many bootstrap samples of the data. In our case, specifically, it was also possible to calculate the exact posterior to serve as a baseline for comparison.
 
 Results were interesting. All approximate inference techniques did a good job approximating the exact posterior and showed similar performance in the gaussian bandit task. Bootstrapping was the most effcient, being faster than computing the exact posterior (as we only need to take one sample per action). VI and MCMC ran in similar time, as we need to only pass the burn-in to get the one sample per action for TS to work.
 

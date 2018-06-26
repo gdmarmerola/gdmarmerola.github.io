@@ -70,7 +70,7 @@ $$\large P(x_k) = \int_{\mu_k} P(x_k\ \vert\ \mu_k) \, \mathrm{d}\mu_k$$
 
 In other settings we won't solve Bayes formula because calculating this integral is intractable, especially when we have more parameters. However, in our simple case, we can get the posterior analytically through a property called conjugacy. When the prior and posterior distributions are of the same family for a given likelihood, they're called conjugate distributions, and the prior is called a [conjugate prior](https://en.wikipedia.org/wiki/Conjugate_prior) for the likelihood function. When the data is Gaussian distributed, the prior and posterior for the mean of the data generating process are also Gaussian. To make things easier, we assume we know the standard deviation of the likelihood beforehand. We can perform this same inference with an unknown $\sigma$, but I'll leave it to the future. We just need to calculate, for each bandit $k$, and given prior paramaters $\mu^0_k$ and $\sigma^0_k$, the posterior after seeing $n$ observations $\mu^n_k$:
 
-$$\large \mu^n_k \sim \mathcal{N}\Bigg(\frac{1}{\frac{1}{(\sigma_{0_k})^2} + \frac{n}{({\sigma_{true_k}})^2}}\Bigg(\frac{\mu_{0_k}}{(\sigma_{0_k})^2} + \frac{\sum_{i=1}^n x_i}{({\sigma_{true_k}})^2}\Bigg),\Bigg(\frac{1}{(\sigma_{0_k})^2} + \frac{n}{({\sigma_{true_k}})^2}\Bigg)^{-1}\Bigg)$$
+$$\large \mu^n_k \sim \mathcal{N}\Bigg(\frac{1}{\frac{1}{(\sigma^0_k)^2} + \frac{n}{({\sigma_{true_k}})^2}}\Bigg(\frac{\mu^0_k}{(\sigma^0_k)^2} + \frac{\sum_{i=1}^n x_i}{({\sigma_{true_k}})^2}\Bigg),\Bigg(\frac{1}{(\sigma^0_k)^2} + \frac{n}{({\sigma_{true_k}})^2}\Bigg)^{-1}\Bigg)$$
  
 Where $\large \sigma_{true_k}$ is the known standard deviation of our Gaussian likelihood, for each bandit $k$. We can easily implement this with a class in Python:
 
@@ -150,7 +150,7 @@ The Metropolis-Hastings algorithm bypasses this problem by only needing the prio
 
 It was proved that by accepting samples according to the acceptance ratio $\alpha$ our `mu_list` will contain samples that approximate the true posterior distribution. Thus, if we sample for long enough, we will have a reasonable approximation. The magic is that 
 
-$$\large \alpha = \frac{P(x_k \vert \mu^{t+1}) \cdot{} P(\mu_k)}{P(x_k \vert \mu^t) \cdot{} P(\mu_k)} = \frac{\frac{P(x_k \vert \mu^{t+1}) \cdot{} P(\mu_k)}{P(x_k)}}{\frac{P(x_k \vert \mu^t) \cdot{} P(\mu_k)}{P(x_k)}}$$
+$$\large \alpha = \frac{P(x_k \vert \mu^{t+1}) \cdot{} P(\mu^{t+1})}{P(x_k \vert \mu^t) \cdot{} P(\mu^t)} = \frac{\frac{P(x_k \vert \mu^{t+1}) \cdot{} P(\mu^{t+1})}{P(x_k)}}{\frac{P(x_k \vert \mu^t) \cdot{} P(\mu^t)}{P(x_k)}}$$
 
 such that the likelihood and prior product is sufficient to be proportional to the true posterior for us to get samples from it. We can easily implement this algorithm in Python:
 

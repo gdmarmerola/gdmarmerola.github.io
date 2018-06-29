@@ -852,4 +852,4 @@ Results were interesting. All approximate inference techniques did a good job ap
 
 Given the results observed, Bootstrapping seems to be a good candidate as a approximate inference method for bandits, as it also accomodates very compex posteriors with virtually no model development cost. However, we should be aware of its lack of prior specification, which could negatively impact performance due to lack of exploration in early rounds.
 
-What is your thought about this experiment? Feel free to comment! You can find the full code [here]().
+What is your thought about this experiment? Feel free to comment! You can find the full code [here](https://github.com/gdmarmerola/advanced-bandit-problems).

@@ -1,16 +1,17 @@
 ---
 layout: post
-title: Introduction to Thompson Sampling, Part 3&#58; Bayesian Optimization
+title: Thompson Sampling, Gaussian Processes, and Bayesian Optimization
 featured-img: ts_hyperparam_cover
 category: [bayesian]
 mathjax: true
+summary: Mixing Thompson Sampling and Gaussian Processes to optimize non-convex and non-differentiable objective functions.
 ---
 
 # Introduction to Thompson Sampling, Part 3&#58; Bayesian Optimization
 
 Thompson Sampling is a very simple yet effective method to addressing the exploration-exploitation dilemma in reinforcement/online learning. In this series of posts, I'll introduce some applications of Thompson Sampling in simple examples, trying to show some cool visuals along the way. All the code can be found on my GitHub page [here](https://github.com/gdmarmerola/interactive-intro-rl).
 
-In this post, we frame the hyperparameter optimization problem (a theme that is much explored by to AutoML community) as a bandit problem, and use Gaussian Processes to solve it.
+In this post, we frame the hyperparameter optimization problem (a theme that is much explored by the AutoML community) as a bandit problem, and use Gaussian Processes to solve it.
 
 
 ## Why is this relevant?

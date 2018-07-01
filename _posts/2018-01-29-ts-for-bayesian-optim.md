@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Thompson Sampling, Gaussian Processes, and Bayesian Optimization
+title: Thompson Sampling, GPs, and Bayesian Optimization
 featured-img: ts_hyperparam_cover
 category: [bayesian]
 mathjax: true

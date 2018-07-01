@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Introduction to Thompson Sampling, Part 4&#58; Neural Networks, Random Forests and the "Mushroom" bandit
+title: Bootstrapped Neural Networks, Random Forests and the Mushroom bandit
 featured-img: ts_mushroom_cover
 category: [bandits, bayesian]
 mathjax: true
+summary: Bootstrapped Neural Networks and Random Forests for solving a more realistic contextual bandit problem.
 ---
 
 # Introduction to Thompson Sampling, Part 4&#58; Neural Networks, Random Forests and the "Mushroom" bandit

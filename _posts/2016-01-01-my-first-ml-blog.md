@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A blog for sharing thoughts and experiments I do in my spare time
+title: A blog for sharing my thoughts and experiments
 mathjax: true
 summary: Very happy to start a blog where I share my ideas with the community.
 ---

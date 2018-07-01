@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bootstrapped Neural Networks, Random Forests and the Mushroom bandit
+title: Bootstrapped Neural Networks, RFs, and the Mushroom bandit
 featured-img: ts_mushroom_cover
 category: [bandits, bayesian]
 mathjax: true

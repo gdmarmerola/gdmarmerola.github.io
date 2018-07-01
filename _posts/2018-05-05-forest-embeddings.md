@@ -6,10 +6,6 @@ category: [clustering, dreduction]
 mathjax: true
 ---
 
-# Supervised clustering and forest embeddings
-
-## Experimenting with forest-based data representations
-
 In this post, I'll try out a new way to represent data and perform clustering: forest embeddings. A forest embedding is a way to represent a feature space using a random forest. Each data point $x_i$ is encoded as a vector $x_i = [e_0, e_1, ..., e_k]$ where each element $e_i$ holds which leaf of tree $i$ in the forest $x_i$ ended up into. The encoding can be learned in a supervised or unsupervised manner:
 
 1. **Supervised:** we train a forest to solve a regression or classification problem. Then, we use the trees structure to extract the embedding. 

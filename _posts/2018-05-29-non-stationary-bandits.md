@@ -7,6 +7,8 @@ comments: true
 mathjax: true
 ---
 
+# Non-stationary bandits
+
 In this post, we'll build on the Multi-Armed Bandit problem by relaxing the assumption that the reward distributions are stationary. Non-stationary reward distributions change over time, and thus our algorithms have to adapt to them. There's simple way to solve this: adding buffers. Let us try to do it to an $\epsilon$-greedy policy and Thompson Sampling. Please, feel free to get the full code in my [GitHub page](https://github.com/gdmarmerola/advanced-bandit-problems).
 
 ## Why is this relevant?

@@ -4,7 +4,7 @@ title: Introduction to Thompson Sampling&#58; the Bernoulli bandit
 featured-img: ts_for_mab_cover
 category: [bandits, bayesian]
 mathjax: true
-summary: Introducing Thompson Sampling and comparing it to Upper Confidence Bound and epsilon-greedy strategies in a simple problem.
+summary: Introducing Thompson Sampling and comparing it to the Upper Confidence Bound and epsilon-greedy strategies in a simple problem.
 ---
 
 # Introduction to Thompson Sampling, Part 1&#58; the Bernoulli bandit

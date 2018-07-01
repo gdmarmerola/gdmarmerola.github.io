@@ -5,7 +5,7 @@ mathjax: true
 summary: Very happy to start a blog where I share my ideas with the community.
 ---
 
-# A blog for sharing thoughts and experiments I do in my spare time
+# A blog for sharing my thoughts and experiments
 
 Some may agree with me that one of the best ways to study and understand a concept is through practicing it. In preparation to going after my first internship in 2016, I started to participate in Kaggle competitions and doing some personal projects. I started posting this content to my GitHub page in order to build a portfolio for recruiters to inspect.
 

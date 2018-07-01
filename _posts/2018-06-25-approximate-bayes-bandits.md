@@ -4,6 +4,7 @@ title: Approximate bayesian inference for bandits
 featured-img: approx_bayes_bandits_cover
 category: [bandits, bayesian]
 mathjax: true
+summary: Experimenting with Conjugate Priors, MCMC Sampling, Variational Inference and Bootstrapping to solve a Gaussian Bandit problem 
 ---
 
 # Approximate bayesian inference for bandits

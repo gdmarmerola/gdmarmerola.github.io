@@ -6,8 +6,6 @@ category: [bandits, bayesian]
 mathjax: true
 ---
 
-## Approximate bayesian inference for bandits
-
 Let us experiment with different techniques for approximate bayesian inference aiming at using Thomspon Sampling to solve bandit problems, drawing inspiration from the paper ["A Tutorial on Thompson Sampling"](https://web.stanford.edu/~bvr/pubs/TS_Tutorial.pdf), mainly from the ideas on section 5. Let us test the algorithms on a simple bandit with gaussian rewards, such that we can compare our approximate inference techniques with the exact solution, obatined through a conjugate prior. I'll implement and compare the following approximation techniques:
 
 1. **Exact inference**, where we use a conjugate prior to analytically update the posterior

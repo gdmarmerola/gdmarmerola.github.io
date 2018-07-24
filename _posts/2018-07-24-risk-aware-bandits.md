@@ -26,7 +26,7 @@ Let us borrow the problem from our previous post but change it up a bit by build
 
 $$\large \textrm{Regret} = \textrm{CVaR}_{best}(\alpha) - \textrm{CVaR}_{k}(\alpha)$$
 
-where $\textrm{CVaR}_{best}(\alpha)$ is the best CVaR and $\textrm{CVaR}_{k}(\alpha)$ is the CVaR of chosen bandit $k$. The quantity $\alpha \in [0, 1]$ controls the amount of risk we desire to take. We define $\textrm{CVaR}_{k}(\alpha)$ as the average reward of bandit $k$ on the worst $\alpha \times 100\%$ of its possible outcomes (lower $\alpha$-quantile):
+where $\textrm{CVaR} _{best}(\alpha)$ is the best CVaR and $\textrm{CVaR} _{k}(\alpha)$ is the CVaR of chosen bandit $k$. The quantity $\alpha \in [0, 1]$ controls the amount of risk we desire to take. We define $\textrm{CVaR} _{k}(\alpha)$ as the average reward of bandit $k$ on the worst $\alpha \times 100\%$ of its possible outcomes (lower $\alpha$-quantile):
 
 $$\large \textrm{CVaR}_{k}(\alpha) = \mathbb{E}[Y_k\ \vert\ Y_k \leq VaR_{Y_k}(\alpha)]$$
 

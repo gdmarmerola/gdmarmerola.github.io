@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Risk-aware bandits
-featured-img: risk_aware_bandits_cover
+featured-img: risk_aware_cover
 category: [bandits, bayesian]
 mathjax: true
 summary: Experiment with risk-aware reward signals, Thompson Sampling, Bayesian UCB, and the MaRaB algorithm. 
@@ -353,7 +353,7 @@ Let us also inspect TS decision-making in the 200-round game:
 
 <div class="myvideo">
    <video  style="display:block; width:100%; height:auto;" autoplay controls loop="loop">
-       <source src="{{ site.baseurl }}/assets/img/risk_aware_bandits/risk-aware-vid-4mp4" type="video/mp4" />
+       <source src="{{ site.baseurl }}/assets/img/risk_aware_bandits/risk-aware-vid-4.mp4" type="video/mp4" />
    </video>
 </div>
 <br>

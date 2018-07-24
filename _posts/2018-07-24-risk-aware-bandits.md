@@ -101,7 +101,7 @@ The Multi-Armed Risk-Aware Bandit (MaRaB) algorithm was introduced by Galichet e
 
 $$\large \textrm{select}\ k_t = \textrm{argmax}\Bigg\{ \widehat{\textrm{CVaR}_k(\alpha)} - C\sqrt{\frac{log(\lceil t\alpha \rceil)}{n_{k,t,\alpha}}}\Bigg\}$$
 
-The quantity $\widehat{\textrm{CVaR}_k(\alpha)}$ is the average of the empirical $\alpha$-quantile given observations at time $t$, $\sqrt{\frac{log(t\alpha)}{n_{i,t,\alpha}}}$ is a lower confidence bound on the CVaR, $n_{k,t,\alpha}$ is the number of observations (rounded to ceiling integer) in the $\alpha$-quantile for bandit $k$ at time $t$, and $C$ is a parameter controlling exploration.
+The quantity $\widehat{\textrm{CVaR} _k(\alpha)}$ is the average of the empirical $\alpha$-quantile given observations at time $t$, $\sqrt{\frac{log(t\alpha)}{n_{i,t,\alpha}}}$ is a lower confidence bound on the CVaR, $n_{k,t,\alpha}$ is the number of observations (rounded to ceiling integer) in the $\alpha$-quantile for bandit $k$ at time $t$, and $C$ is a parameter controlling exploration.
 
 We can see that this algorithm is very conservative: it features a negative exploration term, which disencourages exploration, such that if two bandits have the same estimated CVaR, it will favor the one which has been selected more often in the past. However, while the $\alpha$-quantile contains only one sample, it will explore a bit as the CVaR will be a monotonically decreasing function with respect to the number of plays, making bandits that were selected few times look better. The implementation follows:
 

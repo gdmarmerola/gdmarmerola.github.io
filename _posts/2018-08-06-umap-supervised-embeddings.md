@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Supervised dimensionality reduction and clustering at scale with RFs and UMAP
+title: Supervised dimensionality reduction and clustering at scale with RFs with UMAP
 featured-img: umap_embeds_cover
 category: [clustering, dreduction]
 mathjax: true
@@ -174,7 +174,7 @@ importances.sort_values('importance', ascending=False).head(10)
 |0.000043|60|
 |0.000042|43|
 
-The algorithm correctly idenfied 5 important variables as well. This fact helps explain why we could recover meaningful structure: our leaf similarity measure effectively throws away distances on the irrelevant dimensions' axes.
+The algorithm correctly identified 5 important variables as well. This fact helps explain why we could recover meaningful structure: our leaf similarity measure effectively throws away distances on the irrelevant dimensions' axes.
 
 So now that we have a reliable way of comparing samples, we can perform clustering! However, we have a problem: the scale of the data. Let us try to devise a way to make this viable.
 

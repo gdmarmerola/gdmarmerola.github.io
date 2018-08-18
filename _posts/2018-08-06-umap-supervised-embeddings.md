@@ -240,7 +240,7 @@ clust_sample_df = pd.DataFrame({'cluster': clusters.reshape(-1), 'cl_sample':ran
 
 Now, given our approximate clustering, we create an index using NN-Descent, and search for the 1-nearest neighbor for every instance in our data. This is very fast at around 18s.
 
-````python
+```python
 # creating an index with the sample used for clustering
 %time index = NNDescent(embed_sample, n_neighbors=10)
 

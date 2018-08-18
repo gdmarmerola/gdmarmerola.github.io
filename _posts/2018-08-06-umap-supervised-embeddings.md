@@ -245,7 +245,7 @@ Now, given our approximate clustering, we create an index using NN-Descent, and 
 %time index = NNDescent(embed_sample, n_neighbors=10)
 
 # querying for all the data
-%time nn = index.query(clustering_embed_et, k=1)
+%time nn = index.query(sup_embed_et, k=1)
 ```
 ```
 Wall time: 7.94 s
@@ -256,7 +256,7 @@ Finally, we "predict" the clusters of all the instances by assigning to an unlab
 
 ```python
 # creating a dataframe with nearest neighbors for all samples
-to_cluster_df = pd.DataFrame({'sample':range(clustering_embed_et.shape[0]), 'cl_sample': nn[0].reshape(-1)})
+to_cluster_df = pd.DataFrame({'sample':range(sup_embed_et.shape[0]), 'cl_sample': nn[0].reshape(-1)})
 
 # merging to assign cluster to all other samples, and tidying it
 final_cluster_df = to_cluster_df.merge(clust_sample_df, on='cl_sample')

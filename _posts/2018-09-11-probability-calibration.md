@@ -7,10 +7,10 @@ mathjax: true
 summary: Calibrating probabilities of Extremely Randomized Trees and Gradient Boosting Machines with no loss of performance with a stacked logistic regression
 ---
 
-When working with ML models such as GBMs, RFs, SVMs ou kNNs (any one that is not a logistic regression) we can observe a pattern that is intriguing: the probabilities that the model output do not correspond to the real fraction of positives we see in the real life. Can we solve this issue?
+When working with ML models such as GBMs, RFs, SVMs ou kNNs (any one that is not a logistic regression) we can observe a pattern that is intriguing: the probabilities that the model outputs do not correspond to the real fraction of positives we see in the real life. Can we solve this issue?
 
 Motivated by `sklearn`'s topic [Probability Calibration](http://scikit-learn.org/stable/modules/calibration.html) and the paper [Practical Lessons from Predicting Clicks on Ads at
-Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf), i'll demonstrate how we can calibrate the output probabilities of a tree-based model while also improving its accuracy, by stacking it with a logistic regression.
+Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf), I'll show how we can calibrate the output probabilities of a tree-based model while also improving its accuracy, by stacking it with a logistic regression.
 
 ## Data
 
@@ -32,7 +32,7 @@ df.head()
 |4|50000.0|2|2|1|37|0|0|0|0|...|28314.0|28959.0|29547.0|2000.0|2019.0|1200.0|1100.0|1069.0|1000.0|0|
 |5|50000.0|1|2|1|57|-1|0|-1|0|...|20940.0|19146.0|19131.0|2000.0|36681.0|10000.0|9000.0|689.0|679.0|0|
 
-Cool. The data is tidy with only numeric columns. The proportion of the minority class is 22%.
+Cool. The data is tidy with only numeric columns. Let us move to modeling.
 
 ## Modeling
 
@@ -75,7 +75,7 @@ roc_auc_score(y, preds[:,1])
 0.784120
 ```
 
-The best model shows an AUC of 0.784120, which is a nice result in comparison to [some experiments published by Kaggle users](https://www.kaggle.com/gpreda/default-of-credit-card-clients-predictive-models). Let us now check the probability calibration.
+Our model shows an AUC of 0.784, which is a nice result in comparison to [some experiments published by Kaggle users](https://www.kaggle.com/gpreda/default-of-credit-card-clients-predictive-models). Let us now check the probability calibration.
 
 ```python
 # creating a dataframe of target and probabilities
@@ -107,9 +107,9 @@ plt.legend()
 
 The calibration plot seems off. The model outputs a narrow interval of probabilities where it both overestimates and underestimates the true probability, depending on its output value. Let us now check how a Extremely Randomized Trees model performs.
 
-### Vanilla Extremely Randomized Trees Forest
+### Vanilla Extremely Randomized Trees
 
-Let us try now the `ExtraTreesClassifier` from sklearn. We first search for the best hiperparameters via random search:
+Let us try now the `ExtraTreesClassifier` from sklearn. We first search get model validation predictions:
 
 ```python
 # parameters obtained via random search
@@ -132,7 +132,7 @@ roc_auc_score(y, preds[:,1])
 ```
 0.784180
 ```
-Cool. Our ET model also shows nice results, at AUC = 0.78, like the GBM model. We check the probability calibrations next.
+Cool. Our ET model also shows nice results, at AUC = 0.784, like the GBM model. We check the probability calibrations next.
 
 ```python
 # creating a dataframe of target and probabilities
@@ -167,7 +167,7 @@ We can see that `ETC` overestimates the true probabilities across the board, des
 
 ## Logistic Regression on the leaves of forests
 
-Let us show how to use a logistic regression on the leaves of forests in order to improve probability calibration. We first fit a tree-based model on the data:
+Let us show how to use a logistic regression on the leaves of forests in order to improve probability calibration. We first fit a tree-based model on the data, such as our `lgbm`:
 
 ```python
 # first, we fit our tree-based model on the dataset
@@ -206,7 +206,7 @@ leaves_encoded
 
 Now, we're ready to fit the model. The `leaves_encoded` variable contains a very powerful feature transformation of the data, learned by the GBM model. For more info about this kind of transformation, refer to the [Facebook paper](http://quinonero.net/Publications/predicting-clicks-facebook.pdf) I cited in the beginning of the post. 
 
-We configure the logistic regression so it has strong regularization (as the leaf encoding is high-dimensional) and no intercept. We also use `sag` solver to speed things up.
+We configure the logistic regression so it has strong regularization (as the leaf encoding is high-dimensional) and no intercept. We also use the `sag` solver to speed things up.
 
 ```python
 # we configure the logistic regression and fit it to the encoded leaves
@@ -214,7 +214,7 @@ lr = LogisticRegression(solver='sag', C=10**(-3), fit_intercept=False)
 lr.fit(leaves_encoded, y)
 ```
 
-We can now compare the probabilities before and after the application of the logistic regression model. As it tries to minimize log-loss, we expect that its output probabilities are better calibrated. The scatterplot below show the differences in probability calibration:
+We can now compare the probabilities before and after the application of the logistic regression model. As it tries to minimize log-loss, we expect that its output probabilities are better calibrated. The scatterplot below shows the differences in probability calibration:
 
 ```python
 # let us check probabilities before and after logistic regression
@@ -234,7 +234,7 @@ plt.ylabel('Probabilities after Logistic Regression');
 
 ![]({{ "assets/img/probability_calibration/probcal-img-3.png" | absolute_url }})
 
-We can see the the range of the output probabilities is wider after logistic regression. Also, the mapping resembles the calibration plot of LGBM, so LR may be actually correcting it.
+We can see the the range of the output probabilities is wider after the logistic regression. Also, the mapping resembles the calibration plot of LGBM, so LR may be actually correcting it.
 
 However, we're just analyzing training data. Let us build a robust pipeline so we can see the calibration plots in validation before taking any conclusions. The following class does just that:
 
@@ -296,7 +296,7 @@ class TreeBasedLR:
                 'forest_model': self.forest_model}
 ```
 
-We also change the seed of the validation so that the next model selections are fair.
+We also change the seed of the validation so that the next model evaluations are fair:
 
 ```python
 # validation process
@@ -305,7 +305,7 @@ skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=102)
 
 ### Fixing LGBM probabilities
 
-Let us calibrate the probabilities of our vanilla LGBM Model. The following code configures regularization paramter `C` of the logistic regression and fits it on top of the `lgbm` moodel. As stated earlier, we use a different random seed in the validation to avoid overfitting.
+Let us calibrate the probabilities of our vanilla LGBM Model. The following code configures regularization paramter `C` of the logistic regression and fits it on the leaf assignments of our `lgbm` model. As stated earlier, we use a different random seed in the validation to get honest validation results.
 
 ```python
 # parameters obtained via random search
@@ -335,7 +335,7 @@ roc_auc_score(y, preds[:,1])
 ```
 0.783226
 ```
-We maintain original GBM results, with AUC = 0.78. Let us now check the calibration of this model:
+We approximately maintain original GBM results, with AUC = 0.783. Let us now check the calibration of this model:
 
 ```python
 # creating a dataframe of target and probabilities
@@ -440,10 +440,10 @@ plt.legend()
 
 ![]({{ "assets/img/probability_calibration/probcal-img-5.png" | absolute_url }})
 
-Not as good as the GBM correction, but calibration improved significantly. The produce works for both models!
+Calibration improves significantly as well. The process works for both models!
 
 ## Conclusion
 
-In this post, we showed a strategy to calibrate output probabilities of a tree-based model by fitting a logistic regression on its one-hot encoded leaf assigments. The strategy greatly improves calibration while not losing predictive power. Thus, we can now be much more confident that the output probabilities of our models actually correspond to true fractions of success.
+In this post, we showed a strategy to calibrate the output probabilities of a tree-based model by fitting a logistic regression on its one-hot encoded leaf assigments. The strategy greatly improves calibration while not losing predictive power. Thus, we can now be much more confident that the output probabilities of our models actually correspond to true fractions of success.
 
 As always, you can find the complete code at my [GitHub](https://github.com/gdmarmerola/random-stuff).

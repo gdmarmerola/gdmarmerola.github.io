@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Calibration of probabilities in ML (tree-based) models
+title: Calibration of probabilities for tree-based models
 featured-img: prob_cal_cover
 category: [classification]
 mathjax: true

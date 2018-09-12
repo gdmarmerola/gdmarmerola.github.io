@@ -7,7 +7,7 @@ mathjax: true
 summary: Calibrating probabilities of Extremely Randomized Trees and Gradient Boosting Machines with no loss of performance with a stacked logistic regression
 ---
 
-When working with ML models such as GBMs, RFs, SVMs ou kNNs (any one that is not a logistic regression) we can observe a pattern that is intriguing: the probabilities that the model outputs do not correspond to the real fraction of positives we see in the real life. Can we solve this issue?
+When working with ML models such as GBMs, RFs, SVMs or kNNs (any one that is not a logistic regression) we can observe a pattern that is intriguing: the probabilities that the model outputs do not correspond to the real fraction of positives we see in real life. Can we solve this issue?
 
 Motivated by `sklearn`'s topic [Probability Calibration](http://scikit-learn.org/stable/modules/calibration.html) and the paper [Practical Lessons from Predicting Clicks on Ads at
 Facebook](http://quinonero.net/Publications/predicting-clicks-facebook.pdf), I'll show how we can calibrate the output probabilities of a tree-based model while also improving its accuracy, by stacking it with a logistic regression.

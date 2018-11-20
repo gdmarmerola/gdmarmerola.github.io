@@ -7,7 +7,7 @@ mathjax: true
 summary: Estimating counterfactual outcomes using Generalized Random Forests, ExtraTrees and embeddings
 ---
 
-Current machine learning methods perform very well in the task of estimating conditional outcomes, such as the expectation of a varible given other variables $E[y\ |\ X]$, but have not been widely adopted for estimating counterfactual outcomes, such as estimating what would be the difference in the outcome $y$ of individual I if we used treatment B instead of treatment A. We call this the **treatment effect** $E[y(A)\ -\ y(B)\ |\ X]$, where $y(A)$ is the outcome given treatment A and $y(B)$ is the outcome given treatment B.
+Current machine learning methods perform very well in the task of estimating conditional outcomes, such as the expectation of a varible given other variables $E[y\ \vert\ X]$, but have not been widely adopted for estimating counterfactual outcomes, such as estimating what would be the difference in the outcome $y$ of individual I if we used treatment B instead of treatment A. We call this the **treatment effect** $E[y(A)\ -\ y(B)\ \vert\ X]$, where $y(A)$ is the outcome given treatment A and $y(B)$ is the outcome given treatment B.
 
 In this post, we'll build a treatment effect estimation problem and solve it using Generalized Random Forests, from the recent work of [Athey et. al](https://github.com/grf-labs/grf/blob/master/REFERENCE.md), and a similar but alternative method using extremely randomized trees and embeddings.
 
@@ -171,7 +171,7 @@ Y <- df[,23]
 cluster <- df[,21]
 ```
 
-Then, we use the `causal_forest` function to train a causal forest using `X`, `Y` and `W`. The resulting `tau.forest` can predict $E[y(W = 1)\ -\ y(W = 0)\ |\ X]$, effectively estimating the treatment effect for all samples. 
+Then, we use the `causal_forest` function to train a causal forest using `X`, `Y` and `W`. The resulting `tau.forest` can predict $E[y(W = 1)\ -\ y(W = 0)\ \vert\ X]$, effectively estimating the treatment effect for all samples. 
 
 ```r
 # training the causal forest

@@ -237,7 +237,7 @@ In this method, we first perform a supervised embedding of the data and then try
 3. Determine the 100 nearest neighbors for each sample (we use NN-Descent for efficiency)
 4. In each 100-nearest neighbor group, calculate y(1) - y(0), weighted by the similarities
 
-First, we validate our model, to check if the chosen hyperaparameters are OK:
+First, we validate our model, to check if the chosen hyperparameters are OK:
 
 ```python
 # CV method

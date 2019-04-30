@@ -219,7 +219,7 @@ In order to draft some answers to these questions, let us conclude this post run
 
 We start by defining a function `get_regular_nn` to implement a regular NN to use in models (2) and (3). I'll reuse the implementation of the trainable network:
 
-````python
+```python
 # function to get a randomized prior functions model
 def get_regular_nn():
 

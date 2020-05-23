@@ -51,7 +51,7 @@ Let us solve `fklearn`'s causal inference problem so we can walk through the met
 
 We call solving `df_rnd` "easy mode" because there's no confounding, making it easy to estimate counterfactuals without paying attention to it. Nevertheless, it provides a good sanity check for `ForestEmbeddingsCounterfactual`.
 
-We first organize data in `X` (features), `W` (treatment variable) and `y` (target) format, needed to fit `ForestEmbeddingsCounterfactual`.
+We first organize data in `X` (explanatory variables), `W` (treatment variable) and `y` (target) format, needed to fit `ForestEmbeddingsCounterfactual`.
 
 ```python
 # organizing data into X, W and y
@@ -68,7 +68,7 @@ from cfml_tools import ForestEmbeddingsCounterfactual
 fecf = ForestEmbeddingsCounterfactual(save_explanatory=True)
 ```
 
-I advise that you read the docstring to know about the parameters and make the tutorial easier to follow!
+I advise you to read the docstring to know about the parameters and make the tutorial easier to follow!
 Before fitting and getting counterfactuals, a good sanity check is doing 5-fold CV, to test the generalization power of the underlying forest model:
 
 ```python
@@ -222,9 +222,7 @@ counterfactuals.head()
 
 ![]({{ "assets/img/forest_embeddings_cf/forest_embeddings_cf_table_2.png" | absolute_url }})
 
-```python
 Comparing true effect with estimated:
-```
 
 ![]({{ "assets/img/forest_embeddings_cf/forest_embeddings_cf_4.png" | absolute_url }})
 
@@ -270,6 +268,6 @@ comparables_table = fecf.explain(test_sample)
 # showing comparables table
 print(comparables_table['W'].value_counts())
 print(df_to_markdown(comparables_table.groupby('W').head(5).sort_values('W').reset_index()))
-```python
+```
 
 I hope you liked the tutorial and will use `cfml_tools` for your causal inference problems soon!

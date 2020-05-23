@@ -1,7 +1,26 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <meta name="author" content="Guilherme Duarte Marmerola" />
+  <meta property="og:site_name" content="{{ site.title }}" />
+  <meta property="og:locale" content="en_US" />
+
+  {% if page.image %}
+    <meta property="og:image" content="{{page.image}}" />
+    <meta name="twitter:image" content="{{page.image}}" />
+  {% else %}
+    <meta property="og:image" content="https://gdmarmerola.github.io//assets/img/posts/risk_uncertainty_cover_placehold.jpg" />
+    <meta name="twitter:image" content="https://gdmarmerola.github.io//assets/img/posts/risk_uncertainty_cover_placehold.jpg" />
+  {% else %}
+    <!-- OG data for homepage -->
+    <meta property="og:image" content="https://gdmarmerola.github.io//assets/img/posts/risk_uncertainty_cover_placehold.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{site.title}}" />
+    <meta name="twitter:image" content="https://gdmarmerola.github.io//assets/img/posts/risk_uncertainty_cover_placehold.jpg" />
+
+  {% endif %}
 
   {% seo %}
 
@@ -12,8 +31,8 @@
   <link rel="mask-icon" href="{{ '/assets/img/icons/safari-pinned-tab.svg?v=qA3OXqyw77' | relative_url }}" color="#5bbad5">
   <!--[if IE]><link rel="shortcut icon" href="/assets/img/icons/favicon.ico?v=qA3OXqyw77"><![endif]-->
   <link rel="shortcut icon" href="{{ '/assets/img/icons/favicon.ico?v=qA3OXqyw77' | relative_url }}">
-  <meta name="apple-mobile-web-app-title" content="Sleek">
-  <meta name="application-name" content="Sleek">
+  <meta name="apple-mobile-web-app-title" content="Guilherme's Blog">
+  <meta name="application-name" content="Guilherme's Blog">
   <meta name="msapplication-config" content="{{ '/assets/img/icons/browserconfig.xml?v=qA3OXqyw77' | relative_url }}">
   <meta name="theme-color" content="#ffffff">
 

@@ -270,4 +270,12 @@ print(comparables_table['W'].value_counts())
 print(df_to_markdown(comparables_table.groupby('W').head(5).sort_values('W').reset_index()))
 ```
 
+index | sex | age | severity | W | y
+---- | ---- | ---- | ---- | ---- | ----
+26 | 0 | 43 | 0.95 | 1 | 197
+6526 | 0 | 43 | 0.95 | 1 | 207
+36582 | 0 | 43 | 0.95 | 1 | 211
+21053 | 0 | 43 | 0.96 | 1 | 163
+38484 | 0 | 44 | 0.95 | 1 | 189
+
 I hope you liked the tutorial and will use `cfml_tools` for your causal inference problems soon!

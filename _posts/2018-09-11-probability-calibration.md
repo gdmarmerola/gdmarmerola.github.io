@@ -2,6 +2,7 @@
 layout: post
 title: Calibration of probabilities for tree-based models
 featured-img: prob_cal_cover
+image: prob_cal_cover
 category: [classification]
 mathjax: true
 summary: Calibrating probabilities of Extremely Randomized Trees and Gradient Boosting Machines with no loss of performance with a stacked logistic regression

@@ -2,6 +2,7 @@
 layout: post
 title: Bootstrapped Neural Networks, RFs, and the Mushroom bandit
 featured-img: ts_mushroom_cover
+image: ts_mushroom_cover
 category: [bandits, bayesian]
 mathjax: true
 summary: Bootstrapped Neural Networks and Random Forests for solving a more realistic contextual bandit problem.

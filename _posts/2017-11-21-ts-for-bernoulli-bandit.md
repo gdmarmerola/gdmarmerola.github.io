@@ -2,6 +2,7 @@
 layout: post
 title: Introduction to Thompson Sampling&#58; the Bernoulli bandit
 featured-img: ts_for_mab_cover
+image: ts_for_mab_cover
 category: [bandits, bayesian]
 mathjax: true
 summary: Introducing Thompson Sampling and comparing it to the Upper Confidence Bound and epsilon-greedy strategies in a simple problem.

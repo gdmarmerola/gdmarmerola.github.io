@@ -2,6 +2,7 @@
 layout: post
 title: Supervised clustering and forest embeddings
 featured-img: forest_embeddings_cover
+image: forest_embeddings_cover
 category: [clustering, dreduction]
 mathjax: true
 summary: Using forests of randomized trees to uncover structure that really matters in messy data.

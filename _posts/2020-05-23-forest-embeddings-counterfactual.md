@@ -2,6 +2,7 @@
 layout: post
 title: Forest Embeddings Counterfactual with cfml_tools
 featured-img: forest_embeddings_cf_cover
+image: forest_embeddings_cf_cover
 category: [clustering, dreduction, causal inference]
 mathjax: true
 summary: Estimating counterfactual outcomes using forest embeddings with cfml_tools

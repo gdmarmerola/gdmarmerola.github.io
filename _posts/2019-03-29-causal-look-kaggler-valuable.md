@@ -2,6 +2,7 @@
 layout: post
 title: A Causal Look At What Makes a Kaggler Valuable
 featured-img: causal_kaggle_cover
+image: causal_kaggle_cover
 category: [clustering, dreduction, causal inference]
 mathjax: true
 summary: Using causal inference to determine what titles and skills will make you earn more

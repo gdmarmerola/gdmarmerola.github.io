@@ -2,6 +2,7 @@
 layout: post
 title: Thompson Sampling, GPs, and Bayesian Optimization
 featured-img: ts_hyperparam_cover
+image: ts_hyperparam_cover
 category: [bayesian]
 mathjax: true
 summary: Mixing Thompson Sampling and Gaussian Processes to optimize non-convex and non-differentiable objective functions.

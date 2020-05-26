@@ -2,6 +2,7 @@
 layout: post
 title: Causal inference and treatment effect estimation
 featured-img: treatment_effects_cover
+image: treatment_effects_cover
 category: [clustering, dreduction, causal inference]
 mathjax: true
 summary: Estimating counterfactual outcomes using Generalized Random Forests, ExtraTrees and embeddings

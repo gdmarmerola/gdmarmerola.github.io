@@ -30,6 +30,14 @@ df_rnd, df_obs, df_cf = make_confounded_data(50000)
 print(df_to_markdown(df_obs.head(5)))
 ```
 
+sex | age | severity | medication | recovery
+---- | ---- | ---- | ---- | ----
+0 | 34 | 0.7 | 1 | 126
+1 | 24 | 0.72 | 1 | 123
+1 | 38 | 0.86 | 1 | 255
+1 | 35 | 0.77 | 1 | 227
+0 | 22 | 0.078 | 0 | 15
+
 We have five features: `sex`, `age`, `severity`, `medication` and `recovery`. We want to estimate the impact of `medication` on `recovery`. So, our *target* variable is `recovery`, our *treatment* variable is `medication` and the rest are our *explanatory* variables.
 
 A good counterfactual model will tell us how would the recovery time be for each individual for both decisions of taking or not taking medication. The model should be robust to confounders, variables that impact the probability of someone taking the medication, or the effect of taking the medication. For instance, people with higher `severity` may be more likely to take the medicine. If not properly taken into account, this confounder may lead us to conclude that the medication may make recovery worse: people that took the medication may have worst recovery times (but their condition was already more severe). In the [fklearn's documentation](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html), the data generating process is shown in detail, highlighting the confounders in the data. The effect we're looking for is $exp(-1) = 0.368$.

@@ -2,6 +2,7 @@
 layout: post
 title: Risk and Uncertainty in Deep Learning
 featured-img: risk_uncertainty_cover
+image: risk_uncertainty_cover
 category: [bayesian, regression]
 mathjax: true
 summary: Building a neural network that can estimate aleatoric and epistemic uncertainty at the same time

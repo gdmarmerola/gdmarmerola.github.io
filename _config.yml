@@ -17,7 +17,7 @@ social:
 # THEME SETTINGS
 navigation: # Navigation links
   - {name: 'Home', link: '/'}
-  - {name: 'About', link: '/about'}
+  - {name: 'About me', link: '/about-me'}
   - {name: 'Contact', link: '/contact'}
 
 tagline: >

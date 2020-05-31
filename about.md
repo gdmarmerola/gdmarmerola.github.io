@@ -25,7 +25,7 @@ I hold a special interest about some specific topics:
 * *if we recommended product A instead of B, would our revenue grow?*
 * *if we sent e-mails to our customers instead of calling them, what would happen to our conversion rate?*
 
-All of these questions, no matter how varied, fall in the causal inference category. How can we be smarter than using Randomized Controlled Trials and A/B tests and extract value from observational data in these contexts?
+All of these questions, no matter how varied, can be solved with causal inference methods. How can we be smarter than using Randomized Controlled Trials and A/B tests and extract value from observational data in these contexts?
 
 **Management, and data science in a business context:** doing data science in industry is far from trivial as we need to balance time for experimentation with deadlines, data is oftentimes messy and stakeholders may not have a clear understanding of our work and challenges. How can you navigate this and deliver real value from ML, while maintaining the best people motivated?
 

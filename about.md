@@ -16,7 +16,7 @@ I had the fortune of discovering ML in my early undergraduate years, totally by 
 
 I hold a special interest about some specific topics:
 
-1. **Reinforcement learning and bayesian inference:** particurlarly, I'm interested in the exploration-exploitation dilemma, and how to solve it with (bayesian) models that capture uncertainty. I've devoted a lot of time to the study of bandit problems, and how to use them as frameworks to fundamental problems in industry (pricing, resource allocation, model criticism, and others).
+1. **Reinforcement learning and bayesian inference:** particurlarly, I'm interested in the exploration-exploitation dilemma, and how to solve it with (bayesian) models that capture uncertainty. I've devoted a lot of time to the study of bandit problems, and how to use them as frameworks to fundamental problems in industry (pricing, resource allocation, recommendation, and others).
 
 2. **Dimensionality reduction and clustering:** how can we visualize and interpret structure in our data, aiming to explain it to business stakeholders? Can we do better than simple K-Means clustering and PCA? What similarity measures, algorithms and representations would make this possible?
 

@@ -8,14 +8,20 @@ permalink: /about/
 
 ![profile]({{ "assets/img/gdmarmerola-profile-50p.jpg" | absolute_url }})
  
-Hi! My name is **Guilherme Duarte Marmerola**, and I'm a Data Scientist from Brazil. I'm passionate about machine learning, and the power it gives us to solve real problems in business and science. I graduated in Electrical Engineering from the University of Campinas and had the fortune of discovering ML in my early undergraduate years, totally by chance, during an internship at NICTA, in Syndey, Australia. Since then, I’ve literally fallen in love with the discipline, and built many successful advanced analytics initiatives in the media, mining, insurance, retail, consumer goods and banking industries.
+Hi! My name is **Guilherme Duarte Marmerola**, and I'm a Data Scientist from Brazil. 
+
+I'm passionate about machine learning, and how it empowers us to solve tough problems in business and science. 
+
+I had the fortune of discovering ML in my early undergraduate years, totally by chance, during an internship. Since then, I’ve fallen in love with it, and had a lot of fun building cool advanced analytics initiatives in many industries, such as media, mining, insurance, retail, consumer goods, banking and real estate.
 
 I hold a special interest about some specific topics:
 
-1. **Reinforcement learning:** particurlarly, I'm interested in the exporation-exploitation dilemma, and how to solve it with (bayesian) models that capture uncertainty. I'm devoting a lot of time to the study of bandit problems, and how to use them as frameworks to fundamental problems in industry (pricing, applying treatments, deciding which data to collect, etc.).
+1. **Reinforcement learning and bayesian inference:** particurlarly, I'm interested in the exporation-exploitation dilemma, and how to solve it with (bayesian) models that capture uncertainty. I've devoted a lot of time to the study of bandit problems, and how to use them as frameworks to fundamental problems in industry (pricing, resource allocation, model criticism, and others).
 
-2. **Dimensionality reduction and clustering:** how can we visualize and interpret structure in our data, aiming to explain it to business stakeholders? Can we do better than simple K-Means clustering? What similarity measures, algorithms and representations would make this possible?
+2. **Dimensionality reduction and clustering:** how can we visualize and interpret structure in our data, aiming to explain it to business stakeholders? Can we do better than simple K-Means clustering and PCA? What similarity measures, algorithms and representations would make this possible?
 
-3. **Management, and data science in a business context:** doing data science in industry is far from trivial as we need to balance time for experimentation with deadlines, data is oftentimes messy and stakeholders may not have a clear understanding of our work and challenges. How can you navigate this and deliver real value from ML, while maintaining the best people motivated?
+3. **Causal Inference:** a sizeable chunk of problems in industry start when someone in your organization asks for your help aswering what-if questions such as: "what would happen if we lowered prices?"; "if we recommended product A instead of B, would our revenue grow?"; "if we sent e-mails to our customers instead of calling them, what would happen to our conversion rate?". All of these quesitons, no matter how varied, fall in the causal inference category. How can we be smarter than using Randomized Controlled Trials and A/B tests and extract value from observational data in these contexts?
+
+4. **Management, and data science in a business context:** doing data science in industry is far from trivial as we need to balance time for experimentation with deadlines, data is oftentimes messy and stakeholders may not have a clear understanding of our work and challenges. How can you navigate this and deliver real value from ML, while maintaining the best people motivated?
 
 I hope I can bring useful insights about these topics and others. Feel free to [contact me](https://gdmarmerola.github.io/contact), and also add me on [LinkedIn](https://www.linkedin.com/in/gdmarmerola/)! 

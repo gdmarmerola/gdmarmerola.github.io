@@ -20,7 +20,7 @@ I hold a special interest about some specific topics:
 
 **Dimensionality reduction and clustering:** how can we visualize and interpret structure in our data, aiming to explain it to business stakeholders? Can we do better than simple K-Means clustering and PCA? What similarity measures, algorithms and representations would make this possible?
 
-**Causal Inference:** in industry, a sizeable chunk of projects start when someone in your organization asks for your help aswering what-if questions such as: 
+**Causal Inference:** in industry, a sizeable chunk of projects start when someone in your organization asks for your help answering what-if questions such as: 
 * *what would happen if we lowered prices?*
 * *if we recommended product A instead of B, would our revenue grow?*
 * *if we sent e-mails to our customers instead of calling them, what would happen to our conversion rate?*

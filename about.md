@@ -20,7 +20,12 @@ I hold a special interest about some specific topics:
 
 2. **Dimensionality reduction and clustering:** how can we visualize and interpret structure in our data, aiming to explain it to business stakeholders? Can we do better than simple K-Means clustering and PCA? What similarity measures, algorithms and representations would make this possible?
 
-3. **Causal Inference:** a sizeable chunk of problems in industry start when someone in your organization asks for your help aswering what-if questions such as: "what would happen if we lowered prices?"; "if we recommended product A instead of B, would our revenue grow?"; "if we sent e-mails to our customers instead of calling them, what would happen to our conversion rate?". All of these quesitons, no matter how varied, fall in the causal inference category. How can we be smarter than using Randomized Controlled Trials and A/B tests and extract value from observational data in these contexts?
+3. **Causal Inference:** a sizeable chunk of problems in industry start when someone in your organization asks for your help aswering what-if questions such as: 
+* *what would happen if we lowered prices?*
+* *if we recommended product A instead of B, would our revenue grow?*
+* *if we sent e-mails to our customers instead of calling them, what would happen to our conversion rate?*
+
+All of these questions, no matter how varied, fall in the causal inference category. How can we be smarter than using Randomized Controlled Trials and A/B tests and extract value from observational data in these contexts?
 
 4. **Management, and data science in a business context:** doing data science in industry is far from trivial as we need to balance time for experimentation with deadlines, data is oftentimes messy and stakeholders may not have a clear understanding of our work and challenges. How can you navigate this and deliver real value from ML, while maintaining the best people motivated?
 

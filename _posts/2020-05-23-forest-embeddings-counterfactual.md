@@ -8,7 +8,7 @@ mathjax: true
 summary: Estimating counterfactual outcomes using forest embeddings with cfml_tools
 ---
 
-In earlier posts we explored the problem of estimating counterfactual outcomes, one of the central problems in causal inference, and learned that, with a few tweaks, simple decision trees can be a great tool for solving it. In this post, I'll walk you thorugh the usage of [`cfml_tools`](https://github.com/gdmarmerola/cfml_tools), a module that provides a simple API to methods for solving counterfactual estimation problems.
+In earlier posts we explored the problem of estimating counterfactual outcomes, one of the central problems in causal inference, and learned that, with a few tweaks, simple decision trees can be a great tool for solving it. In this post, I'll walk you thorugh the usage of [**cfml_tools**](https://github.com/gdmarmerola/cfml_tools), a module that provides a simple API to methods for solving counterfactual estimation problems.
 
 ## Why is this important?
 

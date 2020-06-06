@@ -8,7 +8,7 @@ mathjax: true
 summary: Another tree-based causal inference model using nearest neighbors on the embedding produced by a Random Forest
 ---
 
-In earlier posts we explored the problem of estimating counterfactual outcomes, one of the central problems in causal inference, and learned that, with a few tweaks, simple decision trees can be a great tool for solving it. In this post, I'll walk you thorugh the usage of [**cfml_tools**](https://github.com/gdmarmerola/cfml_tools), a module that provides a simple API to methods for solving counterfactual estimation problems.
+In earlier posts we explored the problem of estimating counterfactual outcomes, one of the central problems in causal inference, and learned that, with a few tweaks, simple decision trees can be a great tool for solving it. In this post, I'll walk you thorugh the usage of [**cfml_tools**](https://github.com/gdmarmerola/cfml_tools), a module that provides a simple API to methods for solving counterfactual estimation problems. You can find the full code for this example [here](https://github.com/gdmarmerola/cfml_tools/blob/master/examples/Forest%20Embeddings%20Counterfactual.ipynb).
 
 ## Why is this important?
 

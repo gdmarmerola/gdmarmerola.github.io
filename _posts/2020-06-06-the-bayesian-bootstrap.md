@@ -10,7 +10,7 @@ summary: Faster, smoother version of the bootstrap that yields better results on
 
 Good uncertainty estimates are vital for decision-making. Being able to tell what your model does not know may be as valuable as getting everything else right, especially when your algortithm drives decisions that put a lot of resources at stake and few historical datapoints are available. 
 
-However, doing that is not easy. The entire field of bayesian inference research dedicated itself to doing that, spinning off some more directed efforts to more complicated (and useful) models such as neural networks ([Osband et. al, 2018](https://papers.nips.cc/paper/8080-randomized-prior-functions-for-deep-reinforcement-learning.pdf), [Blundell et. al, 2015](https://arxiv.org/abs/1505.05424)) and random forests ([Ge et. al, 2019](https://arxiv.org/abs/1906.05440)). These efforts are one of the coolest things in ML right now, but sometimes, for data scientists in industry, it is not practical to use them.
+However, doing that is not easy. The entire field of bayesian inference research dedicated itself to doing that, spinning off directed efforts to more complicated (and useful) models such as neural networks ([Osband et. al, 2018](https://papers.nips.cc/paper/8080-randomized-prior-functions-for-deep-reinforcement-learning.pdf), [Blundell et. al, 2015](https://arxiv.org/abs/1505.05424)) and random forests ([Ge et. al, 2019](https://arxiv.org/abs/1906.05440)). These efforts are one of the coolest things in ML right now, but sometimes, for data scientists in industry, it is not practical to use them.
 
 On the other hand, the procedure of repeatedly drawing samples with replacement and performing whatever you want to do in these samples (training a model, calculating some statistic), a frequentist resampling method called **bootstrap**, is fairly practical, and has been shown to actually be a good approximation for bayesian posteriors ([Elements of Statistical Learning, p. 271](https://web.stanford.edu/~hastie/ElemStatLearn/), [Dimakopoulou et. al, 2018](https://arxiv.org/pdf/1711.07077.pdf), [Efron, 2013](https://arxiv.org/pdf/1301.2936.pdf)). When I want a quick, painless and non-parametric uncertainty estimate, the bootstrap fits like a glove. But I always questioned myself: "why is that?" and "how to make it even better?".
 
@@ -20,7 +20,7 @@ In this post, I'll try to dissect the bootstrap procedure from first principles 
 
  Having principled uncertainty estimates is paramount for decision making. However, I feel that many data scientists ignore them, mainly due to the pain it is to extract these estimates from more complicated models (neural nets, RFs, etc). I want to make the case for the bootstrap as a painless solution to this problem, and give you a better kind of bootstrap, the **bayesian bootstrap**, for you to use on your work.
 
- ## The result we will achieve
+## The result we will achieve
 
 Suppose that you want to infer the (posterior) distribution over the mean of these datapoints: `[1.865, 3.053, 1.401, 0.569, 4.132]`. A quick and painless way to do that is just performing a lot of bootstrap samples and calculating the mean over and over again:
 
@@ -30,7 +30,7 @@ boots_samples = [resample(test_sample).mean() for _ in range(100000)]
 ```
 Which will get you the following result:
 
-![]({{ "assets/img/bayesian_boostrap/bayesian_boostrap_1.png" | absolute_url }})
+![]({{ "assets/img/bayesian_bootstrap/bayesian_bootstrap_1.png" | absolute_url }})
 
 Even with 100k bootstrap samples, the histogram doesn't get smooth. Apart from the fact that this result does not inspire confidence, this may deteriorate your application performance, especially if you're running a complicated multi-armed bandit and are using bootstrap as your posterior approximation.
 
@@ -44,11 +44,11 @@ bayes_boots_samples = (test_sample * dirichlet_samples).sum(axis=1)
 
 This is called the **bayesian bootstrap** and outputs a much smoother posterior:
 
-![]({{ "assets/img/bayesian_boostrap/bayesian_boostrap_2.png" | absolute_url }})
+![]({{ "assets/img/bayesian_bootstrap/bayesian_bootstrap_2.png" | absolute_url }})
 
 If you need a more direct comparison:
 
-![]({{ "assets/img/bayesian_boostrap/bayesian_boostrap_3.png" | absolute_url }})
+![]({{ "assets/img/bayesian_bootstrap/bayesian_bootstrap_3.png" | absolute_url }})
 
 Both methods use exactly the same data. So how the bayesian bootstrap can produce much smoother posteriors? Let us find out!
 
@@ -94,7 +94,7 @@ for sample in sample_list:
   boots_post_list.append(bpi.get_posterior(sample))
 ```
 
-![]({{ "assets/img/bayesian_boostrap/bayesian_boostrap_4.png" | absolute_url }})
+![]({{ "assets/img/bayesian_bootstrap/bayesian_bootstrap_4.png" | absolute_url }})
 
 The bootstrap results look pretty reasonable when we consider the simplicity of the procedure, with `N=7` and `N=9` being very close to the true posterior. With `N=3` and `N=5`, the general shape of the posterior is ok, but it lacks smoothness, as we've seen before.
 
@@ -258,7 +258,7 @@ for sample in sample_list:
   bayesboots_post_list.append(bbpi.get_posterior(sample))
 ```
 
-![]({{ "assets/img/bayesian_boostrap/bayesian_boostrap_5.png" | absolute_url }})
+![]({{ "assets/img/bayesian_bootstrap/bayesian_bootstrap_5.png" | absolute_url }})
 
 Cool! So we implemented the Bayesian Bootstrap: a faster (vectorized), smoother version of the bootstrap. I hope you use this in your future works! If you want to dig deeper, this [blog post](http://www.sumsar.net/blog/2015/04/the-non-parametric-bootstrap-as-a-bayesian-model/) by Rasmus Bååth gives a more in-depth view of the method.
 

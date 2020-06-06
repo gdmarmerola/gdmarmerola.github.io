@@ -122,7 +122,7 @@ counterfactuals = dtcf.predict(X)
 counterfactuals.head()
 ```
 
-![]({{ "assets/img/decision_tree_cf/decision_tree_cf_1.png" | absolute_url }})
+![]({{ "assets/img/decision_tree_cf/decision_tree_cf_1.png" | absolute_url }}=300x)
 
 Then, we can compute treatment effects by using the counterfactual information:
 

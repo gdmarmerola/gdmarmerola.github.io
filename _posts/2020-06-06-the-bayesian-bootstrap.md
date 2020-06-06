@@ -121,7 +121,7 @@ Resampled array: [2, 3, 3], bootstrap average: 2.67
 Resampled array: [1, 2, 3], bootstrap average: 2.00
 ```
 
-Now, let us build a different representation for these arrays, such that each entry represents the number of times that it was chosen by the procedure. Let us call it the "assignment counts" of the bootstrap. The original sample `[1,2,3]` is be represented by assignment counts `[1,1,1]` whereas a bootstrap sample that only selects the first element `[1,1,1]` is represented as `[3,0,0]`, for instance.
+Now, let us build a different representation for these arrays, such that each entry represents the number of times that it was chosen by the procedure. Let us call it the "assignment counts" of the bootstrap. The original sample `[1,2,3]` is represented by assignment counts `[1,1,1]` whereas a bootstrap sample that only selects the first element (array = `[1,1,1]`) is represented as `[3,0,0]`, for instance.
 
 ```python
 array = [1,2,3]

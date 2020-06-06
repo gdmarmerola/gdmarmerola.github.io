@@ -5,10 +5,10 @@ featured-img: decision_tree_cf_cover
 image: decision_tree_cf_cover
 category: [clustering, dreduction, causal inference]
 mathjax: true
-summary: Decision Trees are decent causal inference models
+summary: Decision Trees can be decent causal inference models, with a few tweaks
 ---
 
-Decision Trees are decent causal inference models. In this post I'll show that, with a few tweaks, simple decision trees can be a great tool for estimating counterfactuals. I'll walk you thorugh the usage of [**cfml_tools**](https://github.com/gdmarmerola/cfml_tools), a module that provides a simple API to methods for solving counterfactual inference problems.
+Decision Trees can be decent causal inference models. In this post I'll show that, with a few tweaks, simple decision trees can be a great tool for estimating counterfactuals. I'll walk you thorugh the usage of [**cfml_tools**](https://github.com/gdmarmerola/cfml_tools), a module that provides a simple API to methods for solving counterfactual inference problems.
 
 ## Why is this important?
 

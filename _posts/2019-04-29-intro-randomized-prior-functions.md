@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Introduction to Randomized Prior Functions
+title: Painless uncertainty estimates with Randomized Prior Functions
 featured-img: intro_rpf_cover
 image: intro_rpf_cover
 category: [bayesian, bandits, regression]

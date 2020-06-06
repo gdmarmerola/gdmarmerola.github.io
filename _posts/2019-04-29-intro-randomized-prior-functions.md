@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Painless uncertainty estimates with Randomized Prior Functions
+title: Uncertainty in Deep Learning and Randomized Prior Functions
 featured-img: intro_rpf_cover
 image: intro_rpf_cover
 category: [bayesian, bandits, regression]
@@ -8,9 +8,7 @@ mathjax: true
 summary: Understanding a state-of-the-art bayesian deep learning method with Keras code
 ---
 
-# Introduction to Randomized Prior Functions
-
-Bayesian deep learning has been receiving a lot of attention in the ML community, with many attempts to quantify uncertainty in neural networks. [Variational Inference](https://arxiv.org/abs/1505.05424), [Monte Carlo Dropout](https://arxiv.org/abs/1506.02142) and [Bootstrapped Ensembles](https://arxiv.org/abs/1602.04621) are some examples of research in this area. 
+Bayesian deep learning has been received a lot of attention in the ML community, with many attempts to quantify uncertainty in neural networks. [Variational Inference](https://arxiv.org/abs/1505.05424), [Monte Carlo Dropout](https://arxiv.org/abs/1506.02142) and [Bootstrapped Ensembles](https://arxiv.org/abs/1602.04621) are some examples of research in this area. 
 
 Recently, the paper ["Randomized Prior Functions for Deep Reinforcement Learning"](https://papers.nips.cc/paper/8080-randomized-prior-functions-for-deep-reinforcement-learning.pdf), presented at NeurIPS 2018, proposes a simple yet effective model for capturing uncertainty, by building an ensemble of bootsrapped neural networks coupled with **randomized prior functions**: randomly initialized networks that aim to dictate the model's behavior in regions of the space where there is no training data. 
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A Practical Introduction to Randomized Prior Functions for Deep Learning
+title: A Practical Introduction to Randomized Prior Functions
 featured-img: intro_rpf_cover
 image: intro_rpf_cover
 category: [bayesian, bandits, regression]

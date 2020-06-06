@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Uncertainty in Deep Learning and Randomized Prior Functions
+title: A Practical Introduction to Randomized Prior Functions for Deep Learning
 featured-img: intro_rpf_cover
 image: intro_rpf_cover
 category: [bayesian, bandits, regression]

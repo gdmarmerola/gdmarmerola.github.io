@@ -141,9 +141,11 @@ Resampled array: [1, 2, 3], assignment counts: [1, 1, 1], bootstrap average: 2.0
 
 These assignment count arrays look familiar... Draws from a multinomial distribution with size `N` and `1/N` probability for all entries perhaps?
 
+```python
 n = len(array)
 mult_samples = multinomial(n, [1./n] * n).rvs(5)
 print(f'multinomial samples:\n{mult_samples}')
+```
 
 ```
 multinomial samples:

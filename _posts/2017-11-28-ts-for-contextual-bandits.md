@@ -5,7 +5,7 @@ featured-img: ts_contextual_cover
 image: ts_contextual_cover
 category: [bandits, bayesian]
 mathjax: true
-summary: Solving a Contextual bandit problem with Bayesian Logistic Regression and Thompson Sampling.
+summary: Solving a Contextual bandit problem with Bayesian Logistic Regression and Thompson Sampling
 ---
 
 #  Introduction to Thompson Sampling, Part 2&#58; Contextual bandits

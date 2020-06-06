@@ -5,7 +5,7 @@ featured-img: first_kaggle_cover
 image: first_kaggle_cover
 category: [kaggle]
 mathjax: true
-summary: What I've learned and how I succeeded in a big Kaggle competition. 
+summary: What I've learned and how I succeeded in a big Kaggle competition
 ---
 
 # My first (and only) Kaggle Top 10%

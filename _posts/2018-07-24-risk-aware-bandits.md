@@ -5,7 +5,7 @@ featured-img: risk_aware_cover
 image: risk_aware_cover
 category: [bandits, bayesian]
 mathjax: true
-summary: Experimenting with risk-aware reward signals, Thompson Sampling, Bayesian UCB, and the MaRaB algorithm. 
+summary: Experimenting with risk-aware reward signals, Thompson Sampling, Bayesian UCB, and the MaRaB algorithm
 ---
 
 # Risk-aware Multi-Armed Bandit Algorithms

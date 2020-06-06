@@ -6,7 +6,7 @@ image: non_stat_cover
 category: [bandits, bayesian]
 comments: true
 mathjax: true
-summary: Solving a Bernoulli Multi-Armed Bandit problem where reward probabilities change over time.
+summary: Solving a Bernoulli Multi-Armed Bandit problem where reward probabilities change over time
 ---
 
 # Non-stationary bandits

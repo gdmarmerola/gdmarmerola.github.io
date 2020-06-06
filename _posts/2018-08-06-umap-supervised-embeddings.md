@@ -5,7 +5,7 @@ featured-img: umap_embeds_cover
 image: umap_embeds_cover
 category: [clustering, dreduction]
 mathjax: true
-summary: Uncovering relevant structure and visualizing it at scale by partnering Extremely Randomized Trees and UMAP.
+summary: Uncovering relevant structure and visualizing it at scale by partnering Extremely Randomized Trees and UMAP
 ---
 
 # Supervised dimensionality reduction and clustering at scale with RFs and UMAP

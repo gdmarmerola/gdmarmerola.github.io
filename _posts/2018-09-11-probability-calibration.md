@@ -5,7 +5,7 @@ featured-img: prob_cal_cover
 image: prob_cal_cover
 category: [classification]
 mathjax: true
-summary: Calibrating probabilities of Extremely Randomized Trees and Gradient Boosting Machines with no loss of performance with a stacked logistic regression
+summary: Calibrating probabilities of Random Forests and Gradient Boosting Machines with no loss of performance with a stacked logistic regression
 ---
 
 When working with ML models such as GBMs, RFs, SVMs or kNNs (any one that is not a logistic regression) we can observe a pattern that is intriguing: the probabilities that the model outputs do not correspond to the real fraction of positives we see in real life. Can we solve this issue?

@@ -121,7 +121,7 @@ We then predict the counterfactuals for all our individuals. By calling `.predic
 counterfactuals = dtcf.predict(X)
 counterfactuals.head()
 ```
-<img src="https://gdmarmerola.github.io/assets/img/decision_tree_cf/decision_tree_cf_1.png" alt="drawing" width="300"/>
+<img src="https://gdmarmerola.github.io/assets/img/decision_tree_cf/decision_tree_cf_1.png" alt="drawing" width="100"/>
 
 Then, we can compute treatment effects by using the counterfactual information:
 

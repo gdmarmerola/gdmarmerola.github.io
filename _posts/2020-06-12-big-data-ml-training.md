@@ -5,7 +5,7 @@ featured-img: bdml_cover
 image: bdml_cover
 category: [classification, engineering]
 mathjax: true
-summary: Using Dask and some other tricks so you can train your models even with memory constraints
+summary: Using Dask and some other tricks so you can train your models under memory constraints
 ---
 
 At some point in your carreer in data science, you'll deal with some big dataset which will bring chaos to your otherwise clean workflow: pandas will crash with a `MemoryError`, all of the models in `sklearn` will seem useless as they need all of the data in RAM, as well as the coolest new methods you started to use, like `UMAP` (what did you expect? That the author would create a cutting edge ML algorithm *and* a distributed, out-of-memory implementation?).

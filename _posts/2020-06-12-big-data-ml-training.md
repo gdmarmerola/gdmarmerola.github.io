@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Training models when data doesn't fit in memory
-featured-img: bayesian_bootstrap_cover
+featured-img: bdml_cover
 image: bdml_cover
-category: []
+category: [classification, engineering]
 mathjax: true
 summary: Using Dask and some other tricks so you can train your models even with memory constraints
 ---

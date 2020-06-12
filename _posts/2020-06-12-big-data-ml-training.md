@@ -536,7 +536,7 @@ Current memory usage: 114.445448
 Peak memory usage: 161.811473
 ```
 
-Inference with a neural net seems a lit bit more expensive in terms of memory:
+Inference with a neural net seems a little bit more expensive in terms of memory:
 
 ```python
 _, mem_history_2 = dask_read_test_and_score(model, blocksize=5e6)
@@ -566,7 +566,7 @@ I'll end the post here, but there's a lot more tricks to try:
 * Test different sample sizes (we were very agressive with 5%)
 * Run a feature selection method on a sample, drop unused features on the full dataframe and fit model (using dask). This should save orders of magnitude of memory on high dimensional datasets.
 * Solve pandas "spike" problem. Remember that pandas had a peak meamory use of double the size of the dataframe? This also deteriorates dask performance as it is running the same pandas over its partitions and showing the same spiky behavior.
-* Use Dask-ML. It is build on top of `sklearn` and shares a common interface with, same as `dask.dataframe` and pandas. It has the "incremental scoring" capability ready for sklearn models.
+* Use Dask-ML. It is build on top of `sklearn` and shares a common interface with it, same as `dask.dataframe` and pandas. It has the "incremental scoring" capability ready for sklearn models.
 * many more that I'll remember eventually!
 
 I hope this post helps you! Full code available [here](https://github.com/gdmarmerola/big-data-ml-training/tree/master).

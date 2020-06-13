@@ -10,17 +10,13 @@ summary: Using Dask and some other tricks so you can train your models under mem
 
 At some point in your carreer in data science, you'll deal with some big dataset which will bring chaos to your otherwise clean workflow: pandas will crash with a `MemoryError`, all of the models in `sklearn` will seem useless as they need all of the data in RAM, as well as the coolest new methods you started to use, like `UMAP` (what did you expect? That the author would create a cutting edge ML algorithm *and* a distributed, out-of-memory implementation?).
 
-You believe that distributed ML training can solve your problem. You start to do some digging and uncovers a multitude of words like Hadoop, Hive, Spark, Kubernetes and learn that they really *could* help you scale your models, but then you also learn that
+You believe that distributed ML training can solve your problem. You start to do some digging on Hadoop, Hive, Spark, Kubernetes, etx and learn that they really *could* help you scale your models. However, you also learn that configuring clusters of machines is really hard, and there's not a single, unified abstraction (like `sklearn`) for distributed ML training.
 
-1. Configuring clusters of machines is really hard. It's not a coincidence that Databricks is a huge business, and companies like Google, Amazon and Microsoft heavily invest in tools to scale ML. But even then, if you don't have DevOps / Software Engineering backgroud, even using cloud provider tools is not obvious
-
-2. There's not a single, unified abstraction (like `sklearn`) for distributed ML training. Each library implements a different way to do it, and, given your platform, this may limit the set of algorithms you can use
-
-Your deadline is approaching, you haven't scratched the surface on distributed computing, you can't seem to make `pyspark` work, and you start to worry and imagine if there's a quicker and may I say, *dirtier* approach.
+Your deadline is approaching, you haven't scratched the surface on distributed computing, and start to imagine if there's a quicker and may I say, *dirtier* approach.
 
 And there is! And it is actually not dirty at all! In this post, I'll show some hacks to make your favorite model work in a single-node environment and a cool tool (dask) that will let you grasp distributed computation in your cozy python environment and with your well known pandas syntax. 
 
-Please note: this is not a replacement for Spark, Kubernetes and other technologies. You should learn those too (they are very, very cool). But you should do it calmly. I hope that the tricks I'll show will expand the array of problems you can solve with a single machine, help you understand a little bit more of distributed computing, and buy you time to study other tools!
+I hope that the tricks I'll show will expand the array of problems you can solve with a single machine, help you understand a little bit more of distributed computing, and buy you time to study all the other tools!
 
 ## Tracking memory usage 
 

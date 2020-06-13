@@ -8,7 +8,7 @@ mathjax: true
 summary: Decision Trees can be decent causal inference models, with a few tweaks
 ---
 
-In earlier posts we explored the problem of estimating counterfactual outcomes, one of the central problems in causal inference, and learned that, with a few tweaks, simple decision trees can be a great tool for solving it. In this post, I'll walk you thorugh the usage of `DecisionTreeCounterfactual`, one of the main models on the [**cfml_tools**](https://github.com/gdmarmerola/cfml_tools) module, and see that it perfelctly solves the toy causal inference problem from the [fklearn library](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html). You can find the full code for this example [here](https://github.com/gdmarmerola/cfml_tools/blob/master/examples/Forest%20Embeddings%20Counterfactual.ipynb).
+In earlier posts we explored the problem of estimating counterfactual outcomes, one of the central problems in causal inference, and learned that, with a few tweaks, simple decision trees can be a great tool for solving it. In this post, I'll walk you thorugh the usage of `DecisionTreeCounterfactual`, one of the main models on the [**cfml_tools**](https://github.com/gdmarmerola/cfml_tools) module, and see that it perfectly solves the toy causal inference problem from the [fklearn library](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html). You can find the full code for this example [here](https://github.com/gdmarmerola/cfml_tools/blob/master/examples/Forest%20Embeddings%20Counterfactual.ipynb).
 
 ## Data: `make_confounded_data` from `fklearn`
 

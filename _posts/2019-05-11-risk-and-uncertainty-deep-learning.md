@@ -8,8 +8,6 @@ mathjax: true
 summary: Building a neural network that can estimate aleatoric and epistemic uncertainty at the same time
 ---
 
-# Risk and Uncertainty in Deep Learning
-
 Neural networks have been pushing what is possible in a lot of domains and are becoming a standard tool in industry. As they start being a vital part of business decision making, methods that try to open the neural network "black box" are becoming increasingly popular. [LIME](https://github.com/marcotcr/lime), [SHAP](https://github.com/slundberg/shap) and [Embeddings](https://distill.pub/2019/activation-atlas/) are nice ways to explain what the model learned and why it makes the decisions it makes. On the other hand, instead of trying to explain what the model learned, we can also try to get insights about what the model **does not know**, which implies estimating two different quantities: **risk** and **uncertainty**. [Variational Inference](https://arxiv.org/abs/1505.05424), [Monte Carlo Dropout](https://arxiv.org/abs/1506.02142) and [Bootstrapped Ensembles](https://arxiv.org/abs/1602.04621) are some examples of research in this area. 
 
 At first glance, risk and uncertainty may seem to be the same thing, but in reality they are, in some cases, orthogonal concepts. **Risk** stands for the intrinsic volatility over the outcome of a decision: when we roll a dice, for instance, we always **risk** getting a bad outcome, even if we precisely know the possible outcomes. **Uncertainty**, on the other hand, stands for the confusion about what the possible outcomes are: if someone gives us a strange dice we have never used before, we'll have to roll it for a while before we can even **know** what to expect about its outcomes. Risk is a fixed property of our problem, which can't be cleared by collecting more data, while uncertainty is a property of our beliefs, and can be cleared with more data. Actually we can have **uncertainty** over our belief of what the **risk** actually is! 
@@ -19,10 +17,6 @@ If this seems strange at first, don't worry: this topic has been the object of [
 In our case, we'll focus on a simple example to illustrate the how the concepts are different and how to use a neural network to estimate them at the same time.
 
 I've made the full code available at this [Kaggle Kernel](https://www.kaggle.com/gdmarmerola/risk-and-uncertainty-in-deep-learning/), so if you want to run the code while you read, I recommend going there!
-
-# Why is this relevant?
-
-Risk measures the volatility in making a decision, while uncertainty measures the condifence in our belief about this volatility. Both measures are essential for decision making, particularly in decisions that put a lot of resources at stake. For instance, suppose you use a model to sell your house. A model with a good risk estimate will tell you the volatility in closing price given a specified tolerance of days on-market. Then, a model with a good uncertainty estimate will tell you how your closing price volatility estimate is reliable, given the amount of data you have. In this post, we'll simulate a synthetic case for you to understand and run a model that can do both estimates at the same time. 
 
 # 1. Data
 

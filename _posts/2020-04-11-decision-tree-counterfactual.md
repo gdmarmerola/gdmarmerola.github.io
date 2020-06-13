@@ -10,16 +10,6 @@ summary: Decision Trees can be decent causal inference models, with a few tweaks
 
 Decision Trees can be decent causal inference models. In this post I'll show that, with a few tweaks, simple decision trees can be a great tool for estimating counterfactuals. I'll walk you thorugh the usage of [**cfml_tools**](https://github.com/gdmarmerola/cfml_tools), a module that provides a simple API to methods for solving counterfactual inference problems. You can find the full code for this example [here](https://github.com/gdmarmerola/cfml_tools/blob/master/examples/Decision%20Tree%20Counterfactual.ipynb).
 
-
-## Why is this important?
-
-Treatment effect estimation is one of the central problems in causal inference and has been the focus of many economists for decades. Given that you could accurately perform these estimates, you could do a lot of cool stuff:
-
-1. Determine how would a patient react to different treatments
-2. Determine how a different public policy would impact your city
-3. Determine how would be the demand for an app if you added/removed one feature
-4. and many more!
-
 ## Data: `make_confounded_data` from `fklearn`
 
 Nubank's `fklearn` module provides a nice causal inference problem generator, so we're going to use the same data generating process and example from its [documentation](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html).

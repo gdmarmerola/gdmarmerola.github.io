@@ -9,15 +9,6 @@ summary: Another tree-based causal inference model using nearest neighbors on th
 ---
 
 In earlier posts we explored the problem of estimating counterfactual outcomes, one of the central problems in causal inference, and learned that, with a few tweaks, simple decision trees can be a great tool for solving it. In this post, I'll walk you thorugh the usage of [**cfml_tools**](https://github.com/gdmarmerola/cfml_tools), a module that provides a simple API to methods for solving counterfactual estimation problems. You can find the full code for this example [here](https://github.com/gdmarmerola/cfml_tools/blob/master/examples/Forest%20Embeddings%20Counterfactual.ipynb).
-
-## Why is this important?
-
-Treatment effect estimation is one of the central problems in causal inference and has been the focus of many economists for decades. Given that you could accurately perform these estimates, you could do a lot of cool stuff:
-
-1. Determine how would a patient react to different treatments
-2. Determine how a different public policy would impact your city
-3. Determine how would be the demand for an app if you added/removed one feature
-4. and many more!
  
 ## Data: `make_confounded_data` from `fklearn`
 

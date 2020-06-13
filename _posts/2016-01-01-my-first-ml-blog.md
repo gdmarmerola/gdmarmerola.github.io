@@ -5,8 +5,6 @@ mathjax: true
 summary: Very happy to start a blog where I share my ideas with the community
 ---
 
-# A blog for sharing my thoughts and experiments
-
 Some may agree with me that one of the best ways to study and understand a concept is through practicing it. In preparation to going after my first internship in 2016, I started to participate in Kaggle competitions and doing some personal projects. I started posting this content to my GitHub page in order to build a portfolio for recruiters to inspect.
 
 Two years later, even though I'm in a great position in my career, I'm even more confident that building these small snippets of data science is an effective way to learn and test with new ideas. More importantly, publishing these analyses presents me with the challenge to explain what I learned in a structured and clear manner, which boosts learning even further.

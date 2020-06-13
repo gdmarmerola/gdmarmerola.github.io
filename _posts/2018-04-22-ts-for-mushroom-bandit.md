@@ -8,15 +8,9 @@ mathjax: true
 summary: Bootstrapped Neural Networks and Random Forests for solving a more realistic contextual bandit problem
 ---
 
-# Introduction to Thompson Sampling, Part 4&#58; Neural Networks, Random Forests and the "Mushroom" bandit
-
 Thompson Sampling is a very simple yet effective method to addressing the exploration-exploitation dilemma in reinforcement/online learning. In this series of posts, I'll introduce some applications of Thompson Sampling in simple examples, trying to show some cool visuals along the way. All the code can be found on my GitHub page [here](https://github.com/gdmarmerola/interactive-intro-rl).
 
 In this post, we explore more advanced algorithms, starting with a simple trial to get uncertainties out of Random Forests and then moving to Bootstrapped Neural Networks. We use these methods to solve the "Mushroom" bandit, a contextual bandit game where the agent must decide, from a bucket of edible and poisonous mushrooms, which ones to eat.
-
-## Why is this relevant?
-
-You can frame many industry problems as bandit problems. Any problem which involves experimentation and online data gathering (in the sense that you need to take some action and incur some cost in order to access it) calls for this type of treatment. Instantly, we can think of testing different layouts of a website, actively recommending new products to clients, or dynamically setting prices in an online marketplace as examples in which these techniques are useful. Imagine, for instance, you want to proactively find dissatisfied clients to send them a special offer through a call center. How do you balance the need of calling all kinds of clients and guarantee you're reasonably unbiased (exploration) with the need to find the most dissatisfied clients as possible given your call center budget (exploitation)? I hope to answer this question through the series.
 
 ## Solving the Mushroom Bandit
 

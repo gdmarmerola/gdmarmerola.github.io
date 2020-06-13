@@ -16,10 +16,6 @@ On the other hand, the procedure of repeatedly drawing samples with replacement 
 
 In this post, I'll try to dissect the bootstrap procedure from first principles and show you how to perform a simple hack on it to make it even better and (gasp!) bayesian. You can find the full code [**here**](https://github.com/gdmarmerola/random-stuff/blob/master/bayesian_bootstrap/The_bayesian_bootstrap.ipynb).
 
-# Why is this relevant?
-
- Having principled uncertainty estimates is paramount for decision making. However, I feel that many data scientists ignore them, mainly due to the pain it is to extract these estimates from more complicated models (neural nets, RFs, etc). I want to make the case for the bootstrap as a painless solution to this problem, and give you a better kind of bootstrap, the **bayesian bootstrap**, for you to use on your work.
-
 ## The result we will achieve
 
 Suppose that you want to infer the (posterior) distribution over the mean of these datapoints: `[1.865, 3.053, 1.401, 0.569, 4.132]`. A quick and painless way to do that is just performing a lot of bootstrap samples and calculating the mean over and over again:

@@ -16,12 +16,6 @@ In this Notebook, I'll build a simple implementation of this model using `keras`
 
 I've made the full code available at this [Kaggle Kernel](https://www.kaggle.com/gdmarmerola/introduction-to-randomized-prior-functions/), so if you want to run the code while you read, I recommend going there!
 
-# Why is this relevant?
-
-Many industry problems require methods that actively **experiment and make decisions** instead of just mapping a function from explanatory variables to target. For instance, a dynamic pricing model does not know optimal prices in advance; it needs to experiment and discover these prices through good decision making, with a healthy dose of learning user behavior (exploration) and using this knowledge to maximize end results, for instance, by finding the best promotions for each user (exploitaion). Given this scenario, reinforcement learning and contextual bandit methods present themselves as a strong alternative to supervised learning, given that they show this kind of active behavior we need.
-
-Despite the fact that the majority of deep learning research has evolved outside of Bayesian (or even statistical) analysis, decision theory shows that the only [admissible decision rules are Bayesian](https://en.wikipedia.org/wiki/Decision_theory) (any decision rule that is not Bayesian can be improved by some Bayesian alternative). In this post, we make use of one of the most advanced bayesian techniques for reinforcement learning, and check how it builds uncertainty estimates to incentivize healthy exploration.
-
 # 1. Starting with a simple example
 
 To motivate this tutorial with a simple yet effective example, I'll borrow the following data generating process, shown in this [bayesian neural network paper](https://arxiv.org/pdf/1505.05424.pdf) by Blundell et. al (2015):

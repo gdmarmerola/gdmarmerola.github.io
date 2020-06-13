@@ -8,15 +8,7 @@ mathjax: true
 summary: Experimenting with risk-aware reward signals, Thompson Sampling, Bayesian UCB, and the MaRaB algorithm
 ---
 
-# Risk-aware Multi-Armed Bandit Algorithms
-
 Let us explore an alternate case of the Multi-Armed Bandit problem where we have reward distributions with different risks. I'll draw inspiration from [Galichet et. al's (2013) work](http://proceedings.mlr.press/v29/Galichet13.pdf) and implement the MaRaB algorithm and compare it to Thompson Sampling and Bayesian UCB.
-
-## Why is this relevant?
-
-You can frame many industry problems as bandit problems. Any problem which involves experimentation and online data gathering (in the sense that you need to take some action and incur some cost in order to access it) calls for this type of treatment. Instantly, we can think of testing different layouts of a website, actively recommending new products to clients, or dynamically setting prices in an online marketplace as examples in which these techniques are useful. 
-
-Suppose we're applying a bandit treatment to allocating money in stocks, which may have different risks for their return distributions. Just as we have uncertainty over the expected rewards, we also have uncertainty over the variance of rewards as well. Using risk-aware bandits, we can encourage the algorithm to explore and exploit according to our risk appetite, controlling our exposure.
 
 ## Gaussian Bandit with different risks
 

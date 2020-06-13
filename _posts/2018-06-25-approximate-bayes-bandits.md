@@ -8,20 +8,12 @@ mathjax: true
 summary: Experimenting with Conjugate Priors, MCMC Sampling, Variational Inference and Bootstrapping to solve a Gaussian Bandit problem 
 ---
 
-# Approximate bayesian inference for bandits
-
 Let us experiment with different techniques for approximate bayesian inference aiming at using Thomspon Sampling to solve bandit problems, drawing inspiration from the paper ["A Tutorial on Thompson Sampling"](https://web.stanford.edu/~bvr/pubs/TS_Tutorial.pdf), mainly from the ideas on section 5. Let us test the algorithms on a simple bandit with gaussian rewards, such that we can compare our approximate inference techniques with the exact solution, obatined through a conjugate prior. I'll implement and compare the following approximation techniques:
 
 1. **Exact inference**, where we use a conjugate prior to analytically update the posterior
 2. **MCMC sampling**, where we approximate the posterior by an empirical distribution obtained through the Metropolis-Hastings algorithm
 3. **Variational Inference**, where we approximate the posterior by trying to match it to an arbitrarily chosen variational distribution
 4. **Bootstrapping**, where we approximate the posterior by an empirical distribution obtained through bootstrap samples of the data
-
-## Why is this relevant?
-
-You can frame many industry problems as bandit problems. Any problem which involves experimentation and online data gathering (in the sense that you need to take some action and incur some cost in order to access it) calls for this type of treatment. Instantly, we can think of testing different layouts of a website, actively recommending new products to clients, or dynamically setting prices in an online marketplace as examples in which these techniques are useful. 
-
-More often than not we are presented with problems such that we cannot calculate posterior distributions for our quantities of interest analytically. However, there are ways to get reasonable approximations to posteriors. In this post, we aim to implement and test some of these approximations.
 
 ## The Gaussian Bandit
 

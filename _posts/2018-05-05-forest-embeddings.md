@@ -8,8 +8,6 @@ mathjax: true
 summary: Using forests of randomized trees to uncover structure that really matters in messy data
 ---
 
-# Supervised clustering and forest embeddings
-
 In this post, I'll try out a new way to represent data and perform clustering: forest embeddings. A forest embedding is a way to represent a feature space using a random forest. Each data point $x_i$ is encoded as a vector $x_i = [e_0, e_1, ..., e_k]$ where each element $e_i$ holds which leaf of tree $i$ in the forest $x_i$ ended up into. The encoding can be learned in a supervised or unsupervised manner:
 
 1. **Supervised:** we train a forest to solve a regression or classification problem. Then, we use the trees structure to extract the embedding. 
@@ -26,9 +24,6 @@ There may be a number of benefits in using forest-based embeddings:
 
 In the next sections, we implement some simple models and test cases. You can find the complete code at my [GitHub page](https://github.com/gdmarmerola/forest-embeddings).
 
-## Why is this relevant?
-
-Many problems in industry can be tackled by finding comparable entities in the data. Oftentimes the nature of the problem sets the need to compare those entites given an objetive, such as, for instance, comparing sales reps in terms of the variables that impact their clients' performance. If my model tells me that some sales rep should be bringing more profit given his clients and these relevant variables, because another comparable rep **actually does it**, it calls for an investigation on why this dispersion exists, potentially bringing many actionable insights to the table. Forest embeddings provide a robust and efficient way to find these relevant variables and build these comparisons.
 
 ## Building the embeddings
 

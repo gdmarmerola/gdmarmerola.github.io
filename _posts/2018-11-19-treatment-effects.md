@@ -12,17 +12,6 @@ Current machine learning methods perform very well in the task of estimating con
 
 In this post, we'll build a treatment effect estimation problem and solve it using Generalized Random Forests, from the recent work of [Athey et. al](https://github.com/grf-labs/grf/blob/master/REFERENCE.md), and a similar but alternative method using extremely randomized trees and embeddings.
 
-## Why is this important?
-
-Treatment effect estimation is one of the central problems in causal inference and has been the focus of many economists for decades. Given that you could accurately perform these estimates, you could do a lot of cool stuff:
-
-1. Determine how would a patient react to different treatments
-2. Determine how a different public policy would impact your city
-3. Determine how would be the demand for an app if you added/removed one feature
-4. and many more!
-
-So, let us start by building a causal inference problem and generating synthetic data!
-
 ## Synthetic Data
 
 Let us generate some synthetic data in order to simulate our problem. First, we generate a dataset of 10000 instances, 20 features (5 informative and 15 non-informative) and 5 clusters using using `make_classification` from `sklearn`:

@@ -8,13 +8,7 @@ mathjax: true
 summary: Uncovering relevant structure and visualizing it at scale by partnering Extremely Randomized Trees and UMAP
 ---
 
-# Supervised dimensionality reduction and clustering at scale with RFs and UMAP
-
 In this Notebook, we will explore a cool new dimensionality reduction technique called [Uniform Manifold Approximation and Projection (UMAP)](https://github.com/lmcinnes/umap) and check its applicability for doing supervised clustering and embedding over the similarity space computed from the leaves of a random forest.
-
-## Why is this relevant?
-
-Clustering is one of the most important ML applications in industry. I've always been interested with the question of clustering in large feature spaces. Given thousands of variables, how I can guarantee that my clusters capture relevant structure for my problem at hand? A nice solution, which I already discussed [here](https://gdmarmerola.github.io/forest-embeddings/), is to first select the most important features using a random forest and then using the forest's structure to extract similarities between samples by looking at how many times they co-ocurred on the leaves of the forest. However, the solution is limited by the number of samples, as I used dense dissimilarity matrices (big memory overhead) for clustering and the expensive t-SNE (big CPU overhead) for visualizing the embedding. Let us try to use a faster algorithm, UMAP, that should allow us to scale beyond what is doable with t-SNE and try alternative clustering algorithms that can partner with approximate nearest neighbor algorithms to reduce memory overhead.
 
 ## Data
 

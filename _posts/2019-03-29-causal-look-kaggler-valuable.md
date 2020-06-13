@@ -14,7 +14,7 @@ One of the analyses, in particular, caught my eye: ["What Makes a Kaggler Valuab
 
 <img src="https://cdn-images-1.medium.com/max/1600/1*axtNbF4Y96vgymVXSvs-mg.png" alt="drawing" style="width:700px;"/>
 
-I was suprised by this, as it did not match with my personal experience (I'm a brazilian data scientist working in finance). I was curious to see if this was true for people in the same context as myself. So, I loaded the same data used to train the model and checked how much Software Engineers were earning in comparison to people with other titles, for my particular subgroup (non-US, Male and working in finance): 
+I was suprised by this, as it did not match with my personal experience (I am brazilian data scientist working in finance at the time). I was curious to see if this was true for people in the same context as myself. So, I loaded the same data used to train the model and checked how much Software Engineers were earning in comparison to people with other titles, for my particular subgroup (non-US, Male and working in finance): 
 
 ![]({{ "assets/img/causal_look_kaggler_valuable/causal_kaggle_1.png" | absolute_url }})
 
@@ -109,7 +109,8 @@ cluster | Q6-Software Engineer | avg. outcome
 1 | 0 | 0.07
 1 | 1 | 0.05
 3 | 0 | 0.29
-3 | 1 | 0.454 | 0 | 0.58
+3 | 1 | 0.45
+4 | 0 | 0.58
 4 | 1 | 0.81
 
 For cluster 1 (non-US), being a software engineer decreases your chance of being in the top 20% by 2 percentage points. On the other hand, we have a lift of 16 p.p for cluster 3 (US, not build prototypes) and 23 p.p. for cluster 4, (US, builds prototypes). So, if you're in the US and your job description includes building ML prototypes, you should make even more money by being a Software Engineer!  

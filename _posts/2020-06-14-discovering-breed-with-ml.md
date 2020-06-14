@@ -221,7 +221,7 @@ Which is not very close, and will warrant me a defeat when I present my conclusi
 
 One easy and effective method that I usually apply for explaining models is trying to transform them in a kNN (yeah, nearest neighbors!), as it outputs *hard examples* to support the model's decisions (or *prototypes*, as in the literature). How do we transform our Xception + PCA + Logistic Regession pipeline in a kNN, though? I'll show you two ways:
 
-1. **Direct, naive way:** Just search for Zeca's neighbors in the `Xception` feature space after `PCA`
+1. **Direct, naive way:** Just search for Zeca's neighbors in the `Xception` + `PCA` feature space
 2. **Scale by Logistic Regression coefficients:** we apply a bit of **supervision** on the `Xception` + `PCA` embedding, scaling its features proportionally to the weights of the Logistic Regression.
 
 Let us check how they perform. We start by importing `NNDescent`, a fast, efficient method to perform approximate nearest neighbor search:

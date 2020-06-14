@@ -8,7 +8,7 @@ mathjax: true
 summary: Using the Stanford Dogs Dataset, deep learning, and explainability through prototypes to infer the unknown breed of my dog
 ---
 
-<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/zeca4.png" alt="drawing" width="400"/>
+<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/zeca4.jpg" alt="drawing" width="400"/>
 
 This is **Zeca**. 
 

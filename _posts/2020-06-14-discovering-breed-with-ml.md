@@ -18,7 +18,7 @@ But it was not always like this. Zeca had a rough life until he could reach us. 
 
 Now that we're past all that, we have the luxury to think about more "trivial" questions when it comes to Zeca. Particularly, there's two missing pieces of information that sparks debates in my family:
 
-1. **Zeca's breed (or lack thereof).** The NGO said that he's mixed-breed, where one of the elements of the mix is a poodle. Nevertheless, there's a lot of uncertainty around that (he's much bigger than a puddle, for instance).
+1. **Zeca's breed (or lack thereof).** The NGO said that he's mixed-breed, where one of the elements of the mix is a poodle. Nevertheless, there's a lot of uncertainty around that (he's much bigger than a poodle, for instance).
 2. **Zeca's age.** Estimates range from 2 years to 6 years, depending on source (NGO, vet, etc).
 
 So I figured, why not try to come up with a data-driven answer to these questions? In this post, we'll solve the mystery of Zeca's breed using the [Stanford Dogs Dataset](https://www.kaggle.com/miljan/stanford-dogs-dataset-traintest?), deep learning, and explainability through prototypes. Repository with code [here](https://github.com/gdmarmerola/discovering_breed_with_ml/tree/master).

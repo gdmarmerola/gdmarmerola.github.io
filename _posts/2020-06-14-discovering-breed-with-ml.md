@@ -8,7 +8,7 @@ mathjax: true
 summary: Using the Stanford Dogs Dataset, deep learning, and explainability through prototypes to infer the unknown breed of my dog
 ---
 
-<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/zeca4.jpg" alt="drawing" width="400"/>
+<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/zeca4.png" alt="drawing" width="400"/>
 
 This is **Zeca**. 
 
@@ -191,7 +191,7 @@ Log-loss: 0.523
 
 For the moment we've been waiting for. What is Zeca's breed? I'll use the following image, as he's on a better pose:
 
-<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/zeca.jpg" alt="drawing" width="300"/>
+<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/zeca.png" alt="drawing" width="300"/>
 
 We just run feature extraction on the image and get the top breeds for Zeca:
 

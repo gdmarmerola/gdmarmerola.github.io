@@ -14,7 +14,7 @@ This is **Zeca**.
 
 He's bringing joy to our household for over a year now. He lives a happy life, with daily walks, good food, good healthcare, and a loving and caring family (myself and Bruna). Zeca's the classic companion dog: a loyal, happy friend, good with people and children, and loves to be spoiled.
 
-But it was not always like this. Zeca had a rough life until he could reach us. He was found at a back road tens of kilometres away from our current location, by a NGO that helps stray dogs find a family. His health was severely compromised, with malnutrition, skin issues and ear infection. He was afraid of people, and got really uneasy (and sometimes aggressive) when approached by humans (including myself and Bruna), indicating a story of violence. It was a privilege to see Zeca transform from a mistreated, fearful and unsociable dog to the healthy, happy and sociable dog he is today.
+But it was not always like this. Zeca had a rough life until he could reach us. He was found at a back road tens of kilometres away from our current location, by a NGO that helps stray dogs find a family. His health was severely compromised, with malnutrition, skin issues and ear infection. He was afraid of people, and got really uneasy (and sometimes aggressive) when approached by humans (including myself and Bruna), indicating a history of violence. It was a privilege to see Zeca transform from a mistreated, fearful and unsociable dog to the healthy, happy and sociable dog he is today.
 
 Now that we're past all that, we have the luxury to think about more "trivial" questions when it comes to Zeca. Particularly, there's two missing pieces of information that sparks debates in my family:
 

@@ -191,7 +191,7 @@ Log-loss: 0.523
 
 For the moment we've been waiting for. What is Zeca's breed? I'll use the following image, as he's on a better pose:
 
-<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/zeca.png" alt="drawing" width="300", height="YYY"/>
+<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/zeca.png" alt="drawing" width="300"/>
 
 We just run feature extraction on the image and get the top breeds for Zeca:
 
@@ -209,11 +209,11 @@ preds_zeca.sort_values(ascending=False).to_frame().head(10)
 
 The top candidate is the Tibetan Terrier, followed by the Maltese, Lhasa and Dandie Dinmont. Cool! It makes a lot of sense to me. My uncle owns a Maltese, and I've once called Zeca a "giant Maltese". Our first candidate, the Tibetan Terrier, shows a very close resemblance. Look at this dog that I've found searching for Tibetan Terrier on Google:
 
-<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/tibetan.jpg" alt="drawing" width="200", height="YYY"/>
+<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/tibetan.jpg" alt="drawing" width="200"/>
 
 It's very, very close. But we can't call this a victory yet. One could also find this image on the same search:
 
-<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/tibetan.jpeg" alt="drawing" width="300", height="YYY"/>
+<img src="https://gdmarmerola.github.io/assets/img/discovering_breed_with_ml/tibetan.jpeg" alt="drawing" width="300"/>
 
 Which is not very close, and will warrant me a defeat when I present my conclusions to my family. How can we know that the model is making good decisions?
 

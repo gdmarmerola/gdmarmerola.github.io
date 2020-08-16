@@ -10,9 +10,9 @@ permalink: /about/
  
 Hi! My name is **Guilherme Duarte Marmerola**, and I'm a Data Scientist from Brazil. 
 
-I'm passionate about machine learning, and how it empowers us to solve tough problems in business and science. 
+I'm passionate about the power that data and decision science gives us to solve hard problems and drive business positive outcome in nearly every industry in existence.
 
-I had the fortune of discovering ML in my early undergraduate years, totally by chance, during an internship. Since then, I’ve fallen in love with it, and had a lot of fun building cool advanced analytics initiatives in many industries, such as media, mining, insurance, retail, consumer goods, banking and real estate.
+I had the privilege to enjoy building and developing high performing data and decision science teams, shipping cool products and creating reliable decision making processes with machine learning and advanced statistical methods in several industries.
 
 I hold a special interest about some specific topics:
 

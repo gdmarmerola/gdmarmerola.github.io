@@ -10,9 +10,9 @@ summary: Diagnosing confounding on leaf nodes of decision trees
 
 One of the biggest issues in causal inference problems is confounding, which stands for the impact explanatory variables may have on treatment assignment and the target. To draw conclusions on the causality of a treatment, we must isolate its effect, controlling the effects of other variables. In a perfect world, we would observe the effect of a treatment in identical individuals, inferring the treatment effect as the difference in their outcomes.
 
-Sounds like an impossible task. However, ML can help us in it, providing us with individuals that are "identical enough". A simple and effective way to do this is using a decision tree. I've [shown before](https://gdmarmerola.github.io/decision-tree-counterfactual/) that decision trees can be good causal inference models with some small adaptations, and tried to make this knowledge acessible through the [cfml_tools](https://github.com/gdmarmerola/cfml_tools) package. They are not the best model out there, however, they show good results, are interpretable, simple and fast.
+Sounds like an impossible task. However, ML can help us in it, providing us with individuals that are "identical enough". A simple and effective way to do this is using a decision tree. I've [shown before](https://gdmarmerola.github.io/decision-tree-counterfactual/) that decision trees can be good causal inference models with some small adaptations, and tried to make this knowledge acessible through the [cfml_tools](https://github.com/gdmarmerola/cfml_tools) package. They are not the best model out there, however, they show good results, are interpretable, simple, and fast.
 
-The methodology is as follows: we build a decision tree to solve a regression or classification problem from explanatory variables `X` to target `y`, and then compare outcomes for every treatment `W` at each leaf node to build counterfactual predictions. It yields good performance on fklearn's [causal inference problem](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html) out-of-the-box. Recursive partitioning performed by the tree will create clusters with individuals that are "identical enough" and enable us to perform counterfactual predictions.
+The methodology is as follows: we build a decision tree to solve a regression or classification problem from explanatory variables `X` to target `y`, and then compare outcomes for every treatment `W` at each leaf node to build counterfactual predictions. Recursive partitioning performed by the tree will create clusters with individuals that are "identical enough" and enable us to perform counterfactual predictions.
 
 But that is not always true. Not all partitions are born equal, and thus we need some support to diagnose where inference is valid and where it may be biased. In this Notebook, we'll use the `.run_leaf_diagnostics()` method from `DecisionTreeCounterfactual` which helps us diagnose that, and check if our counterfactual estimates are reasonable and unconfounded.
 
@@ -36,7 +36,7 @@ sex | age | severity | medication | recovery
 
 We have five features: `sex`, `age`, `severity`, `medication` and `recovery`. We want to estimate the impact of `medication` on `recovery`. So, our *target* variable is `recovery`, our *treatment* variable is `medication` and the rest are our *explanatory* variables. Additionally, the function outputs three data frames: `df_rnd`, where treatment assingment is random, `df_obs`, where treatment assingment is confounded and `df_cf`, which is the counterfactual dataframe, with the treatment indicator flipped.
 
-The real effect is $\frac{E[y | W=1]}{E[y | W=0]} = exp(-1) = 0.368$. We use `df_obs` to show the effects of confounding.
+The real effect is $\frac{E[y \mid W=1]}{E[y \mid W=0]} = exp(-1) = 0.368$. We use `df_obs` to show the effects of confounding.
 
 ## Decision Trees as causal inference models
 
@@ -72,7 +72,7 @@ counterfactuals = dtcf.predict(X)
 counterfactuals.iloc[5:10]
 ```
 
-<img src="https://gdmarmerola.github.io/assets/img/validity_causal_trees/validity_causal_trees_1.png" alt="drawing" height="250"/>
+<img src="https://gdmarmerola.github.io/assets/img/validity_causal_trees/validity_causal_trees_1.png" alt="drawing" height="150"/>
 
 We check if the underlying regression from `X`to `y` generalizes well, with reasonable R2 scores:
 
@@ -114,7 +114,7 @@ The dataframe provides a diagnostic on leaves with enough samples for counterfac
 * explanatory variable distribution across treatments (`percentile_*` variables) 
 * a confounding score for each variable, meaning how much we can predict the treatment from explanatory variables inside leaf nodes using a linear model (`confounding_score`)
 
-The most important column is the `confounding_score`, which tells us if treatments are not randomly assigned within leaves given explanatory variables. It is actually the AUC of a linear model that tries to tell treated from untreated individuals within each leaf. Let us check how our model fares on this score:
+The most important column is the `confounding_score`, which tells us if treatments are not randomly assigned within leaves given explanatory variables. It is actually the AUC of a linear model that tries to tell treated from untreated individuals apart within each leaf. Let us check how our model fares on this score:
 
 ```python
 # avg confounding score
@@ -134,7 +134,7 @@ plt.legend()
 
 <img src="https://gdmarmerola.github.io/assets/img/validity_causal_trees/validity_causal_trees_4.png" alt="drawing"/>
 
-Cool. This is a good result, as within more than half of the leaves treated and untreated individuals are virtually indistinguishable (AUC less than 0.6). However, we can check that for some of the leaves we have a high confounding score. Therefore, in those cases, our individuals are be not "identical enough" and inference may be biased. 
+Cool. This is a good result, as within more than half of the leaves treated and untreated individuals are virtually indistinguishable (AUC less than 0.6). However, we can check that for some of the leaves we have a high confounding score. Therefore, in those cases, our individuals may not be "identical enough" and inference may be biased. 
 
 We actually can measure how biased inference can be. Let us plot how the confounding score impacts the estimated effect.
 

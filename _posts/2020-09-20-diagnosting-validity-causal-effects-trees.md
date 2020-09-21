@@ -72,7 +72,7 @@ counterfactuals = dtcf.predict(X)
 counterfactuals.iloc[5:10]
 ```
 
-<img src="https://gdmarmerola.github.io/assets/img/validity_causal_trees/validity_causal_trees_1.png" alt="drawing" height="150"/>
+<img src="https://gdmarmerola.github.io/assets/img/validity_causal_trees/validity_causal_trees_1.png" alt="drawing" width="150"/>
 
 We check if the underlying regression from `X`to `y` generalizes well, with reasonable R2 scores:
 

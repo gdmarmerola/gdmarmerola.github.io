@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Forest Embeddings Counterfactual
+title: Calculating counterfactuals with random forests
 featured-img: forest_embeddings_cf_cover
 image: forest_embeddings_cf_cover
 category: [clustering, dreduction, causal inference]

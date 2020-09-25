@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Decision Tree Counterfactual
+title: Calculating counterfactuals with decision trees
 featured-img: decision_tree_cf_cover
 image: decision_tree_cf_cover
 category: [clustering, dreduction, causal inference]

@@ -135,7 +135,7 @@ We will walk through a single run with the true causal structure. Then, we'll de
 
 Bayesian Networks in general require that we discretize variables prior to fitting them to data. This can either be a shortcomig or a feature: it may make results more interpretable by business stakeholders. However, it introduces an arbritrary choice that may be hard to reason about and has a high impact on results. Personally, I think the scale is tipped to this being a **shortcoming**, as I think the interpretability gains do not compensate the introduction of an arbitrary choice.
 
-For simplicity, we perforrm quantile-based discretization, where all the features are discretized to `n_bins` bins. We also perform transform binary variables into strings, log1p-transform the target variable, and split data into `train` and `test` sets.
+For simplicity, we perform quantile-based discretization, where all the features are discretized to `n_bins` bins. We also transform binary variables into strings, log1p-transform the target variable, and split data into `train` and `test` sets.
 
 We perform special treatment on the target variable such as the the discretized labels represent the expected value of the bins, so we preserve expected values and can correctly compute treatment effects further on. 
 
@@ -293,7 +293,7 @@ The effect computed is 0.3975 / -0.92 (log)
 
 And we're off to a reasonable start! The net recovered an effect of `0.3975` or `-0.92` in log space, which is close to the expected `0.368` and `-1` true values. The ease of use and the fact that the net recovered the true effect counts as a **feature**. 
 
-However, there's an important **shortcoming**: the net does not provide confidence intervals, which implies that we will not have them as well for the final counterfactual. A Boostrap procedure could solve this, but it comes with the additional caveat of repeating the computationally expensive processes of training and executing do-calculus for several nets.
+However, there's an important **shortcoming**: the net does not provide confidence intervals. A Boostrap procedure could solve this, but it comes with the additional caveat of repeating the computationally expensive processes of training and executing do-calculus for several nets.
 
 ### Impact of confounding
 
@@ -378,7 +378,7 @@ plot_results(result_list)
 
 ![]({{ "assets/img/features_shortcomings_causalnex/causalnex_8.png" | absolute_url }})
 
-The plots show a interesting pattern. The true effect is shown by the black dashed line at `y = -1.0`. In the uncounfounded case, our counterfactual estimation procedure got really close to the true effect using a "modest" number of bins (4 and 8). The best structure was surprisingly the naive structure, although not by a large margin. The learned structure and the true structure arrived at almost identical results, which is also puzzling. 
+The plots show a interesting pattern. The true effect is shown by the black dashed line at `y = -1.0`. In the uncounfounded case, our counterfactual estimation procedure got really close to the true effect using an intermediate number of bins (4 and 8). The best structure was surprisingly the naive structure, although not by a large margin. The learned structure and the true structure arrived at almost identical results, which is also puzzling. 
 
 However, we see another major **shortcoming** of Bayesian Networks (at least in this setting): if the number of bins is too high or too low, we greatly underestimate the treatment effect. In a real-world setting, where we would not know the true effect, tuning this parameter would be challenging. Moreover, I would find very hard to trust the treatment effect estimate knowing of this sensibility to hyperparameters.
 

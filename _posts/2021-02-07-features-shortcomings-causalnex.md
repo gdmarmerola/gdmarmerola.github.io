@@ -14,7 +14,7 @@ However, the widespread adoption of these models in industry still has yet to ha
 
 So, in this post, I'll report my first try working with Bayesian Networks, more specifically using the CausalNex library. We'll try to solve a [synthetic causal inference problem](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html) from Nubank's fklearn library (the same that I've already used in several other [posts](https://gdmarmerola.github.io/diagnosting-validity-causal-effects-trees/)). Having a synthetic dataset gives us the benefit of knowing the true treatment effect and counterfactuals, providing objective evidence on the performance of the algorithm, even if it does not carry the weight of a thorough benchmark. 
 
-Throughout the post, I'll try to point out the **features** and **shortcomings** of our Bayesian Networks / Causal Nex approach. Without further ado, let's dive in!
+Throughout the post, I'll try to point out the **features** and **shortcomings** of our Bayesian Networks / CausalNex approach. Without further ado, let's dive in!
 
 
 ## Data: `make_confounded_data` from `fklearn`
@@ -33,7 +33,7 @@ We have five features: `sex`, `age`, `severity`, `medication` and `recovery`. We
 
 A good counterfactual model will tell us how would be the recovery time for each individual for both potential decisions of taking or not taking medication. The model should be robust to confounders, variables that affect the probability of someone taking the medication. For instance, people with higher `severity` may be more likely to take the medicine. If not properly taken into account, this confounder may lead us to conclude that the medication may make recovery worse: people that took the medication may have recovered more slowly (effectively ignoring that their condition was also more severe in the first place). In the [fklearn's documentation](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html), the data generating process is shown in detail, highlighting the confounders in the data. The effect we're looking for is 
 
-$$\frac{E[recovery \vert medication = 1]}{E[recovery \vert medication = 0]} = exp(-1) = 0.368$$.
+$\frac{E[recovery \vert medication = 1]}{E[recovery \vert medication = 0]} = exp(-1) = 0.368$.
 
 The `make_confounded_data` function outputs three data frames: `df_rnd`, where treatment assingment is random, `df_obs`, where treatment assingment is confounded and `df_cf`, which is the counterfactual dataframe, containing the counterfactual outcome for all the individuals.
 

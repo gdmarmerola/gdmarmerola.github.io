@@ -33,7 +33,7 @@ We have five features: `sex`, `age`, `severity`, `medication` and `recovery`. We
 
 A good counterfactual model will tell us how would be the recovery time for each individual for both potential decisions of taking or not taking medication. The model should be robust to confounders, variables that affect the probability of someone taking the medication. For instance, people with higher `severity` may be more likely to take the medicine. If not properly taken into account, this confounder may lead us to conclude that the medication may make recovery worse: people that took the medication may have recovered more slowly (effectively ignoring that their condition was also more severe in the first place). In the [fklearn's documentation](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html), the data generating process is shown in detail, highlighting the confounders in the data. The effect we're looking for is 
 
-$\frac{E[recovery \vert medication = 1]}{E[recovery \vert medication = 0]} = exp(-1) = 0.368$.
+$\large \frac{E[recovery \vert medication = 1]}{E[recovery \vert medication = 0]} = exp(-1) = 0.368$.
 
 The `make_confounded_data` function outputs three data frames: `df_rnd`, where treatment assingment is random, `df_obs`, where treatment assingment is confounded and `df_cf`, which is the counterfactual dataframe, containing the counterfactual outcome for all the individuals.
 
@@ -41,14 +41,14 @@ The `make_confounded_data` function outputs three data frames: `df_rnd`, where t
 
 We can divide our causal inference problem in two steps:
 
-1. Define (or learn) the *structure* of the problem. The structure determines which variables are causes of others and is represented by a causal diagram: a directed acyclic graph representing these relationships
+1. Define (or learn) the *structure* of the problem. The structure determines which variables are causes of others and is represented by a causal diagram: a directed acyclic graph representing these relationships.
 2. Given a structure and data, compute the counterfactual (treatment effect) of taking the medication vs. not taking it.
 
 Let us start with step (1).
 
 ### True (Oracle) Structure
 
-As we're dealing with a simulated dataset, we have the luxury if knowing the true structure of the problem. It is very easy to define this through the CausalNex `StructureModel` API:
+As we're dealing with a simulated dataset, we have the luxury of knowing the true structure of the problem. It is very easy to define this through the CausalNex `StructureModel` API:
 
 ```python
 from causalnex.structure import StructureModel
@@ -71,7 +71,7 @@ plot_structure(sm_true)
 
 If you're still confused about structural causal models now things may get clearer. The arrow sets the direction of causality, such that `a -> b` means that `a` *causes* `b`. So in our case `recovery` (our target, in red) is caused by all variables. The treatment variable, `medication`, is caused by `sex` and `severity`, and `severity` is caused by `age`. 
 
-Remeber that this is a simulated dataset. We know the true diagram because we created it and defined that data generating process (in detail [here](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html)). In an industry application, we would never be sure of the diagram and would count on domain experts to try to make it reproduce reality as much as we can.
+Remeber that this is a simulated dataset. We know the true diagram because we created it and defined the data generating process (in detail [here](https://fklearn.readthedocs.io/en/latest/examples/causal_inference.html)). In an industry application, we would never be sure of the diagram and would count on domain experts to try to make it reproduce reality as much as we can.
 
 In any case, having the possibility of reasoning about the structure of the problem is clearly a **feature** to the practitioner!
 

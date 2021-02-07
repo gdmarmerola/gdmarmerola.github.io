@@ -390,9 +390,9 @@ Let us now summarize all that we've learned and list the main **features** and *
 
 ## Conclusion
 
-In this post, we took CausalNex for a spin to try Bayesian Networks out, a promising idea for causal inference. We used a synthetic causal inference dataset to allow us to compare the model results to ground truth in an objective way. From this exploration we could check the main **features** and **shortcomings** of the approach. I list them below.
+In this post, we took CausalNex for a spin, with the goal to test a promising method for causal inference, Bayesian Networks. We used a synthetic causal inference dataset to allow us to compare the model results to ground truth in an objective way. From this exploration we could check the main **features** and **shortcomings** of the approach. I list them below.
 
-##### *Features* 
+#### *Features* 
 
 * **Building the DAG:** having a interface for a structural causal model incentivizes the practitioner to *think hard* about the problem and invites contribution from everyone (not just data scientists). We can also blend data with domain knowledge.
 
@@ -402,7 +402,7 @@ In this post, we took CausalNex for a spin to try Bayesian Networks out, a promi
 
 * **Do-calculus:** the do-calculus functionality is very easy to use and flexible. 
 
-##### *Shortcomings* 
+#### *Shortcomings* 
 
 * **Discretization:** having the need of discretizing the data can also be a feature to make the dataset easier to reason about. However, as we've seen, the introduction of this arbitrary choice can have a great impact on counterfactual estimation.
 

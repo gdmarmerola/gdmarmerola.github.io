@@ -398,7 +398,7 @@ In this post, we took CausalNex for a spin, with the goal to test a promising me
 
 * **Structure learning:** even if we did not recover the true structure exactly, the structure learning functionaly did a decent job and could be a valuable tool for exploring a new dataset.
 
-* **Inspecting conditional probabilities:** Bayesian Networks go one step further when showing conditional probabilities tables of the data. I found that `.cpds` provides an overview of the relationships between variables in a much more powerful way than correlation analysis.
+* **Inspecting conditional probabilities:** our Bayesian Network went one step further in interpretability when showing its table of conditional probabilities. I would argue that `.cpds` provides an overview of the relationships between variables in a much more powerful way than correlation analysis.
 
 * **Do-calculus:** the do-calculus functionality is very easy to use and flexible. 
 

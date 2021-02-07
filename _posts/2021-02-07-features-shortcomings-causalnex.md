@@ -90,7 +90,7 @@ plot_structure(sm_learned)
 
 ![]({{ "assets/img/features_shortcomings_causalnex/causalnex_2.png" | absolute_url }})
 
-Not bad, as the algorithm found that recovery depends on all variables. However, other edges seem awkward, specially `medication` being a cause of `age`. Nevertheless, structure leanring is recognized to be a very hard problem, and in most cases a domain expert will step in and make corrections to the relationships. It is a potentially very useful **feature** for exploring the data.
+Not bad, as the algorithm found that recovery depends on all variables. However, other edges seem awkward, specially `medication` being a cause of `age`. Nevertheless, structure learning is recognized to be a very hard problem, and in most cases a domain expert will step in and make corrections to the relationships. It is a potentially very useful **feature** for exploring the data.
 
 For the sake of fun and benchmarking, we'll store this structure so we can test it down the road.
 
@@ -123,17 +123,17 @@ Cool. We're off to a good start. We have three structures to test and perform in
 
 We divide Inference in three substeps:
 
-* Dataprep: we need to discretize our data so the Bayesian Network can perform computations. How we perform discretization makes a lot of difference, as we'll see further
+* **Dataprep:** we need to discretize our data so the Bayesian Network can perform computations. How we perform discretization makes a lot of difference, as we'll see further
 
-* Fit and evaluation: we fit the network to data (which amounts to computing tables of probabilities) and evaluate it on a test set
+* **Fit and evaluation:** we fit the network to data (which amounts to computing tables of probabilities) and evaluate it on a test set
 
-* Counterfactuals: we use the network to perform queries and predictions and use them to compute counterfactuals
+* **Counterfactuals:** we use the network to perform do-calculus and use it to compute counterfactuals
 
 We will walk through a single run with the true causal structure. Then, we'll devise a procedure to test other structures and hyperparameters. Finally, we'll analyze results.
 
 ### Dataprep
 
-Bayesian Networks in general require that we discretize variables prior to fitting them to data. This can either be a shortcomig or a feature: it may make results more interpretable by business stakeholders. However, it introduces an arbritrary choice that has a high impact on results that may hard to rationalize. Personally, I think the scale is tipped to this being a **shortcoming**, as I think the interpretability gains do not outweigh the introduction of a arbitrary choice.
+Bayesian Networks in general require that we discretize variables prior to fitting them to data. This can either be a shortcomig or a feature: it may make results more interpretable by business stakeholders. However, it introduces an arbritrary choice that may be hard to reason about and has a high impact on results. Personally, I think the scale is tipped to this being a **shortcoming**, as I think the interpretability gains do not compensate the introduction of an arbitrary choice.
 
 For simplicity, we perforrm quantile-based discretization, where all the features are discretized to `n_bins` bins. We also perform transform binary variables into strings, log1p-transform the target variable, and split data into `train` and `test` sets.
 

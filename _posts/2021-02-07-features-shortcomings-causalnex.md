@@ -404,12 +404,12 @@ In this post, we took CausalNex for a spin, with the goal to test a promising me
 
 #### *Shortcomings* 
 
-* **Discretization:** having the need of discretizing the data can also be a feature to make the dataset easier to reason about. However, as we've seen, the introduction of this arbitrary choice can have a great impact on counterfactual estimation.
+* **Discretization:** having the need of discretizing the data can be a feature to make the dataset easier to reason about. However, as we've seen, the introduction of this arbitrary choice can have a great impact on the counterfactual estimates.
 
-* **No confidence intervals, and high computational cost:** our implementation of bayesian networks did not output confidence intervals, which are very useful to diagnose the accuracy of the estimated effects. One could argue that this can be solved with bootstrap, but the high computational cost of the bayesian network can make this solution unfeasible.
+* **No confidence intervals, and high computational cost:** we lacked confidence intervals, which are very useful to diagnose the accuracy of the estimated effects. One could argue that this can be solved with bootstrap, but the high computational cost of the Bayesian Network can make this solution unfeasible.
 
-* **High hyperparameter sensivity:** small changes on hyperparameters greatly impact the treatment effect estimate from the net (specially the ones related to discretization).
+* **High hyperparameter sensivity:** small changes on hyperparameters greatly impacted the treatment effect estimate from the net (specially the ones related to discretization).
 
-* **Poor performrance on confounded data:** the implementation showed poor results on confounded data. 
+* **Poor performance on confounded data:** the implementation showed poor results on confounded data. 
 
 And that's it! I hope it was a good read. All feedbacks are highly appreciated!

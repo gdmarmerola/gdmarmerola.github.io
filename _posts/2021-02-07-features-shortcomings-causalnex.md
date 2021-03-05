@@ -133,7 +133,7 @@ We will walk through a single run with the true causal structure. Then, we'll de
 
 ### Dataprep
 
-Bayesian Networks in general require that we discretize variables prior to fitting them to data. This can either be a shortcomig or a feature: it may make results more interpretable by business stakeholders. However, it introduces an arbritrary choice that may be hard to reason about and has a high impact on results. Personally, I think the scale is tipped to this being a **shortcoming**, as I think the interpretability gains do not compensate the introduction of an arbitrary choice.
+Bayesian Networks in general require that we discretize variables prior to fitting them to data. This can either be a shortcoming or a feature: it may make results more interpretable by business stakeholders. However, it introduces an arbritrary choice that may be hard to reason about and has a high impact on results. Personally, I think the scale is tipped to this being a **shortcoming**, as I think the interpretability gains do not compensate the introduction of an arbitrary choice.
 
 For simplicity, we perform quantile-based discretization, where all the features are discretized to `n_bins` bins. We also transform binary variables into strings, log1p-transform the target variable, and split data into `train` and `test` sets.
 
@@ -271,7 +271,7 @@ plot_counterfactuals(counterfactuals)
 
 We can clearly see that the distribution of recovery times for `medication = yes` is fairly skewed to the left as compared to `medication = no`, which shows an opposite pattern, indicating that medication provides an improvement. 
 
-Then, we compute the effects by calculating the expected `recovery` value given treatment and no treatment. This is easy as we're assured that `recovery` labels reflect the bins expected values and we're with a multinomial distribution.
+Then, we compute the effects by calculating the expected `recovery` value given treatment and no treatment. This is easy as we're assured that `recovery` labels reflect expected values at each bin.
 
 ```python
 def compute_effect(cf):

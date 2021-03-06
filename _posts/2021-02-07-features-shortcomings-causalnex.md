@@ -202,7 +202,7 @@ print(auc)
 0.9284841721428572
 ```
 
-This is actually a high AUC! The network did a good job computing de conditional probability distributions of the data. For instance, we can check that the probability of taking medication remains constant after conditioning on `severity` and `sex`, which is expected as we're using `df_rnd`. That kind of interpretability is clearly a **feature**.
+This is actually a high AUC! The network did a good job computing the conditional probability distributions of the data. For instance, we can check that the probability of taking medication remains constant after conditioning on `severity` and `sex`, which is expected as we're using `df_rnd`. That kind of interpretability is clearly a **feature**.
 
 ```python
 bn_true.cpds['medication']

@@ -53,7 +53,7 @@ Cool! So how can we use this data in order to gather information efficiently and
 
 Now we start using Bayesian inference to get a measure of expected reward and uncertainty for each of our bandits. First, we need a **prior** distribution, i.e., a distribution for our expected rewards (the $\theta_k$'s of the bandits). As each of our $K$ bandits is a bernoulli random variable with success probability $\theta_k$, our prior distribution over $\theta_k$ comes naturally (through conjugacy properties): the **Beta distribution**!
 
-The Beta distribution, $\textrm{Beta}(1+\alpha, 1+\beta)$, models the parameter of a Bernoulli random variable after we've observed $\alpha$ sucesses and $\beta$ failures. Let's view some examples!
+The Beta distribution, $\textrm{Beta}(1+\alpha, 1+\beta)$, models the parameter of a Bernoulli random variable after we've observed $\alpha$ successes and $\beta$ failures. Let's view some examples!
 
 ![beta_examples]({{ "assets/img/posts/ts_for_mab_cover.jpg" | absolute_url }})
 
@@ -96,11 +96,11 @@ class eGreedyPolicy:
     # choice of bandit
     def choose_bandit(self, k_array, reward_array, n_bandits):
         
-        # sucesses and total draws
+        # successes and total draws
         success_count = reward_array.sum(axis=1)
         total_count = k_array.sum(axis=1)
         
-        # ratio of sucesses vs total
+        # ratio of successes vs total
         success_ratio = success_count/total_count
         
         # choosing best greedy action or random depending with epsilon probability
@@ -154,11 +154,11 @@ class UCBPolicy:
     # choice of bandit
     def choose_bandit(self, k_array, reward_array, n_bandits):
         
-        # sucesses and total draws
+        # successes and total draws
         success_count = reward_array.sum(axis=1)
         total_count = k_array.sum(axis=1)
         
-        # ratio of sucesses vs total
+        # ratio of successes vs total
         success_ratio = success_count/total_count
         
         # computing square root term
@@ -207,7 +207,7 @@ class TSPolicy:
         # list of samples, for each bandit
         samples_list = []
         
-        # sucesses and failures
+        # successes and failures
         success_count = reward_array.sum(axis=1)
         failure_count = k_array.sum(axis=1) - success_count
                     

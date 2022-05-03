@@ -47,13 +47,13 @@ We can use `matplotlib` to generate a video of random draws from these bandits. 
    </video>
 </div>
 
-Cool! So how can we use this data in order to gather information efficiently and minimize our regret? Let us use tools from bayesian inference to help us with that!
+Cool! So how can we use this data in order to gather information efficiently and minimize our regret? Let us use tools from Bayesian inference to help us with that!
 
 ## Distributions over Expected Rewards
 
-Now we start using bayesian inference to get a measure of expected reward and uncertainty for each of our bandits. First, we need a **prior** distribution, i.e., a distribution for our expected rewards (the $\theta_k$'s of the bandits). As each of our $K$ bandits is a bernoulli random variable with sucess probability $\theta_k$, our prior distribution over $\theta_k$ comes naturally (through conjungacy properties): the **Beta distribution**!
+Now we start using Bayesian inference to get a measure of expected reward and uncertainty for each of our bandits. First, we need a **prior** distribution, i.e., a distribution for our expected rewards (the $\theta_k$'s of the bandits). As each of our $K$ bandits is a bernoulli random variable with success probability $\theta_k$, our prior distribution over $\theta_k$ comes naturally (through conjugacy properties): the **Beta distribution**!
 
-The Beta distribution, $\textrm{Beta}(1+\alpha, 1+\beta)$, models the parameter of a bernoulli random variable after we've observed $\alpha$ sucesses and $\beta$ failures. Let's view some examples!
+The Beta distribution, $\textrm{Beta}(1+\alpha, 1+\beta)$, models the parameter of a Bernoulli random variable after we've observed $\alpha$ successes and $\beta$ failures. Let's view some examples!
 
 ![beta_examples]({{ "assets/img/posts/ts_for_mab_cover.jpg" | absolute_url }})
 
@@ -96,11 +96,11 @@ class eGreedyPolicy:
     # choice of bandit
     def choose_bandit(self, k_array, reward_array, n_bandits):
         
-        # sucesses and total draws
+        # successes and total draws
         success_count = reward_array.sum(axis=1)
         total_count = k_array.sum(axis=1)
         
-        # ratio of sucesses vs total
+        # ratio of successes vs total
         success_ratio = success_count/total_count
         
         # choosing best greedy action or random depending with epsilon probability
@@ -154,11 +154,11 @@ class UCBPolicy:
     # choice of bandit
     def choose_bandit(self, k_array, reward_array, n_bandits):
         
-        # sucesses and total draws
+        # successes and total draws
         success_count = reward_array.sum(axis=1)
         total_count = k_array.sum(axis=1)
         
-        # ratio of sucesses vs total
+        # ratio of successes vs total
         success_ratio = success_count/total_count
         
         # computing square root term
@@ -176,7 +176,7 @@ Let us observe how this policy fares in our game:
    </video>
 </div>
 
-We can note that exploration is fairly heavy in the beginning, with exploitation taking place further on. The algorithm quickly adapts when a bandit becomes less promising, switching to another bandit with higher optimistic estimate. Eventually, it will solve the bandit problem, as [it's regret is bounded](http://banditalgs.com/2016/09/18/the-upper-confidence-bound-algorithm/).
+We can note that exploration is fairly heavy in the beginning, with exploitation taking place further on. The algorithm quickly adapts when a bandit becomes less promising, switching to another bandit with higher optimistic estimate. Eventually, it will solve the bandit problem, as [its regret is bounded](http://banditalgs.com/2016/09/18/the-upper-confidence-bound-algorithm/).
 
 Now, for the last contender: Thompson Sampling!
 
@@ -207,7 +207,7 @@ class TSPolicy:
         # list of samples, for each bandit
         samples_list = []
         
-        # sucesses and failures
+        # successes and failures
         success_count = reward_array.sum(axis=1)
         failure_count = k_array.sum(axis=1) - success_count
                     
@@ -226,7 +226,7 @@ And one simulation:
    </video>
 </div>
 
-We can see that Thompson Sampling performs efficient exploration, quickly ruling out less promising arms, but not quite greedily: less promising arms with high uncertainty are activated, as we do not have sufficient information to rule them out. However, when the distribution of the best arm stands out, with uncertainty considered, we get a lot more agressive on exploitation.
+We can see that Thompson Sampling performs efficient exploration, quickly ruling out less promising arms, but not quite greedily: less promising arms with high uncertainty are activated, as we do not have sufficient information to rule them out. However, when the distribution of the best arm stands out, with uncertainty considered, we get a lot more aggressive on exploitation.
 
 But let us not take conclusions from an illustrative example with only 200 rounds of play. Let us analyze cumulative rewards and regrets for each of our decision policies in many long-term simulations. 
 
@@ -250,9 +250,9 @@ Let us take a look at the rates of arm selection over time. The plot below shows
 
 In this post, we showcased the Multi-Armed Bandit problem and tested three policies to address the exploration/exploitation problem: (a) $\epsilon$-greedy, (b) UCB and (c) Thompson Sampling.
 
-The $\epsilon$-greedy strategy makes use of a hyperparameter to balance exploration and exploitation. This is not ideal, as it may be hard to tune. Also, the exploration is not efficient, as we explore bandits equally (in average), not considering how promising they may be.
+The $\epsilon$-greedy strategy makes use of a hyperparameter to balance exploration and exploitation. This is not ideal, as it may be hard to tune. Also, the exploration is not efficient, as we explore bandits equally (in expectation), not considering how promising they may be.
 
-The UCB strategy, unlike the $\epsilon$-greedy, uses the uncertainty of the posterior distribution to select the appropriate bandit at each round. It supposes that a bandit can be as good as it's posterior distribution upper confidence bound. So we favor exploration by sampling from the distributions with high uncertainty and high tails, and exploit by sampling from the distribution with highest mean after we ruled out all the other upper confidence bounds.
+The UCB strategy, unlike the $\epsilon$-greedy, uses the uncertainty of the posterior distribution to select the appropriate bandit at each round. It supposes that a bandit can be as good as its posterior distribution upper confidence bound. So we favor exploration by sampling from the distributions with high uncertainty and high tails, and exploit by sampling from the distribution with highest mean after we ruled out all the other upper confidence bounds.
 
 Finally, Thompson Sampling uses a very elegant principle: to choose an action according to the probability of it being optimal. In practice, this makes for a very simple algorithm. We take one sample from each posterior, and choose the one with the highest value. Despite its simplicity, Thompson Sampling achieves state-of-the-art results, greatly outperforming the other algorithms. The logic is that it promotes efficient exploration: it explores more bandits that are promising, and quickly discards bad actions.
 
